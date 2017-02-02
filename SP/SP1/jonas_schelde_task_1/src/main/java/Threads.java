@@ -1,4 +1,6 @@
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * <h2>Task 1</h2>
@@ -21,29 +23,25 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  */
 public class Threads {
 
-    public static void printNumberToScreen(Integer number) {
+    private static Integer number;
+
+    private static void printNumberToScreen(Integer number) {
         System.out.printf("%s \n",number);
     }
 
-    public static void loopAndPrintComputedNumberFromOneToOneBillion() {
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
-                boolean isCounterBelowOneBillion = true;
-                Integer counter = 0;
-                Integer computedNumber = 0;
+    private static void loopAndPrintComputedNumberFromOneToOneBillion() {
+        boolean isCounterBelowOneBillion = true;
+        Integer counter = 0;
+        Integer computedNumber = 0;
 
-                while (isCounterBelowOneBillion) {
-                    computedNumber = computeNumberWithCounter(computedNumber, counter);
-                    counter++;
-                    if (counter > 1000000) {
-                        isCounterBelowOneBillion = false;
-                    }
-                }
-                printNumberToScreen(computedNumber);
+        while (isCounterBelowOneBillion) {
+            computedNumber = computeNumberWithCounter(computedNumber, counter);
+            counter++;
+            if (counter > 1000000) {
+                isCounterBelowOneBillion = false;
             }
-        };
-        thread.start();
+        }
+        printNumberToScreen(computedNumber);
     }
 
 
@@ -51,52 +49,23 @@ public class Threads {
         return computedNumber + counter;
     }
 
-    private static void startThreadWithSleep(int number) {
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    System.out.printf("Hi %s \n",number);
-                    Thread.sleep(10000);
-                    System.out.printf("Done sleeping %s \n", number);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        thread.start();
+    private static void sayHiAndSleepTenSec() throws InterruptedException {
+        System.out.printf("Hi %s \n", number);
+        new Thread().sleep(10*1000);
+        System.out.printf("Done sleeping %s \n", number);
     }
 
     /**
      * Print all numbers from 10 and up to {@link Integer#MAX_VALUE}. Pause for 3 seconds between each sprint.
      * Working as a Thread.
      */
-    public static void printAllNumbersFromTenUpToIntegerMax(String command) {
-        Thread thread;
-        thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for (Integer integer = 10; integer < integer.MAX_VALUE; integer++) {
-                    printNumberToScreen(integer);
-                    pauseFor(3);
-                }
-            }
-        });
-        if (command.equals("start") ) {
-            thread.start();
-        }
-        if (command.equals("kill")) {
-            thread.interrupt();
+    private static void printAllNumbersFromTenUpToIntegerMax() throws InterruptedException {
+        for (Integer integer = 10; integer < integer.MAX_VALUE; integer++) {
+            printNumberToScreen(integer);
+            new Thread().sleep(3*1000);
         }
     }
 
-    private static void pauseFor(Integer seconds) {
-        try {
-            Thread.sleep(seconds*1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * Starts three threads that execute three methods simultaneously.
@@ -105,11 +74,53 @@ public class Threads {
      * @param args Input arguments to the main method. Unused.
      */
     public static void main(String[] args) {
-        for (int i = 0; i < 3; i++ ) {
-            startThreadWithSleep(i);
-            loopAndPrintComputedNumberFromOneToOneBillion();
-            printAllNumbersFromTenUpToIntegerMax("start");
+        Thread threadSayHiAndSleepTenSec;
+        Thread threadPrintFromOneToOneBillion;
+        Thread threadPrintFromTenToIntMax = null;
+
+        List<Thread> threadList = new ArrayList<>();
+
+        for (int i = 0; i < 3; i++) {
+            Runnable runnableSayHiAndSleepTenSec = () -> {
+                try {
+                    sayHiAndSleepTenSec();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            };
+            threadList.add(new Thread(runnableSayHiAndSleepTenSec));
+
+            Runnable runnablePrintFromOneToOneBillion = () -> {
+                loopAndPrintComputedNumberFromOneToOneBillion();
+            };
+            threadList.add(new Thread(runnablePrintFromOneToOneBillion));
+
+            Runnable runnablePrintFromTenToIntMax = () -> {
+                try {
+                    printAllNumbersFromTenUpToIntegerMax();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            };
+            threadList.add(new Thread(runnablePrintFromTenToIntMax));
+
         }
-        printAllNumbersFromTenUpToIntegerMax("stop");
+        threadList.forEach(Thread::start);
+        for (Thread thread:threadList
+             ) {
+            System.out.printf("Nummer: %s \n", thread.getId() );
+        }
+
+        try {
+            new Thread().sleep(10*1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        for (int i = 2; i < threadList.size(); i+=3) {
+            System.out.printf("Interrupted Nummer: %s \n", threadList.get(i).getId() );
+            threadList.get(i).interrupt();
+        }
+
     }
 }
