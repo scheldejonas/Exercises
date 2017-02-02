@@ -106,6 +106,7 @@ public class Threads {
 
         }
         threadList.forEach(Thread::start);
+
         for (Thread thread:threadList
              ) {
             System.out.printf("Nummer: %s \n", thread.getId() );
