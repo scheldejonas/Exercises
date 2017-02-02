@@ -42,7 +42,7 @@ public class Threads {
                 }
                 printNumberToScreen(computedNumber);
             }
-        }
+        };
         thread.start();
     }
 
@@ -68,21 +68,26 @@ public class Threads {
     }
 
     /**
-     * Print all numbers from 10 and up to {@link Integer#MAX_VALUE}. Pause for 3
-     * seconds between each print.
+     * Print all numbers from 10 and up to {@link Integer#MAX_VALUE}. Pause for 3 seconds between each sprint.
+     * Working as a Thread.
      */
-    public static void printAllNumbersFromTenUpToIntegerMax() {
+    public static void printAllNumbersFromTenUpToIntegerMax(String command) {
         Thread thread;
         thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                for (Integer integer = 0; integer < integer.MAX_VALUE; integer++) {
+                for (Integer integer = 10; integer < integer.MAX_VALUE; integer++) {
                     printNumberToScreen(integer);
                     pauseFor(3);
                 }
             }
-        };
-        thread.start();
+        });
+        if (command.equals("start") ) {
+            thread.start();
+        }
+        if (command.equals("kill")) {
+            thread.interrupt();
+        }
     }
 
     private static void pauseFor(Integer seconds) {
@@ -95,6 +100,7 @@ public class Threads {
 
     /**
      * Starts three threads that execute three methods simultaneously.
+     * Stop / kill the thread running the third method after waiting 10 seconds.
      *
      * @param args Input arguments to the main method. Unused.
      */
@@ -102,7 +108,8 @@ public class Threads {
         for (int i = 0; i < 3; i++ ) {
             startThreadWithSleep(i);
             loopAndPrintComputedNumberFromOneToOneBillion();
-            printAllNumbersFromTenUpToIntegerMax();
+            printAllNumbersFromTenUpToIntegerMax("start");
         }
+        printAllNumbersFromTenUpToIntegerMax("stop");
     }
 }
