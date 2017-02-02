@@ -52,8 +52,8 @@
       <file leaf-file-name="Even.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Even.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="615">
-              <caret line="41" column="27" lean-forward="false" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
+            <state relative-caret-position="945">
+              <caret line="98" column="41" lean-forward="false" selection-start-line="98" selection-start-column="41" selection-end-line="98" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -728,12 +728,12 @@
       <option name="presentableId" value="Default" />
       <updated>1486042327221</updated>
       <workItem from="1486042328732" duration="5108000" />
-      <workItem from="1486053321069" duration="7121000" />
+      <workItem from="1486053321069" duration="7878000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12229000" />
+    <option name="totallyTimeSpent" value="12986000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="104" y="160" width="1920" height="1080" extended-state="0" />
@@ -861,8 +861,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Even.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="41" column="27" lean-forward="false" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
+        <state relative-caret-position="945">
+          <caret line="98" column="41" lean-forward="false" selection-start-line="98" selection-start-column="41" selection-end-line="98" selection-end-column="41" />
           <folding />
         </state>
       </provider>
