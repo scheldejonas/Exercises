@@ -22,5 +22,5 @@ Basicly this is about calculations with threads
 - Looked on, but skipped to try Task 6 before this.
 
 ## Task 6
-Open this repository in your favourite editor and open the ``Printer`` and 
-read the exercises inside.
+Basicly this task is about looping read commands (printing) in simultanious threads
+- TASK: 
