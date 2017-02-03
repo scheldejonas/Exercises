@@ -1,9 +1,0 @@
-.DS_Store
-target/generated-sources/
-.idea/.name
-.idea/compiler.xml
-.idea/misc.xml
-.idea/modules.xml
-target/
-training.iml
-.idea/workspace.xml
