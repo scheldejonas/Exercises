@@ -23,4 +23,7 @@ Basicly this is about calculations with threads
 
 ## Task 6
 Basicly this task is about looping read commands (printing) in simultanious threads
-- TASK: 
+- TASK: Assign alpabet printing to 4 different threads and start them all simultaneously.
+- TASK: Before you run explain why you run them, what do you expect will print? Did you see what you expected? 
+- LEARNED: I expected the alphabet to be printed fully from a to z before turning to the next alphabet, but didn't work.
+- LEARNED: CachedThreadPool is a great tool for making it concurrent.
