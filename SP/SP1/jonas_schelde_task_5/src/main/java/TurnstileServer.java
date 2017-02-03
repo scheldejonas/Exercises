@@ -46,7 +46,12 @@ public class TurnstileServer {
 
         try {
             while ( (socket = serverSocket.accept()) != null) {
+                System.out.printf("Handling connection... \n");
+
                 String connectingUnitName = defineTheConnecterUnit(socket);
+                socket.close();
+
+                System.out.printf("Connection handled and closed from %s... \nWaiting...", connectingUnitName);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -56,7 +61,7 @@ public class TurnstileServer {
     /**
      * This method destinguic if the connector is a Turnstile or a monitor.
      * @param socket
-     * @return
+     * @return unit type
      */
     private String defineTheConnecterUnit(Socket socket) {
         String conectionString = null;

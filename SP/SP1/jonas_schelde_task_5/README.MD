@@ -43,3 +43,21 @@ Explain about Thread Programming including:
 - TASK: *5. Change the example to make it possible to see the count from each turnstile*
 - TASK: *6. If you have time-1: Deploy your server to DigitalOcean and demonstrate using this remote server*
 - TASK: *7. If you have time-2: Write a simple client (Swing or Web-based) that can show the total amount of spectators*
+
+## FOR INFORMAION ONLY
+
+Note: this part is NOT a part of the exercise, it's meant as FYI and such a section will not be included with the real question.
+
+Hints:
+
+Don't do the deployment part, unless/before you have completed the exercise " Getting Started with Digital Ocean.pdf"
+
+For part-1 (the protocol) it could be as simple as you have to send "things" in this order: TURNSTYLE (to signal that this client is a turnstile, this is sent only once)
+
+T-1 (the id of this turnstyle, this is sent only once)
+
+Count (the value to update the shared counter with, sent as many times a necessary) Feel free to come up with an alternative protocol.
+
+Remember: For the final exam the grades for passed lies between 02 - 12.
+
+You are not ALL expected to be able to complete all steps for an Exam exercise. For this exercise, try to complete at least step 1-3.
