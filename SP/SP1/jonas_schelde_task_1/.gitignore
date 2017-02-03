@@ -5,5 +5,5 @@ target/generated-sources/
 .idea/misc.xml
 .idea/workspace.xml
 .idea/modules.xml
-target/classes
+target/
 training.iml
