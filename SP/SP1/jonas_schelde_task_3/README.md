@@ -44,19 +44,19 @@ We will discuss this today, and design a protocol that all servers and clients w
 command line arguments.  (Hint: ``.bind()`` method)*
 - TASK: *Time should be returned in the format: ``Tue Sep 02 16:00:34 UTC 2014``.*
 - TASK: *Test your server using a telnet client*
-- LEARNED: Check TimeServer.java
-- LEARNED: Respons from terminal with "telnet localhost 8080" worked just fine.
+- ANSWER: Check TimeServer.java
+- ANSWER: Respons from terminal with "telnet localhost 8080" worked just fine.
 
 #### 2) TCP Time Client
 - TASK: *Write you own client, which can connect to your TCP time server and print the time.*
-- LEARNED: Stoppet here and went to task 3 before trying again.
+- ANSWER: Stoppet here and went to task 3 before trying again.
 
 #### 3) Echo server with extended protocol
 - TASK: *Echo server basic here: [jonas forked repo](https://github.com/scheldejonas/week1-concurrency)*
 - TASK: *This package contains two classes: An ``EchoClient`` and a ``EchoServer``. The server listens for connections forever,
 and when a connection is established, it listens to the input and simply echoes the same back to the client.*
 - TASK: *The client connects to the server and writes a string. When it writes it waits for a reply, prints it and quits.*
-- LEARNED: Check EchoClient.java and EchoServer.java
+- ANSWER: Check EchoClient.java and EchoServer.java
 
 Expand the echo server we did together in the class with the following behaviour.
 
@@ -78,8 +78,8 @@ message to all connected clients
 for events (incoming data).  The solution must use a separate Thread to 
 read incoming data in order to avoid blocking problems.
 - TASK: 4. Provide the client with a GUI.
-- LEARNED: I am missing ideas, how to fit threads together with this server?
-- LEARNED: Stopped and went to next assignment
+- ANSWER: I am missing ideas, how to fit threads together with this server?
+- ANSWER: Stopped and went to next assignment
 
 Just add a few hardcode words in a map on the server. Return ``#NOT_FOUND`` for a 
 word not found.
