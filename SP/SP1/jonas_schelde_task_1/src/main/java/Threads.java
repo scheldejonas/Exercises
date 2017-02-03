@@ -23,50 +23,6 @@ import java.util.List;
  */
 public class Threads {
 
-    private static Integer number;
-
-    private static void printNumberToScreen(Integer number) {
-        System.out.printf("%s \n",number);
-    }
-
-    private static void loopAndPrintComputedNumberFromOneToOneBillion() {
-        boolean isCounterBelowOneBillion = true;
-        Integer counter = 0;
-        Integer computedNumber = 0;
-
-        while (isCounterBelowOneBillion) {
-            computedNumber = computeNumberWithCounter(computedNumber, counter);
-            counter++;
-            if (counter > 1000000) {
-                isCounterBelowOneBillion = false;
-            }
-        }
-        printNumberToScreen(computedNumber);
-    }
-
-
-    private static Integer computeNumberWithCounter(Integer computedNumber, Integer counter) {
-        return computedNumber + counter;
-    }
-
-    private static void sayHiAndSleepTenSec() throws InterruptedException {
-        System.out.printf("Hi %s \n", number);
-        new Thread().sleep(10*1000);
-        System.out.printf("Done sleeping %s \n", number);
-    }
-
-    /**
-     * Print all numbers from 10 and up to {@link Integer#MAX_VALUE}. Pause for 3 seconds between each sprint.
-     * Working as a Thread.
-     */
-    private static void printAllNumbersFromTenUpToIntegerMax() throws InterruptedException {
-        for (Integer integer = 10; integer < integer.MAX_VALUE; integer++) {
-            printNumberToScreen(integer);
-            new Thread().sleep(3*1000);
-        }
-    }
-
-
     /**
      * Starts three threads that execute three methods simultaneously.
      * Stop / kill the thread running the third method after waiting 10 seconds.
@@ -108,7 +64,7 @@ public class Threads {
         threadList.forEach(Thread::start);
 
         for (Thread thread:threadList
-             ) {
+                ) {
             System.out.printf("Nummer: %s \n", thread.getId() );
         }
 
@@ -123,5 +79,46 @@ public class Threads {
             threadList.get(i).interrupt();
         }
 
+    }
+
+    private static void printNumberToScreen(Integer number) {
+        System.out.printf("%s \n",number);
+    }
+
+    private static void loopAndPrintComputedNumberFromOneToOneBillion() {
+        boolean isCounterBelowOneBillion = true;
+        Integer counter = 0;
+        Integer computedNumber = 0;
+
+        while (isCounterBelowOneBillion) {
+            computedNumber = computeNumberWithCounter(computedNumber, counter);
+            counter++;
+            if (counter > 1000000) {
+                isCounterBelowOneBillion = false;
+            }
+        }
+        printNumberToScreen(computedNumber);
+    }
+
+
+    private static Integer computeNumberWithCounter(Integer computedNumber, Integer counter) {
+        return computedNumber + counter;
+    }
+
+    private static void sayHiAndSleepTenSec() throws InterruptedException {
+        System.out.printf("Hi start sleeping \n");
+        new Thread().sleep(10*1000);
+        System.out.printf("Done sleeping \n");
+    }
+
+    /**
+     * Print all numbers from 10 and up to {@link Integer#MAX_VALUE}. Pause for 3 seconds between each sprint.
+     * Working as a Thread.
+     */
+    private static void printAllNumbersFromTenUpToIntegerMax() throws InterruptedException {
+        for (Integer integer = 10; integer < integer.MAX_VALUE; integer++) {
+            printNumberToScreen(integer);
+            new Thread().sleep(3*1000);
+        }
     }
 }
