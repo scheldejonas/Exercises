@@ -1,12 +1,14 @@
-# Exercise 1: Handling threads
+# Exercise 1: Handling threads with Jonas
 
 ## Task 1
-Open this repository in your favourite editor and open the ``Threads`` and 
-read the exercises inside.
+Basicly this is about threads.
+TASK: *Starts three threads that execute three methods simultaneously.*
+TASK: *Stop / kill the thread running the third method after waiting 10 seconds.*
+LEARNED: *So the task learned me that to start threads, if you wanna stop / interrupt them, you need to have the reference to them.*
+LEARNED: *And that place the thread in the highest level possible of your code, so you have the complete sections of code run, but it still seems i don't control it from there*
 
 ## Task 2
-Open this repository in your favourite editor and open the ``Even`` and 
-read the exercises inside.
+
 
 ## Task 3 - 5
 The three tasks are available from this repository
