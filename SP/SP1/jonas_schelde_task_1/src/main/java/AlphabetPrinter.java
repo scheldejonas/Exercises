@@ -47,35 +47,62 @@ public class AlphabetPrinter implements Runnable {
     }
 
     public static void main(String[] args) throws InterruptedException {
-
         long startTime = System.currentTimeMillis();
+
+        List<Thread> threadList = new ArrayList<>();
 
         AlphabetPrinter alphabetPrinter = new AlphabetPrinter();
 
-        Thread thread = new Thread(alphabetPrinter);
-        Thread threadTwo = new Thread(alphabetPrinter);
-        Thread threadThree = new Thread(alphabetPrinter);
-        Thread threadFour = new Thread(alphabetPrinter);
+        for (int i = 0; i < 20; i++) {
+            threadList.add(new Thread(alphabetPrinter));
+        }
 
         System.out.printf("Ready to start threads \n");
-        thread.start();
-        threadTwo.start();
-        threadThree.start();
-        threadFour.start();
+        threadList.forEach(Thread::start);
         System.out.printf("Done starting threads \n");
 
-        thread.join();
-        threadTwo.join();
-        threadThree.join();
-        threadFour.join();
+        for (Thread thread : threadList
+             ) {
+            thread.join();
+        }
 
         long endTime = System.currentTimeMillis();
 
         long totalTime = endTime - startTime;
 
         System.out.printf("Time it took to run this program: %s \n",totalTime);
-
     }
+
+//    public static void main(String[] args) throws InterruptedException {
+//
+//        long startTime = System.currentTimeMillis();
+//
+//        AlphabetPrinter alphabetPrinter = new AlphabetPrinter();
+//
+//        Thread thread = new Thread(alphabetPrinter);
+//        Thread threadTwo = new Thread(alphabetPrinter);
+//        Thread threadThree = new Thread(alphabetPrinter);
+//        Thread threadFour = new Thread(alphabetPrinter);
+//
+//        System.out.printf("Ready to start threads \n");
+//        thread.start();
+//        threadTwo.start();
+//        threadThree.start();
+//        threadFour.start();
+//        System.out.printf("Done starting threads \n");
+//
+//        thread.join();
+//        threadTwo.join();
+//        threadThree.join();
+//        threadFour.join();
+//
+//        long endTime = System.currentTimeMillis();
+//
+//        long totalTime = endTime - startTime;
+//
+//        System.out.printf("Time it took to run this program: %s \n",totalTime);
+//
+//    }
 
 //    /**
 //     * Creates four threads and start them simultaneously.
