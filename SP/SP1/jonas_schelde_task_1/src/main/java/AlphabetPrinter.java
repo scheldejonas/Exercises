@@ -53,7 +53,7 @@ public class AlphabetPrinter implements Runnable {
 
         AlphabetPrinter alphabetPrinter = new AlphabetPrinter();
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 2000; i++) {
             threadList.add(new Thread(alphabetPrinter));
         }
 
