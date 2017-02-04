@@ -5,6 +5,8 @@ import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by scheldejonas on 03/02/17.
@@ -18,6 +20,7 @@ public class TurnstileServer {
 
     private final String host;
     private final int port;
+    private static final ExecutorService executorservice = Executors.newCachedThreadPool();
 
     public TurnstileServer(String host, int port) {
         this.host = host;
@@ -48,11 +51,19 @@ public class TurnstileServer {
             while ( (socket = serverSocket.accept()) != null) {
                 System.out.printf("Handling connection... \n");
 
-                String connectingUnitName = defineTheConnecterUnit(socket);
+                String connectingUnitType = defineTheConnecterUnit(socket);
+
+                if (connectingUnitType == "TURNSTILE") {
+                    executorservice.execute(new Runnable() {
+                        public void run() {
+                            System.out.printf("Hello");
+                        }
+                    });
+                }
 
                 socket.close();
 
-                System.out.printf("Connection handled and closed from %s... \nWaiting...", connectingUnitName);
+                System.out.printf("Connection handled and closed from %s... \nWaiting...", connectingUnitType);
             }
         } catch (IOException e) {
             e.printStackTrace();

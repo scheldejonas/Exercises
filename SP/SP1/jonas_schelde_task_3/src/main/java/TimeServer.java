@@ -70,9 +70,12 @@ public class TimeServer {
 
                 printStream.printf("This is today's date and time: %s",localDateTime);
 
+                System.out.printf("The remote Socket Adress: %s \n", socket.getRemoteSocketAddress() );
+
                 socket.close();
 
                 System.out.printf("Done writing LocalDate to client...and waiting \n");
+
             }
         } catch (IOException e) {
             e.printStackTrace();
