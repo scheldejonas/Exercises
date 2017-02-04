@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -33,7 +36,7 @@ public class AlphabetPrinter implements Runnable {
     @Override
     public void run() {
 
-        //reentrantLock.lock();
+        reentrantLock.lock();
         System.out.printf("Lock status: %s \n", reentrantLock.isLocked() );
         System.out.printf("STARTING alphabet printing... \n");
         for (char character : ALPHABET.toCharArray()
@@ -41,37 +44,82 @@ public class AlphabetPrinter implements Runnable {
             System.out.printf( "%s \n",character );
         }
         System.out.printf("DONE alphabet printing... \n");
-        //reentrantLock.unlock();
+        reentrantLock.unlock();
         System.out.printf("Lock status: %s \n", reentrantLock.isLocked());
 
     }
 
-    public static void main(String[] args) throws InterruptedException {
-        long startTime = System.currentTimeMillis();
+    /**
+     * A executor service that could do starvation up to 12-13.000 threads executed at the same time. at submit for executor service
+     *
+     * it lasted up to 70-75.000 threads executed at the same time. at submit for executor service.
+     *
+     * Next question is then, how to make the qeue become a database, so it just re engage the port saved in the list in the db, do the task and answer back the user?
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
 
-        List<Thread> threadList = new ArrayList<>();
+        ThreadFactory threadFactory = Executors.defaultThreadFactory();
+
+        ExecutorService executorService = Executors.newCachedThreadPool(threadFactory);
+
+        long startTime = System.currentTimeMillis();
 
         AlphabetPrinter alphabetPrinter = new AlphabetPrinter();
 
-        for (int i = 0; i < 2000; i++) {
-            threadList.add(new Thread(alphabetPrinter));
+        int counter = 0;
+        for (int i = 0; i < 80000; i++) {
+            System.out.printf("Threads started: %s \n", counter++);
+            executorService.execute(alphabetPrinter);
         }
 
-        System.out.printf("Ready to start threads \n");
-        threadList.forEach(Thread::start);
-        System.out.printf("Done starting threads \n");
-
-        for (Thread thread : threadList
-             ) {
-            thread.join();
-        }
+        executorService.shutdown();
 
         long endTime = System.currentTimeMillis();
 
         long totalTime = endTime - startTime;
 
         System.out.printf("Time it took to run this program: %s \n",totalTime);
+
     }
+
+//    /**
+//     * Runs the program, from the lock in use, starting 2000 threads, before it want starved
+//     *
+//     * If using the lock - the runtime is 6-800 milisec
+//     *
+//     * if not using the lock - the runtime is 15-1800 milisec
+//     *
+//     * @param args
+//     * @throws InterruptedException
+//     */
+//    public static void main(String[] args) throws InterruptedException {
+//        long startTime = System.currentTimeMillis();
+//
+//        List<Thread> threadList = new ArrayList<>();
+//
+//        AlphabetPrinter alphabetPrinter = new AlphabetPrinter();
+//
+//        for (int i = 0; i < 2000; i++) {
+//            threadList.add(new Thread(alphabetPrinter));
+//        }
+//
+//        System.out.printf("Ready to start threads \n");
+//        threadList.forEach(Thread::start);
+//        System.out.printf("Done starting threads \n");
+//
+//        for (Thread thread : threadList
+//             ) {
+//            thread.join();
+//        }
+//
+//        long endTime = System.currentTimeMillis();
+//
+//        long totalTime = endTime - startTime;
+//
+//        System.out.printf("Time it took to run this program: %s \n",totalTime);
+//    }
 
 //    public static void main(String[] args) throws InterruptedException {
 //
