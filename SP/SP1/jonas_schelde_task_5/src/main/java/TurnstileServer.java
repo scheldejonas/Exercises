@@ -49,6 +49,7 @@ public class TurnstileServer {
                 System.out.printf("Handling connection... \n");
 
                 String connectingUnitName = defineTheConnecterUnit(socket);
+
                 socket.close();
 
                 System.out.printf("Connection handled and closed from %s... \nWaiting...", connectingUnitName);
