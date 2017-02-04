@@ -33,20 +33,22 @@ public class AlphabetPrinter implements Runnable {
     @Override
     public void run() {
 
-        reentrantLock.lock();
+        //reentrantLock.lock();
         System.out.printf("Lock status: %s \n", reentrantLock.isLocked() );
-        System.out.printf("STARTING \n");
+        System.out.printf("STARTING alphabet printing... \n");
         for (char character : ALPHABET.toCharArray()
              ) {
             System.out.printf( "%s \n",character );
         }
-        System.out.printf("DONE \n");
-        reentrantLock.unlock();
+        System.out.printf("DONE alphabet printing... \n");
+        //reentrantLock.unlock();
         System.out.printf("Lock status: %s \n", reentrantLock.isLocked());
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+
+        long startTime = System.currentTimeMillis();
 
         AlphabetPrinter alphabetPrinter = new AlphabetPrinter();
 
@@ -61,6 +63,17 @@ public class AlphabetPrinter implements Runnable {
         threadThree.start();
         threadFour.start();
         System.out.printf("Done starting threads \n");
+
+        thread.join();
+        threadTwo.join();
+        threadThree.join();
+        threadFour.join();
+
+        long endTime = System.currentTimeMillis();
+
+        long totalTime = endTime - startTime;
+
+        System.out.printf("Time it took to run this program: %s \n",totalTime);
 
     }
 
