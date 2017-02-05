@@ -72,7 +72,7 @@ public class AlphabetPrinter implements Runnable {
         AlphabetPrinter alphabetPrinter = new AlphabetPrinter();
 
         int counter = 0;
-        for (int i = 0; i < 100000; i++) {
+        for (int i = 0; i < 200000; i++) {
             System.out.printf("Threads started: %s \n", counter++);
             executorService.execute(alphabetPrinter);
         }
@@ -84,7 +84,7 @@ public class AlphabetPrinter implements Runnable {
         long totalTime = endTime - startTime;
 
         try {
-            new Thread().sleep(15*1000);
+            new Thread().sleep(30*1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
