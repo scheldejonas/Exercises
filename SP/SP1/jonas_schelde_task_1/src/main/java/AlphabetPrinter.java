@@ -36,16 +36,19 @@ public class AlphabetPrinter implements Runnable {
     @Override
     public void run() {
 
-        reentrantLock.lock();
-        System.out.printf("Lock status: %s \n", reentrantLock.isLocked() );
-        System.out.printf("STARTING alphabet printing... \n");
-        for (char character : ALPHABET.toCharArray()
-             ) {
-            System.out.printf( "%s \n",character );
+        try {
+            reentrantLock.lock();
+            System.out.printf("Lock status: %s \n", reentrantLock.isLocked() );
+            System.out.printf("STARTING alphabet printing... \n");
+            for (char character : ALPHABET.toCharArray()
+                    ) {
+                System.out.printf( "%s \n",character );
+            }
+            System.out.printf("DONE alphabet printing... \n");
+        } finally {
+            reentrantLock.unlock();
+            System.out.printf("Lock status: %s \n", reentrantLock.isLocked());
         }
-        System.out.printf("DONE alphabet printing... \n");
-        reentrantLock.unlock();
-        System.out.printf("Lock status: %s \n", reentrantLock.isLocked());
 
     }
 
@@ -62,14 +65,14 @@ public class AlphabetPrinter implements Runnable {
 
         ThreadFactory threadFactory = Executors.defaultThreadFactory();
 
-        ExecutorService executorService = Executors.newCachedThreadPool(threadFactory);
+        ExecutorService executorService = Executors.newFixedThreadPool(128);
 
         long startTime = System.currentTimeMillis();
 
         AlphabetPrinter alphabetPrinter = new AlphabetPrinter();
 
         int counter = 0;
-        for (int i = 0; i < 80000; i++) {
+        for (int i = 0; i < 100000; i++) {
             System.out.printf("Threads started: %s \n", counter++);
             executorService.execute(alphabetPrinter);
         }
@@ -80,7 +83,14 @@ public class AlphabetPrinter implements Runnable {
 
         long totalTime = endTime - startTime;
 
-        System.out.printf("Time it took to run this program: %s \n",totalTime);
+        try {
+            new Thread().sleep(15*1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.printf("Time it took to run this program: %s \n" +
+                "And counted with: %s threads\n",totalTime,counter);
 
     }
 
