@@ -7,6 +7,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
 
 /**
  * Created by scheldejonas on 03/02/17.
@@ -47,19 +48,15 @@ public class TurnstileServer {
         Socket socket;
         System.out.printf("Waiting... \n");
 
+        ThreadFactory threadFactory = Executors.defaultThreadFactory();
+
+        ExecutorService executorService = Executors.newFixedThreadPool(64);
+
         try {
             while ( (socket = serverSocket.accept()) != null) {
                 System.out.printf("Handling connection... \n");
 
-                String connectingUnitType = defineTheConnecterUnit(socket);
-
-                if (connectingUnitType == "TURNSTILE") {
-                    executorservice.execute(new Runnable() {
-                        public void run() {
-                            System.out.printf("Hello");
-                        }
-                    });
-                }
+                executorService.execute();
 
                 socket.close();
 
@@ -70,27 +67,5 @@ public class TurnstileServer {
         }
     }
 
-    /**
-     * This method destinguic if the connector is a Turnstile or a monitor.
-     * @param socket
-     * @return unit type
-     */
-    private String defineTheConnecterUnit(Socket socket) {
-        String conectionString = null;
-        try {
-            InputStream inputStream = socket.getInputStream();
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            conectionString = bufferedReader.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-        if (conectionString.contains("UNIT_TURNSTILE")) {
-            return "TURNSTILE";
-        }
-        if (conectionString.contains("UNIT_MONITOR")) {
-            return "MONTIRO";
-        }
-    }
 }
