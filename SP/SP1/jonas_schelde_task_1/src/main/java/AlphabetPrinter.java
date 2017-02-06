@@ -84,7 +84,7 @@ public class AlphabetPrinter implements Runnable {
         long totalTime = endTime - startTime;
 
         try {
-            new Thread().sleep(30*1000);
+            new Thread().sleep(45*1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

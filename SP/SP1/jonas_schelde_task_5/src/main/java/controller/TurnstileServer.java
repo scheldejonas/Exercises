@@ -1,10 +1,11 @@
-import java.io.BufferedReader;
+package controller;
+
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
@@ -52,11 +53,23 @@ public class TurnstileServer {
 
         ExecutorService executorService = Executors.newFixedThreadPool(64);
 
+        List<ConnectionProcesThread> procesThreadList = new LinkedList<>();
+
         try {
             while ( (socket = serverSocket.accept()) != null) {
                 System.out.printf("Handling connection... \n");
 
-                executorService.execute();
+                ConnectionProcesThread connectionProcesThread;
+
+                connectionProcesThread = new ConnectionProcesThread();
+
+                connectionProcesThread.readyProcesWithSocket(socket);
+
+                procesThreadList.add(connectionProcesThread);
+
+                executorService.execute(connectionProcesThread);
+
+
 
                 socket.close();
 

@@ -1,3 +1,8 @@
+package controller;
+
+import domain.Monitor;
+import domain.Turnstile;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,17 +13,24 @@ import java.net.Socket;
  * Created by scheldejonas on 06/02/17.
  */
 public class ConnectionProcesThread extends Thread {
+
+    private Turnstile turnstile;
+    private Monitor monitor;
+
+    public ConnectionProcesThread() {
+    }
+
     @Override
     public void run() {
         super.run();
     }
 
     /**
-     * This method destinguic if the connector is a Turnstile or a monitor.
+     * This method destinguic if the connector is a domain.Turnstile or a monitor.
      * @param socket
      * @return unit type
      */
-    private String defineTheConnecterUnit(Socket socket) {
+    private void defineAndSetTheConnecterUnit(Socket socket) {
         String conectionString = null;
         try {
             InputStream inputStream = socket.getInputStream();
@@ -30,10 +42,22 @@ public class ConnectionProcesThread extends Thread {
         }
 
         if (conectionString.contains("UNIT_TURNSTILE")) {
-            return "TURNSTILE";
+
         }
         if (conectionString.contains("UNIT_MONITOR")) {
-            return "MONTIRO";
+
         }
+    }
+
+    public void readyProcesWithSocket(Socket connectionSocket) {
+
+        defineAndSetTheConnecterUnit(connectionSocket);
+
+
+
+    }
+
+    public Turnstile getTurnstile() {
+        return turnstile;
     }
 }

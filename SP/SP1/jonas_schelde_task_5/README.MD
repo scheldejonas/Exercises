@@ -33,7 +33,7 @@ Explain about Thread Programming including:
 #### Sub practical tasks
 
 - TASK: *1. Design a TCP server and a simple protocol where each turnstile initially reports that it is a
-  Turnstile (to distinguish from Monitor-Clients, see next step), its id (turnstile1-turnstile-n) and then reports an 
+  domain.Turnstile (to distinguish from Monitor-Clients, see next step), its id (turnstile1-turnstile-n) and then reports an 
   increment for each spectator that passes the turnstile*
 - ANSWER: Check the defineTheConnecterUnit() method in TurnstileServer.java
 - TASK: *2. Identify potential Race Condition Problems and handle the problem(s).*
