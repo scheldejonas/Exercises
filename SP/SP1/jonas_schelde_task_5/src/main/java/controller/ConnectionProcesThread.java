@@ -8,12 +8,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by scheldejonas on 06/02/17.
  */
 public class ConnectionProcesThread extends Thread {
 
+    private ReentrantLock reentrantLock = new ReentrantLock();
     private Turnstile turnstile;
     private Monitor monitor;
 
@@ -22,7 +24,7 @@ public class ConnectionProcesThread extends Thread {
 
     @Override
     public void run() {
-        super.run();
+        // TODO: make the instruks for this thread to run and save the info of the Turnstile to the database
     }
 
     /**
@@ -31,21 +33,26 @@ public class ConnectionProcesThread extends Thread {
      * @return unit type
      */
     private void defineAndSetTheConnecterUnit(Socket socket) {
-        String conectionString = null;
         try {
-            InputStream inputStream = socket.getInputStream();
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            conectionString = bufferedReader.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            reentrantLock.lock();
+            String conectionString = null;
+            try {
+                InputStream inputStream = socket.getInputStream();
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                conectionString = bufferedReader.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-        if (conectionString.contains("UNIT_TURNSTILE")) {
-
-        }
-        if (conectionString.contains("UNIT_MONITOR")) {
-
+            if (conectionString.contains("UNIT_TURNSTILE")) {
+                this.turnstile = new Turnstile();
+            }
+            if (conectionString.contains("UNIT_MONITOR")) {
+                this.monitor = new Monitor();
+            }
+        } finally {
+            reentrantLock.unlock();
         }
     }
 
@@ -53,11 +60,15 @@ public class ConnectionProcesThread extends Thread {
 
         defineAndSetTheConnecterUnit(connectionSocket);
 
-
-
     }
 
-    public Turnstile getTurnstile() {
-        return turnstile;
+    public String getUnitType() {
+        if (this.turnstile != null) {
+            return "UNIT_TURNSTILE";
+        }
+        if (this.monitor != null) {
+            return "UNIT_MONITOR";
+        }
+        return null;
     }
 }
