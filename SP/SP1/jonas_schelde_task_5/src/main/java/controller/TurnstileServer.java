@@ -73,7 +73,7 @@ public class TurnstileServer {
 
                 socket.close();
 
-                System.out.printf("Connection handled and closed from %s... \nWaiting...", connectingUnitType);
+                System.out.printf("Connection handled and closed from %s... \nWaiting...", connectionProcesThread.getUnitType());
             }
         } catch (IOException e) {
             e.printStackTrace();
