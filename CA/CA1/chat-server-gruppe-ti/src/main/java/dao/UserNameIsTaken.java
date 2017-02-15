@@ -5,8 +5,8 @@ package dao;
  *
  * Created by scheldejonas on 15/02/2017.
  */
-public class UserNameIsDuplicate extends Throwable {
-    public UserNameIsDuplicate() {
+public class UserNameIsTaken extends Throwable {
+    public UserNameIsTaken() {
         super("There is a 2 or more usernames in the User table with the same name");
     }
 }

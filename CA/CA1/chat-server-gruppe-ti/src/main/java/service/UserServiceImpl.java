@@ -1,6 +1,7 @@
 package service;
 
 import dao.UserDaoImpl;
+import dao.UserNameIsTaken;
 import domain.User;
 
 import java.util.List;
@@ -37,7 +38,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByUserName(String userName) {
+    public User getUserByUserName(String userName) throws UserNameIsTaken {
         return userDao.getUserByUserName(userName);
     }
 }

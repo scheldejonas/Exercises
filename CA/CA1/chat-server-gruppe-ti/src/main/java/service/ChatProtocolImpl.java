@@ -1,5 +1,6 @@
 package service;
 
+import dao.UserNameIsTaken;
 import domain.User;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -25,22 +26,35 @@ public class ChatProtocolImpl implements ChatProtocol {
     @Override
     public String commandLogIn(String userName) {
 
-        User user = userService.getUserByUserName(userName);
-
-        user.setActive(true);
-
-        userService.updateActive(user);
-
-        List<User> userList = userService.getActiveUsers();
+        User user = null;
 
         String activeUserStringSeperatedByHash = "";
 
-        for (User userIterator : userList
-             ) {
-            activeUserStringSeperatedByHash += "#" + userIterator.getUserName();
+        try {
+
+            user = userService.getUserByUserName(userName);
+
+            user.setActive(true);
+
+            userService.updateActive(user);
+
+            List<User> userList = userService.getActiveUsers();
+            System.out.printf("TEST - active user list size in command log in %s \n",userList.size());
+
+            for (User userIterator : userList
+                    ) {
+                activeUserStringSeperatedByHash += "#" + userIterator.getUserName();
+            }
+
+            return String.format("OK#%s",activeUserStringSeperatedByHash);
+
+        } catch (UserNameIsTaken userNameIsTaken) {
+            System.out.println(userNameIsTaken.getMessage());
+            userNameIsTaken.printStackTrace();
         }
 
-        return String.format("OK#%s",activeUserStringSeperatedByHash);
+        return String.format("FAIL\n");
+
     }
 
     /**
@@ -56,22 +70,46 @@ public class ChatProtocolImpl implements ChatProtocol {
     }
 
     @Override
-    public String commandMessage() {
-        throw new NotImplementedException();
+    public String commandMessage(String message, String userName) {
+
+        String responseMessageToClient = "";
+
+        try {
+            User user = userService.getUserByUserName(userName);
+        } catch (UserNameIsTaken userNameIsTaken) {
+            userNameIsTaken.printStackTrace();
+        }
+
+
+        return responseMessageToClient;
     }
 
     @Override
     public String handleRecievedLine(String recievedText) {
 
-        if ( recievedText.contains("LOGIN") ) {
+        String commandTextLine = recievedText.substring(0,recievedText.indexOf('#',0));
+        System.out.printf("TEST - commandTextLine: %s \n", commandTextLine);
+
+        String parameterAndMessageTextLine = recievedText.substring(recievedText.indexOf('#',0) + 1);
+        System.out.printf("TEST - parameterAndMessageTextLine: %s \n", parameterAndMessageTextLine);
+
+        if (  commandTextLine.contains("LOGIN") ) {
 
             String userName = recievedText.substring(recievedText.lastIndexOf('#') + 1);
+            System.out.printf("TEST - userName on LOGIN command: %s \n", userName);
 
             return commandLogIn(userName);
         }
 
-        if ( recievedText.contains("MSG") ) {
-            String message = recievedText.substring()
+        if ( commandTextLine.contains("MSG") ) {
+
+            String message = recievedText.substring(recievedText.lastIndexOf('#') + 1);
+            System.out.printf("TEST - message: %s \n", message);
+
+            String userName = parameterAndMessageTextLine.substring(0,parameterAndMessageTextLine.indexOf('#',0));
+            System.out.printf("TEST - userName on MSG command: %s \n",userName);
+
+            return commandMessage(message, userName);
         }
 
         return "NOT VALID CONNECTION";

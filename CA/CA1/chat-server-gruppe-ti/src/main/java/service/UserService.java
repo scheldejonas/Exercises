@@ -1,5 +1,6 @@
 package service;
 
+import dao.UserNameIsTaken;
 import domain.User;
 
 import java.util.List;
@@ -14,5 +15,5 @@ public interface UserService {
 
     void updateActive(User user);
 
-    User getUserByUserName(String userName);
+    User getUserByUserName(String userName) throws UserNameIsTaken;
 }

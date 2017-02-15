@@ -10,6 +10,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * Created by scheldejonas on 15/02/2017.
  */
 public class ConnectionProcess implements Runnable {
+
     private final ReentrantLock reentrantLock;
     private Socket connectionSocket;
 
@@ -20,6 +21,7 @@ public class ConnectionProcess implements Runnable {
 
     public void run() {
         try {
+
             reentrantLock.lock();
 
             InputStream inputStream = connectionSocket.getInputStream();

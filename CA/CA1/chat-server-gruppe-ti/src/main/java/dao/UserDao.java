@@ -15,5 +15,5 @@ public interface UserDao {
 
     void updateActive(User user);
 
-    User getUserByUserName(String userName);
+    User getUserByUserName(String userName) throws UserNameIsTaken;
 }

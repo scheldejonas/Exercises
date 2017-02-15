@@ -1,7 +1,6 @@
 package dao;
 
 import domain.User;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -124,7 +123,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User getUserByUserName(String userName) {
+    public User getUserByUserName(String userName) throws UserNameIsTaken {
 
         User user = new User();
 
@@ -140,7 +139,7 @@ public class UserDaoImpl implements UserDao {
             if ( !(userList.size() > 1) ) {
                 user = userList.get(0);
             } else {
-                throw new UserNameIsDuplicate();
+                throw new UserNameIsTaken();
             }
 
         } catch (ConnectionProfileNotFoundException e) {
@@ -152,9 +151,6 @@ public class UserDaoImpl implements UserDao {
         } catch (ClassNotFoundException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
-        } catch (UserNameIsDuplicate userNameIsDuplicate) {
-            System.out.println(userNameIsDuplicate.getMessage());
-            userNameIsDuplicate.printStackTrace();
         }
 
         return user;
