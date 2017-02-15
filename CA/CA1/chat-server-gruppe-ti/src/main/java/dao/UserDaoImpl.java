@@ -123,4 +123,42 @@ public class UserDaoImpl implements UserDao {
 
     }
 
+    @Override
+    public User getUserByUserName(String userName) {
+
+        User user = new User();
+
+        String sqlStatement = String.format("SELECT * FROM chatone.User WHERE userName = %s",userName);
+
+        try (Connection connection = DatabaseConnectionConfig.getConnection(profile);
+             Statement statement = connection.createStatement()) {
+
+            ResultSet resultSet = statement.executeQuery(sqlStatement);
+
+            List<User> userList = makeResulSetToList(resultSet);
+
+            if ( !(userList.size() > 1) ) {
+                user = userList.get(0);
+            } else {
+                throw new UserNameIsDuplicate();
+            }
+
+        } catch (ConnectionProfileNotFoundException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        } catch (UserNameIsDuplicate userNameIsDuplicate) {
+            System.out.println(userNameIsDuplicate.getMessage());
+            userNameIsDuplicate.printStackTrace();
+        }
+
+        return user;
+
+    }
+
 }

@@ -1,13 +1,11 @@
 package controller;
 
-import domain.User;
-import service.ConectionProcess;
+import service.ConnectionProcess;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
@@ -47,7 +45,7 @@ public class ChatServer implements Runnable {
         try {
             while ( (connectionSocket = serverSocket.accept()) != null ) {
 
-                executorService.execute(new ConectionProcess(reentrantLock,connectionSocket));
+                executorService.execute(new ConnectionProcess(reentrantLock,connectionSocket));
 
             }
         } catch (IOException e) {

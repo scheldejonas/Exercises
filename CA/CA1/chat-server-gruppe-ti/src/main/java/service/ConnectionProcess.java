@@ -1,11 +1,6 @@
 package service;
 
-import service.ChatProtocol;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.Socket;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -14,11 +9,11 @@ import java.util.concurrent.locks.ReentrantLock;
  *
  * Created by scheldejonas on 15/02/2017.
  */
-public class ConectionProcess implements Runnable {
+public class ConnectionProcess implements Runnable {
     private final ReentrantLock reentrantLock;
     private Socket connectionSocket;
 
-    public ConectionProcess(ReentrantLock reentrantLock, Socket connectionSocket) {
+    public ConnectionProcess(ReentrantLock reentrantLock, Socket connectionSocket) {
         this.reentrantLock = reentrantLock;
         this.connectionSocket = connectionSocket;
     }
@@ -31,13 +26,19 @@ public class ConectionProcess implements Runnable {
 
             BufferedReader packetBufferedInputStreamReader = new BufferedReader(new InputStreamReader(inputStream));
 
-            String recievedTextMessage = packetBufferedInputStreamReader.readLine();
+            String recievedText = packetBufferedInputStreamReader.readLine();
 
-            ChatProtocol chatProtocol = new ChatProtocol();
+            ChatProtocolImpl chatProtocolImpl = new ChatProtocolImpl();
 
-            if (recievedTextMessage.contains("LOGIN")) {
+            String requestServerResponse = chatProtocolImpl.handleRecievedLine(recievedText);
 
-            }
+            OutputStream outputStream = connectionSocket.getOutputStream();
+
+            PrintWriter responsePrintWriter = new PrintWriter(outputStream);
+
+            responsePrintWriter.println(requestServerResponse);
+
+            connectionSocket.close();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -45,6 +46,6 @@ public class ConectionProcess implements Runnable {
             reentrantLock.unlock();
         }
 
-
     }
+
 }
