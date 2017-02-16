@@ -6,11 +6,13 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
+import java.net.Socket;
 
 /**
  * Created by scheldejonas on 16/02/2017.
  */
-public class ClientForm {
+public class ClientForm extends Client {
     private final JFrame jFrame;
     private JButton sendButton;
     private JTextField messageField;
@@ -19,7 +21,7 @@ public class ClientForm {
     private JButton logOut;
     private String userName = "";
 
-    public ClientForm(JFrame jFrame) {
+    public ClientForm(JFrame jFrame, Socket socket) {
 
         this.jFrame = jFrame;
 
@@ -32,29 +34,18 @@ public class ClientForm {
 
                     userName = messageField.getText();
 
-                    String text = chatArea.getText();
+                    emptyTypingField();
 
-                    text += String.format("\n Welcome to %s\n" +
-                            "We will inform you when new users is entering the chat int he list to your right", userName);
-
-                    chatArea.setText(text);
+                    appendTextAreaWithMessage(userName, "Welcome to %s\n" +
+                            "We will inform you when new users is entering the chat int he list to your right");
 
                 } else {
 
-                    String text = chatArea.getText();
+                    appendTextAreaWithMessage( getUserName(),messageField.getText());
 
-                    System.out.printf("%s\n",messageField.getText());
-                    System.out.printf("Printing to System out from Client Form \n");
-
-                    text += String.format("\n %s", messageField.getText());
-
-                    messageField.setText("");
-
-                    chatArea.setText(text);
+                    emptyTypingField();
 
                 }
-
-
 
             }
 
@@ -65,13 +56,46 @@ public class ClientForm {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                //jFrame.dispatchEvent(new WindowEvent(jFrame, WindowEvent.WINDOW_CLOSING));
+                jFrame.dispatchEvent(new WindowEvent(jFrame, WindowEvent.WINDOW_CLOSING));
 
-                System.exit(1);
+                try {
+
+                    serverThread.getSocket().close();
+
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+
+                try {
+
+                    Thread.sleep(500);
+
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
+
+                server.interrupt();
 
             }
 
         });
+
+    }
+
+    protected void emptyTypingField() {
+
+        messageField.setText("");
+        System.out.println("TEST: Emptied the inputfield");
+
+    }
+
+    protected void appendTextAreaWithMessage(String userName, String newMessage) {
+
+        String presentTextAreaContent = chatArea.getText();
+
+        presentTextAreaContent += String.format("%s > %s\n", userName, newMessage);
+
+        chatArea.setText(presentTextAreaContent);
 
     }
 
@@ -82,4 +106,5 @@ public class ClientForm {
     public String getUserName() {
         return this.userName;
     }
+
 }

@@ -12,11 +12,18 @@ import java.util.Scanner;
  */
 public class Client {
 
+    protected static ClientForm clientForm;
+    protected static Socket socket;
+    protected static ServerThread serverThread;
+    protected static Thread server;
+
     public static void main(String[] args) {
 
         JFrame jFrame = new JFrame("ClientForm");
 
-        ClientForm clientForm = new ClientForm(jFrame);
+        socket = null;
+
+        clientForm = new ClientForm(jFrame, socket);
 
         jFrame.setContentPane(clientForm.getjPanelOne());
 
@@ -30,6 +37,7 @@ public class Client {
             try {
 
                 Thread.sleep(500);
+                System.out.println("TEST - Waiting for a User Name");
 
             } catch (InterruptedException e) {
                 System.out.printf("Error while waiting for username \n");
@@ -37,7 +45,6 @@ public class Client {
                 e.printStackTrace();
             }
 
-            System.out.println("TEST - Waiting for a User Name");
 
         }
 
@@ -49,14 +56,18 @@ public class Client {
 
         try {
 
-            Socket socket = new Socket();
+            socket = new Socket();
 
             socket.connect(new InetSocketAddress(host,portNumber));
             System.out.printf("TEST - Connecting Client to Server on %s:%s...\n",host,portNumber);
 
-            Thread.sleep(1000);
+            Thread.sleep(500);
 
-            Thread server = new Thread(new ServerThread(socket,name));
+            serverThread = new ServerThread(socket,name);
+
+            Thread.sleep(500);
+
+            server = new Thread(serverThread);
 
             server.start();
             System.out.printf("TEST - Starting Server connection as a Thread...\n");

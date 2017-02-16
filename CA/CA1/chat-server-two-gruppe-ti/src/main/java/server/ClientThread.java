@@ -1,9 +1,6 @@
 package server;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 
 /**
@@ -30,22 +27,28 @@ public class ClientThread extends ChatServer implements Runnable {
 
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-            while (!socket.isClosed()) {
-                System.out.println("TEST - Socket is not closed");
+            System.out.printf("Socket is connected: %s \n",socket.isConnected() );
+            while (socket.isConnected()) {
 
-                String input = in.readLine();
-                System.out.println("TEST - input line on server is: " +  input);
+                if (in.ready()) {
 
-                if (input != null) {
+                    String input = in.readLine();
 
-                    for (ClientThread clientThread : clientThreadList) {
+                    if (input != null) {
+                        System.out.println("Server recieved message from client: " +  input);
 
-                        clientThread.getOut().write(input);
+                        for (ClientThread clientThread : clientThreadList) {
+
+                            clientThread.getOut().println(input);
+
+                        }
+                        System.out.printf("Client Thread List size is now: %s\n",clientThreadList.size());
 
                     }
-                    System.out.printf("TEST - Client Thread List size is: %s\n",clientThreadList.size());
-
                 }
+
+
+
 
             }
 

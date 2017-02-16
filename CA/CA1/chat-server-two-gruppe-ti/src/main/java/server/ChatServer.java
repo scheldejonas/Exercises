@@ -12,18 +12,23 @@ import java.util.List;
  */
 public class ChatServer {
 
-    private static ServerSocket serverSocket;
+    private static ServerSocket serverSocket = null;
     private static int portNumber = 8081;
     protected static List<ClientThread> clientThreadList = null;
 
+    /**
+     * Starting Chat server, in a one thread to control all clients.
+     *
+     * @param args
+     */
     public static void main(String[] args) {
-
-        serverSocket = null;
 
         try {
 
+            // Creating new instance of the server
             serverSocket = new ServerSocket();
 
+            // Binding server to ip and port
             serverSocket.bind(new InetSocketAddress("localhost", portNumber));
 
             acceptClients();
@@ -44,9 +49,9 @@ public class ChatServer {
 
             try {
 
-                System.out.printf("TEST - Starting to wait for now clients connecting...\n");
+                System.out.printf("Starting to wait for now clients connecting...\n");
                 Socket socket = serverSocket.accept();
-                System.out.printf("TEST - Client connected on return port: %s \n", socket.getLocalPort());
+                System.out.printf("Client connected on return port: %s \n", socket.getLocalPort());
 
                 ClientThread clientThread = new ClientThread(socket);
 
@@ -55,7 +60,7 @@ public class ChatServer {
                 thread.start();
 
                 clientThreadList.add(clientThread);
-                System.out.printf("TEST - Client added to the list with a new size: %s\n",clientThreadList.size());
+                System.out.printf("Client added to the list with a new size: %s\n",clientThreadList.size());
 
             } catch (IOException e) {
                 System.err.println("Accept failen on: " + portNumber);

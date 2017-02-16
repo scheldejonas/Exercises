@@ -9,7 +9,7 @@ import java.net.Socket;
 /**
  * Created by scheldejonas on 16/02/2017.
  */
-public class ServerThread implements Runnable {
+public class ServerThread extends Client implements Runnable {
 
     private Socket socket;
     private String name;
@@ -38,6 +38,12 @@ public class ServerThread implements Runnable {
             userIn = new BufferedReader(new InputStreamReader(System.in));
 
             while (!socket.isClosed()) {
+                try {
+                    Thread.sleep(1000);
+                    System.out.printf("TEST, userIn.ready: %s serverIn.ready: %s \n",serverIn.ready(), userIn.ready() );
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
                 if (serverIn.ready()) {
 
@@ -53,8 +59,7 @@ public class ServerThread implements Runnable {
 
                 if (userIn.ready()) {
 
-                    out.println(name + " > " + userIn.readLine());
-                    System.out.printf("Client red a user line");
+                    clientForm.appendTextAreaWithMessage(name,userIn.readLine());
 
                 }
 
@@ -69,4 +74,7 @@ public class ServerThread implements Runnable {
 
     }
 
+    protected Socket getSocket() {
+        return socket;
+    }
 }
