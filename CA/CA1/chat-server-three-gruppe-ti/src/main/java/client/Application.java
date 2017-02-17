@@ -10,7 +10,9 @@ import java.util.Scanner;
  */
 public class Application {
     public static void main(String[] args) throws InterruptedException, IOException {
-        Client client = new Client("localhost",8081);
+        String host = "10.50.137.177";
+        String host2 = "10.50.130.116";
+        Client client = new Client(host2,8081);
         Thread thread = new Thread(client);
         thread.start();
     }

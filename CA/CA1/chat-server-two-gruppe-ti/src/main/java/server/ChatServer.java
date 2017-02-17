@@ -13,6 +13,8 @@ import java.util.List;
 public class ChatServer {
 
     private static ServerSocket serverSocket = null;
+    private static String host = "10.50.137.177";
+    private static String localhost = "localhost";
     private static int portNumber = 8081;
     protected static List<ClientThread> clientThreadList = null;
 
@@ -29,7 +31,7 @@ public class ChatServer {
             serverSocket = new ServerSocket();
 
             // Binding server to ip and port
-            serverSocket.bind(new InetSocketAddress("localhost", portNumber));
+            serverSocket.bind(new InetSocketAddress(host, portNumber));
 
             acceptClients();
 
