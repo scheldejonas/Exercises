@@ -1,4 +1,6 @@
-package server;
+package controller;
+
+import service.ClientThread;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

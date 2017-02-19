@@ -1,4 +1,6 @@
-package server;
+package service;
+
+import controller.ChatServer;
 
 import java.io.*;
 import java.net.Socket;
@@ -75,11 +77,7 @@ public class ClientThread extends ChatServer implements Runnable {
 
     private void filterMessageThroughProtocolAndSend(String recievedText) {
 
-        String commandTextLine = recievedText.substring(0,recievedText.indexOf('#',0));
-        System.err.printf("Incoming commandTextLine: %s \n", commandTextLine);
 
-        String parameterAndMessageTextLine = recievedText.substring(recievedText.indexOf('#',0) + 1);
-        System.err.printf("Incoming parameterAndMessageTextLine: %s \n", parameterAndMessageTextLine);
 
         if (  commandTextLine.equals("LOGIN") ) {
 
