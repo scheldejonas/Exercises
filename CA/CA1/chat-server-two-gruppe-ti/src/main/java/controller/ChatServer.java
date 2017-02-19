@@ -20,10 +20,19 @@ public class ChatServer {
     private int portNumber = 8081;
     private List<ClientThread> clientThreadList = new ArrayList<>();
 
+    /**
+     * Instantiates a new Chat server.
+     */
     public ChatServer() {
         System.out.println("This server will start on host: " + this.host + " and port: " + this.portNumber);
     }
 
+    /**
+     * Instantiates a new Chat server.
+     *
+     * @param host       the host
+     * @param portNumber the port number
+     */
     public ChatServer(String host, int portNumber) {
         this.host = host;
         this.portNumber = portNumber;
@@ -68,30 +77,63 @@ public class ChatServer {
         }
     }
 
+    /**
+     * Gets client thread list.
+     *
+     * @return the client thread list
+     */
     public List<ClientThread> getClientThreadList() {
         return clientThreadList;
     }
 
+    /**
+     * Sets client thread list.
+     *
+     * @param clientThreadList the client thread list
+     */
     public void setClientThreadList(List<ClientThread> clientThreadList) {
         this.clientThreadList = clientThreadList;
     }
 
+    /**
+     * Gets server socket.
+     *
+     * @return the server socket
+     */
     public ServerSocket getServerSocket() {
         return serverSocket;
     }
 
+    /**
+     * Sets server socket.
+     *
+     * @param serverSocket the server socket
+     */
     public void setServerSocket(ServerSocket serverSocket) {
         this.serverSocket = serverSocket;
     }
 
+    /**
+     * Gets host.
+     *
+     * @return the host
+     */
     public String getHost() {
         return host;
     }
 
+    /**
+     * Gets port number.
+     *
+     * @return the port number
+     */
     public int getPortNumber() {
         return portNumber;
     }
 
+    /**
+     * Start server.
+     */
     public void startServer() {
         try {
             serverSocket = new ServerSocket();

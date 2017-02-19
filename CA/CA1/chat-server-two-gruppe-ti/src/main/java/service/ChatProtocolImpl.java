@@ -13,6 +13,9 @@ public class ChatProtocolImpl implements ChatProtocol {
 
     private ClientThread clientThread = null;
 
+    /**
+     * Instantiates a new Chat protocol.
+     */
     public ChatProtocolImpl() {
     }
 
@@ -165,10 +168,20 @@ public class ChatProtocolImpl implements ChatProtocol {
         throw new NotImplementedException();
     }
 
+    /**
+     * Gets client thread.
+     *
+     * @return the client thread
+     */
     public ClientThread getClientThread() {
         return clientThread;
     }
 
+    /**
+     * Sets client thread.
+     *
+     * @param clientThread the client thread
+     */
     public void setClientThread(ClientThread clientThread) {
         this.clientThread = clientThread;
     }

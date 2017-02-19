@@ -33,13 +33,13 @@ public class ScannerChatUI {
         System.out.println("\nThe next thing you wanna do is typing your username right here below, and push enter.");
         String username = startScannerAndWaitForOneLineBeforeContinue();
         System.out.println("\nThank you for your username, the next is to give the domain or ip of the host you would like to " +
-                "connect to.");
+                "connect to. - Live Server is on 77.66.48.34 - If you just press enter, it will do this ip.");
         String host = startScannerAndWaitForOneLineBeforeContinue();
         if (host.equals("")) {
-            host = "localhost";
+            host = "77.66.48.34";
         }
         System.out.println("\nThank you for the host, the next this is to provide the port on the host, which " +
-                "the server is started on.");
+                "the server is started on. - Live Server is on 8081 - If you just press enter, it will do this port.");
         String portNumber = startScannerAndWaitForOneLineBeforeContinue();
         if (portNumber.equals("")) {
             portNumber = "8081";

@@ -60,6 +60,8 @@ public class ChatProtocolImpl implements ChatProtocol {
         String parameterAndRestOfTextLine = "";
         if (receivedText.equals("FAIL")) {
             onClientUpdateUIWithLoginError();
+        } else if (receivedText.equals("T")) {
+            commandTextLine = "TEST";
         } else {
             commandTextLine = receivedText.substring(0, countToFirstHashValue(receivedText));
             parameterAndRestOfTextLine = receivedText.substring(countToFirstHashValue(receivedText)+1);
@@ -83,7 +85,7 @@ public class ChatProtocolImpl implements ChatProtocol {
         }
         if (commandTextLine.equals("MSG")) {
             String fromUsername = receivedText.substring(countToFirstHashValue(receivedText)+1, countToSecondHashValue(receivedText));
-            String message = parameterAndRestOfTextLine.substring(countToFirstHashValue(parameterAndRestOfTextLine));
+            String message = parameterAndRestOfTextLine.substring(countToFirstHashValue(parameterAndRestOfTextLine)+1);
             onClientUpdateUIWithNewMessage(fromUsername, message);
         }
     }
