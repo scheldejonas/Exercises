@@ -128,7 +128,17 @@ public class ChatProtocolImpl implements ChatProtocol {
 
     @Override
     public void onClientRemoveUserFromUI(String username) {
-
+        int indexToRemove = -1;
+        for (String string : activeUsernameList) {
+            if (string.equals(username)) {
+                indexToRemove = activeUsernameList.indexOf(string);
+            }
+        }
+        if (indexToRemove != -1) {
+            activeUsernameList.remove(indexToRemove);
+        } else {
+            this.scannerChatUI.printErrorOnText(String.format("\nServer wanted to remove user: %s, but he wasn't existing in your active user list",username));
+        }
     }
 
     @Override

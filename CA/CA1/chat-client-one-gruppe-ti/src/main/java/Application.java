@@ -1,3 +1,4 @@
+import view.ScannerChatUI;
 import view.SwingClientConnectForm;
 
 import javax.swing.*;
@@ -11,7 +12,8 @@ public class Application {
         String host2 = "10.50.130.116";
         String localhost = "localhost";
         int normalPort = 8081;
-        startSwingGui();
+        //startSwingGui();
+        startScannerUI();
     }
 
     private static void startSwingGui() {
@@ -21,5 +23,10 @@ public class Application {
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.pack();
         jFrame.setVisible(true);
+    }
+
+    private static void startScannerUI() {
+        ScannerChatUI scannerChatUI = new ScannerChatUI();
+        scannerChatUI.startScannerUI();
     }
 }

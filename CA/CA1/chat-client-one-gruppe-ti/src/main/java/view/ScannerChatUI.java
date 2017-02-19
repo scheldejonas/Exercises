@@ -33,13 +33,13 @@ public class ScannerChatUI {
     }
 
     public void startScannerUI() {
-        System.out.println("Hello chatter" +
+        System.out.println("Hello chatter\n" +
                 "\n" +
                 "Here you will be able to chat with people from all over the world!");
         System.out.println("\nThe next thing you wanna do is typing your username right here below, and push enter.");
         String username = startScannerAndWaitForOneLineBeforeContinue();
-        System.out.println("\nThank you for your username, the next is to give the domain or ip of the host you would like to" +
-                "connect to");
+        System.out.println("\nThank you for your username, the next is to give the domain or ip of the host you would like to " +
+                "connect to.");
         String host = startScannerAndWaitForOneLineBeforeContinue();
         System.out.println("\nThank you for the host, the next this is to provide the port on the host, which " +
                 "the server is started on.");
@@ -103,6 +103,7 @@ public class ScannerChatUI {
             }
         }
         scanner.close();
+        scanner.reset();
         return newTextLine;
     }
 
