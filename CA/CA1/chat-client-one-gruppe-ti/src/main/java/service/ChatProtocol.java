@@ -1,7 +1,5 @@
 package service;
 
-import view.ScannerChatUI;
-
 import java.util.List;
 
 /**
@@ -9,15 +7,13 @@ import java.util.List;
  */
 public interface ChatProtocol {
 
-    String getMyUsername();
-
-    void setMyUsername(String myUsername);
-
     void onServerAnalyseReceivedTextFromClient(String receivedText);
 
-    void onServerRespondWith(String loginText);
+    void onServerRespondToClientLogin(String username);
 
-    void onServerRespondMessageToAllClients(String message);
+    void onServerRespondUpdateOnNewUserToActiveClients(String newUser);
+
+    void onServerRespondMessageToAllClients(String fromUsername, String message);
 
     void onServerRespondMessageToPrivateClient(String fromUsername, String toUsername, String message);
 
@@ -39,5 +35,4 @@ public interface ChatProtocol {
 
     void onClientRemoveUserFromUI(String username);
 
-    void setScannerChatIU(ScannerChatUI scannerChatIU);
 }

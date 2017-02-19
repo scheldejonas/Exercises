@@ -27,6 +27,5 @@ public class Application {
 
     private static void startScannerUI() {
         ScannerChatUI scannerChatUI = new ScannerChatUI();
-        scannerChatUI.startScannerUI();
     }
 }

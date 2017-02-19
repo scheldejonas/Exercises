@@ -17,14 +17,13 @@ public class ServerConnectionThread implements Runnable {
     private PrintWriter printToServerStream = null;
     private BufferedReader recieveFromServerStream = null;
     private Socket clientSocket = null;
-    private String username = null;
-    private ChatProtocol chatProtocol = null;
-
+    private ChatClientThread chatClientThread = null;
+    private ChatProtocolImpl chatProtocol = null;
     private ScannerChatUI scannerChatUI = null;
 
-    public ServerConnectionThread(Socket clientSocket, String username) {
+    public ServerConnectionThread(Socket clientSocket, ChatClientThread chatClientThread) {
         this.clientSocket = clientSocket;
-        this.username = username;
+        this.chatClientThread = chatClientThread;
         try {
             Class.forName( "service.ChatProtocol" );
         } catch( ClassNotFoundException e ) {
@@ -34,17 +33,34 @@ public class ServerConnectionThread implements Runnable {
             System.exit(1);
         }
         this.chatProtocol = new ChatProtocolImpl();
+        this.chatProtocol.setChatClientThread(this.chatClientThread);
     }
 
+    @Override
     public void run() {
-        this.chatProtocol.setScannerChatIU(this.scannerChatUI);
+        this.chatProtocol.setScannerChatUI(this.scannerChatUI);
         readyWritersAndReaders();
         System.out.printf("ChatClientThread socket is connected?: %s\n", clientSocket.isConnected());
+        loginToServerChat(this.chatClientThread.getUsername());
         System.out.println("Starting to check server constantly for messages and run through protocol");
         while (!clientSocket.isClosed()) {
             waitOneMiliSeconds();
             checkServerAndPrintToClient();
         }
+    }
+
+    private void readyWritersAndReaders() {
+        try {
+            this.printToServerStream = new PrintWriter(clientSocket.getOutputStream(), true);
+            this.recieveFromServerStream = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loginToServerChat(String username) {
+        String loginTextToServer = chatProtocol.onClientPrepareLoginToServer(username);
+        printToServer(loginTextToServer);
     }
 
     private void waitOneMiliSeconds() {
@@ -56,29 +72,18 @@ public class ServerConnectionThread implements Runnable {
         }
     }
 
-    protected void printToServer(String readyTextLine) {
-        this.printToServerStream.println(readyTextLine);
-    }
-
-
     private void checkServerAndPrintToClient() {
         try {
             if (this.recieveFromServerStream.ready()) {
-                System.err.println("Service recieved a messsage from server");
-                chatProtocol.onClientAnalyseReceivedTextFromServer(this.recieveFromServerStream.readLine());
+                this.chatProtocol.onClientAnalyseReceivedTextFromServer(this.recieveFromServerStream.readLine());
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void readyWritersAndReaders() {
-        try {
-            this.printToServerStream = new PrintWriter(clientSocket.getOutputStream(), true);
-            this.recieveFromServerStream = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void printToServer(String readyTextLine) {
+        this.printToServerStream.println(readyTextLine);
     }
 
     public ChatProtocol getChatProtocol() {

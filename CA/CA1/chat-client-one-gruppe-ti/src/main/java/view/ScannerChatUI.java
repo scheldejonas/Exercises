@@ -10,30 +10,24 @@ import java.util.Scanner;
  */
 public class ScannerChatUI {
 
-    public static void main(String[] args) {
-        ScannerChatUI scannerChatUI = new ScannerChatUI();
-        scannerChatUI.startScannerUI();
-        scannerChatUI.waitOneSecond();
-        boolean connectionIsConnected = false;
-        while (!connectionIsConnected) {
-            if (scannerChatUI.isReadyToChat()) {
-                connectionIsConnected = true;
-            } else {
-                scannerChatUI.startScannerUI();
-            }
-        }
-        scannerChatUI.startChatRoom();
-    }
-
     private ChatClientThread chatClientService = null;
 
     private boolean readyToChat = false;
 
     public ScannerChatUI() {
+        boolean connectionIsConnected = false;
+        while (!connectionIsConnected) {
+            if (this.readyToChat) {
+                connectionIsConnected = true;
+            } else {
+                startScannerUI();
+            }
+        }
+        startChatRoom();
     }
 
     public void startScannerUI() {
-        System.out.println("Hello chatter\n" +
+        System.out.println("\nHello chatter\n" +
                 "\n" +
                 "Here you will be able to chat with people from all over the world!");
         System.out.println("\nThe next thing you wanna do is typing your username right here below, and push enter.");
@@ -41,11 +35,18 @@ public class ScannerChatUI {
         System.out.println("\nThank you for your username, the next is to give the domain or ip of the host you would like to " +
                 "connect to.");
         String host = startScannerAndWaitForOneLineBeforeContinue();
+        if (host.equals("")) {
+            host = "localhost";
+        }
         System.out.println("\nThank you for the host, the next this is to provide the port on the host, which " +
                 "the server is started on.");
         String portNumber = startScannerAndWaitForOneLineBeforeContinue();
+        if (portNumber.equals("")) {
+            portNumber = "8081";
+        }
         System.out.println("\nThank you for the port, we will now connect you.");
         connectToChatServer(username,host,portNumber);
+        waitFiveSeonds();
     }
 
     private void connectToChatServer(String username, String host, String portNumber) {
@@ -71,7 +72,8 @@ public class ScannerChatUI {
             String newReceiveUsername = startScannerAndWaitForOneLineBeforeContinue();
             System.out.println("\nThank you, what do you wanna tell?. type below and push enter.");
             String newMessage = startScannerAndWaitForOneLineBeforeContinue();
-            this.chatClientService.getServerConnectionThread().getChatProtocol().onClientPrepareMessageToServer(newReceiveUsername,newMessage);
+            String newTextToServer = this.chatClientService.getServerConnectionThread().getChatProtocol().onClientPrepareMessageToServer(newReceiveUsername,newMessage);
+            this.chatClientService.getServerConnectionThread().printToServer(newTextToServer);
             waitTwoSecond();
         }
     }
@@ -96,14 +98,13 @@ public class ScannerChatUI {
 
     private String startScannerAndWaitForOneLineBeforeContinue() {
         Scanner scanner = new Scanner(System.in);
+        scanner.reset();
         String newTextLine = null;
         while (newTextLine == null) {
             if (scanner.hasNextLine()) {
                 newTextLine = scanner.nextLine();
             }
         }
-        scanner.close();
-        scanner.reset();
         return newTextLine;
     }
 
@@ -116,9 +117,9 @@ public class ScannerChatUI {
     }
 
     public void printActiveUsernameList(List<String> usernameList) {
-        System.out.println("This is the list of active users");
+        System.out.println("\n This is the list of active users");
         for (String string : usernameList) {
-            System.out.printf("ActiveUser: %s\n",string);
+            System.out.printf(" ActiveUser: %s\n",string);
         }
         System.out.println("\n That is the current list of active users");
     }

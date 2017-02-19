@@ -6,6 +6,8 @@ import view.ScannerChatUI;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by scheldejonas on 16/02/2017.
@@ -18,16 +20,8 @@ public class ChatClientThread implements Runnable {
     private Socket clientSocket = null;
     private Thread clientServerThread = null;
     private ServerConnectionThread serverConnectionThread = null;
-
+    private List<String> activeUsersList = new ArrayList<>();
     private ScannerChatUI scannerChatUI = null;
-
-    @Override
-    public void run() {
-        waitHalfASecond();
-        connectClientSocketToServerConnection();
-        waitHalfASecond();
-        runServerConnectionInThread();
-    }
 
     public ChatClientThread() {
         System.out.println("Chat Client will be connecting to Localhost on port 8081, when started");
@@ -36,6 +30,14 @@ public class ChatClientThread implements Runnable {
     public ChatClientThread(String host, String portNumber) {
         this.portNumber = Integer.parseInt(portNumber);
         this.host = host;
+    }
+
+    @Override
+    public void run() {
+        waitHalfASecond();
+        connectClientSocketToServerConnection();
+        waitHalfASecond();
+        runServerConnectionInThread();
     }
 
     public void tryToStartThread() {
@@ -50,7 +52,7 @@ public class ChatClientThread implements Runnable {
 
     private void connectClientSocketToServerConnection() {
         if (host.equals("localhost") && this.portNumber == 8081) {
-            System.out.println("Chat Client connection settings has now been changed since instance creation and will connect to localhost on port 8081");
+            System.out.println(String.format("Chat Client connection settings has not been changed since instance creation and will connect to %s on port %s",host,portNumber));
         }
         this.clientSocket = new Socket();
         try {
@@ -64,7 +66,7 @@ public class ChatClientThread implements Runnable {
     }
 
     private void runServerConnectionInThread() {
-        this.serverConnectionThread = new ServerConnectionThread(clientSocket,username);
+        this.serverConnectionThread = new ServerConnectionThread(clientSocket,this);
         this.serverConnectionThread.setScannerChatUI(this.scannerChatUI);
         this.clientServerThread = new Thread(this.serverConnectionThread);
         this.clientServerThread.start();
@@ -117,5 +119,23 @@ public class ChatClientThread implements Runnable {
 
     public void setServerConnectionThread(ServerConnectionThread serverConnectionThread) {
         this.serverConnectionThread = serverConnectionThread;
+    }
+
+    public void setActiveUsersListExceptFirstString(List<String> activeUsersList) {
+        List<String> usernameListWithoutFirstString = new ArrayList<>();
+        for (int i = 0; i < activeUsersList.size(); i++) {
+            if (i > 0) {
+                usernameListWithoutFirstString.add(activeUsersList.get(i));
+            }
+        }
+        this.activeUsersList = usernameListWithoutFirstString;
+    }
+
+    public void setActiveUsersList(List<String> activeUsersList) {
+        this.activeUsersList = activeUsersList;
+    }
+
+    public List<String> getActiveUsersList() {
+        return activeUsersList;
     }
 }

@@ -7,17 +7,17 @@ import java.util.List;
  */
 public interface ChatProtocol {
 
-    String getMyUsername();
-
-    void setMyUsername(String myUsername);
-
     void onServerAnalyseReceivedTextFromClient(String receivedText);
 
-    void onServerRespondWith(String loginText);
+    void onServerRespondToClientLogin(String username);
 
-    void onServerRespondMessageToAllClients(String message);
+    void onServerRespondUpdateOnNewUserToActiveClients(String newUser);
+
+    void onServerRespondMessageToAllClients(String fromUsername, String message);
 
     void onServerRespondMessageToPrivateClient(String fromUsername, String toUsername, String message);
+
+    void onServerSendRemoveUser(String username);
 
     String onClientPrepareMessageToServer(String toUsername, String messageText);
 
@@ -36,7 +36,4 @@ public interface ChatProtocol {
     void onClientUpdateUIWithNewUser(String username);
 
     void onClientRemoveUserFromUI(String username);
-
-    void setScannerChatIU(ScannerChatUI scannerChatIU);
-
 }

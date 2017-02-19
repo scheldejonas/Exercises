@@ -1,5 +1,6 @@
 package service;
 
+import controller.ChatClientThread;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import view.ScannerChatUI;
 
@@ -12,23 +13,10 @@ import java.util.List;
  */
 public class ChatProtocolImpl implements ChatProtocol {
 
-    private String myUsername;
-
+    private ChatClientThread chatClientThread = null;
     private ScannerChatUI scannerChatUI = null;
 
-    private List<String> activeUsernameList = new ArrayList<>();
-
     public ChatProtocolImpl() {
-    }
-
-    @Override
-    public String getMyUsername() {
-        return this.myUsername;
-    }
-
-    @Override
-    public void setMyUsername(String myUsername) {
-        this.myUsername = myUsername;
     }
 
     @Override
@@ -37,12 +25,17 @@ public class ChatProtocolImpl implements ChatProtocol {
     }
 
     @Override
-    public void onServerRespondWith(String loginText) {
+    public void onServerRespondToClientLogin(String username) {
         throw new NotImplementedException();
     }
 
     @Override
-    public void onServerRespondMessageToAllClients(String message) {
+    public void onServerRespondUpdateOnNewUserToActiveClients(String newUser) {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public void onServerRespondMessageToAllClients(String fromUsername, String message) {
         throw new NotImplementedException();
     }
 
@@ -63,31 +56,35 @@ public class ChatProtocolImpl implements ChatProtocol {
 
     @Override
     public void onClientAnalyseReceivedTextFromServer(String receivedText) {
-        String commandTextLine = receivedText.substring(0, countToFirstHashValue(receivedText));
-        System.out.printf("Incoming command text line: %s\n", commandTextLine);
-        String parameterTextLine = receivedText.substring(countToFirstHashValue(receivedText)+1, countToSecondHashValue(receivedText));
-        System.out.printf("Incoming paramter text line: %s\n", parameterTextLine);
-        String parameterAndRestOfTextLine = receivedText.substring(countToFirstHashValue(receivedText)+1);
-        System.out.printf("Incoming parameter and rest of text line: %s\n",parameterAndRestOfTextLine);
+        String commandTextLine = "";
+        String parameterAndRestOfTextLine = "";
+        if (receivedText.equals("FAIL")) {
+            onClientUpdateUIWithLoginError();
+        } else {
+            commandTextLine = receivedText.substring(0, countToFirstHashValue(receivedText));
+            parameterAndRestOfTextLine = receivedText.substring(countToFirstHashValue(receivedText)+1);
+        }
         if (commandTextLine.equals("OK")) {
-            String[] usernamesArray = parameterAndRestOfTextLine.split("#");
-            this.activeUsernameList = Arrays.asList(usernamesArray);
-            onClientUpdateUIWithUserList(this.activeUsernameList);
+            String[] usernamesArray = receivedText.split("#");
+            List<String> usernameList = Arrays.asList(usernamesArray);
+            this.chatClientThread.setActiveUsersListExceptFirstString(usernameList);
+            onClientUpdateUIWithUserList(this.chatClientThread.getActiveUsersList());
             this.scannerChatUI.setReadyToChat(true);
         }
         if (commandTextLine.equals("FAIL")) {
-            onClientUpdateUIWithUsernameNotAvailable("Username: " + this.myUsername + " was not available.");
+            onClientUpdateUIWithUsernameNotAvailable("Username: " + this.chatClientThread.getUsername() + " was not available.");
             onClientUpdateUIWithLoginError();
         }
         if (commandTextLine.equals("UPDATE")) {
-            onClientUpdateUIWithNewUser(parameterTextLine);
+            onClientUpdateUIWithNewUser(parameterAndRestOfTextLine);
         }
         if (commandTextLine.equals("DELETE")) {
-            onClientRemoveUserFromUI(parameterTextLine);
+            onClientRemoveUserFromUI(parameterAndRestOfTextLine);
         }
         if (commandTextLine.equals("MSG")) {
+            String fromUsername = receivedText.substring(countToFirstHashValue(receivedText)+1, countToSecondHashValue(receivedText));
             String message = parameterAndRestOfTextLine.substring(countToFirstHashValue(parameterAndRestOfTextLine));
-            onClientUpdateUIWithNewMessage(parameterTextLine, message);
+            onClientUpdateUIWithNewMessage(fromUsername, message);
         }
     }
 
@@ -115,36 +112,42 @@ public class ChatProtocolImpl implements ChatProtocol {
     }
 
     @Override
-    public void onClientUpdateUIWithNewMessage(String usernameAndMessageText, String message) {
-        String fromUsername = usernameAndMessageText.substring(0,countToFirstHashValue(usernameAndMessageText));
+    public void onClientUpdateUIWithNewMessage(String fromUsername, String message) {
         this.scannerChatUI.printNewMessage(fromUsername,message);
     }
 
     @Override
     public void onClientUpdateUIWithNewUser(String username) {
-        this.activeUsernameList.add(username);
-
+        this.chatClientThread.getActiveUsersList().add(username);
+        scannerChatUI.printActiveUsernameList(this.chatClientThread.getActiveUsersList());
     }
 
     @Override
     public void onClientRemoveUserFromUI(String username) {
-        int indexToRemove = -1;
-        for (String string : activeUsernameList) {
-            if (string.equals(username)) {
-                indexToRemove = activeUsernameList.indexOf(string);
+        System.out.println("\n " + username + " left the chat room.");
+        List<String> newActiveUserList = new ArrayList<>();
+        for (int i = 0; i < this.getChatClientThread().getActiveUsersList().size(); i++) {
+            if (!this.getChatClientThread().getActiveUsersList().get(i).toLowerCase().equals(username.toLowerCase())) {
+                newActiveUserList.add(this.getChatClientThread().getActiveUsersList().get(i));
             }
         }
-        if (indexToRemove != -1) {
-            activeUsernameList.remove(indexToRemove);
-        } else {
-            this.scannerChatUI.printErrorOnText(String.format("\nServer wanted to remove user: %s, but he wasn't existing in your active user list",username));
-        }
+        this.getChatClientThread().setActiveUsersList(newActiveUserList);
+        onClientUpdateUIWithUserList(this.getChatClientThread().getActiveUsersList());
     }
 
-    @Override
-    public void setScannerChatIU(ScannerChatUI scannerChatIU) {
-        this.scannerChatUI = scannerChatIU;
+    public ScannerChatUI getScannerChatUI() {
+        return scannerChatUI;
     }
 
+    public void setScannerChatUI(ScannerChatUI scannerChatUI) {
+        this.scannerChatUI = scannerChatUI;
+    }
 
+    public ChatClientThread getChatClientThread() {
+        return chatClientThread;
+    }
+
+    public void setChatClientThread(ChatClientThread chatClientThread) {
+        this.chatClientThread = chatClientThread;
+    }
 }
