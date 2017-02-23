@@ -4,184 +4,54 @@
 *.docx
 
 /SP/SP6/formcontrols/target/
+
 /SP/SP7/AngularJquery/target/
+
 SP/SP1/jonas_schelde_task_1/.idea/
+
 SP/SP1/jonas_schelde_task_1/training.iml
+
 SP/SP1/jonas_schelde_task_1/target/
 
 SP/SP1/jonas_schelde_task_1/.DS_Store
 
-SP/SP1/jonas_schelde_task_3/.idea/.name
-
-SP/SP1/jonas_schelde_task_3/.idea/compiler.xml
-
-SP/SP1/jonas_schelde_task_3/.idea/misc.xml
-
-SP/SP1/jonas_schelde_task_3/.idea/modules.xml
-
-SP/SP1/jonas_schelde_task_3/.idea/workspace.xml
+SP/SP1/jonas_schelde_task_3/.idea/
 
 SP/SP1/jonas_schelde_task_3/protocol.iml
 
-SP/SP1/jonas_schelde_task_5/.idea/.name
-
-SP/SP1/jonas_schelde_task_5/.idea/compiler.xml
-
-SP/SP1/jonas_schelde_task_5/.idea/misc.xml
-
-SP/SP1/jonas_schelde_task_5/.idea/modules.xml
-
-SP/SP1/jonas_schelde_task_5/.idea/workspace.xml
+SP/SP1/jonas_schelde_task_5/.idea/
 
 SP/SP1/jonas_schelde_task_5/.DS_Store
 
 SP/SP1/jonas_schelde_task_5/jonas_schelde_task_5.iml
 
-.DS_Store
-
-.DS_Store
+*.DS_Store
 
 SP/SP1/.DS_Store
 
-SP/SP2/schelde_task_1/.idea/compiler.xml
-
-SP/SP2/schelde_task_1/.idea/misc.xml
-
-SP/SP2/schelde_task_1/.idea/modules.xml
-
-SP/SP2/schelde_task_1/.idea/uiDesigner.xml
-
-SP/SP2/schelde_task_1/.idea/workspace.xml
+SP/SP2/schelde_task_1/.idea/
 
 SP/SP2/schelde_task_1/ex1.iml
 
-SP/SP2/schelde_task_2/.gradle/3.1/taskArtifacts/taskArtifacts.bin
+SP/SP2/schelde_task_2/.gradle/
 
-SP/SP2/schelde_task_2/.gradle/3.1/taskArtifacts/fileSnapshots.bin
-
-SP/SP2/schelde_task_2/.gradle/3.1/taskArtifacts/fileHashes.bin
-
-SP/SP2/schelde_task_2/.gradle/3.1/taskArtifacts/cache.properties.lock
-
-SP/SP2/schelde_task_2/.gradle/3.1/taskArtifacts/cache.properties
-
-SP/SP2/schelde_task_2/.idea/.name
-
-SP/SP2/schelde_task_2/.idea/compiler.xml
-
-SP/SP2/schelde_task_2/.idea/gradle.xml
-
-SP/SP2/schelde_task_2/.idea/libraries/Gradle__junit_junit_4_11.xml
-
-SP/SP2/schelde_task_2/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3.xml
-
-SP/SP2/schelde_task_2/.idea/libraries/Java_EE_6_Java_EE_6.xml
-
-SP/SP2/schelde_task_2/.idea/misc.xml
-
-SP/SP2/schelde_task_2/.idea/modules.xml
-
-SP/SP2/schelde_task_2/.idea/modules/http-training_main.iml
-
-SP/SP2/schelde_task_2/.idea/modules/http-training_test.iml
-
-SP/SP2/schelde_task_2/.idea/modules/http-training.iml
-
-SP/SP2/schelde_task_2/.idea/vcs.xml
-
-SP/SP2/schelde_task_2/.idea/workspace.xml
-
-SP/SP2/schelde_task_3/.idea/misc.xml
-
-SP/SP2/schelde_task_3/.idea/modules.xml
-
-SP/SP2/schelde_task_3/.idea/workspace.xml
+SP/SP2/schelde_task_2/.idea/
 
 SP/SP2/schelde_task_3/schelde_task_3.iml
 
-SP/SP2/schelde_task_4/.gradle/3.1/taskArtifacts/cache.properties
+SP/SP2/schelde_task_4/.gradle/
 
-SP/SP2/schelde_task_4/.gradle/3.1/taskArtifacts/cache.properties.lock
+SP/SP2/schelde_task_4/.idea/
 
-SP/SP2/schelde_task_4/.gradle/3.1/taskArtifacts/fileHashes.bin
+SP/SP2/schelde_task_5/.gradle/
 
-SP/SP2/schelde_task_4/.gradle/3.1/taskArtifacts/fileSnapshots.bin
+SP/SP2/schelde_task_5/.idea/
 
-SP/SP2/schelde_task_4/.gradle/3.1/taskArtifacts/taskArtifacts.bin
-
-SP/SP2/schelde_task_4/.idea/artifacts/Gradle___info_schelde___thread_2_training_1_0_SNAPSHOT_war__exploded_.xml
-
-SP/SP2/schelde_task_4/.idea/artifacts/Gradle___info_schelde___thread_2_training_1_0_SNAPSHOT_war.xml
-
-SP/SP2/schelde_task_4/.idea/compiler.xml
-
-SP/SP2/schelde_task_4/.idea/gradle.xml
-
-SP/SP2/schelde_task_4/.idea/libraries/Gradle__junit_junit_4_11.xml
-
-SP/SP2/schelde_task_4/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3.xml
-
-SP/SP2/schelde_task_4/.idea/misc.xml
-
-SP/SP2/schelde_task_4/.idea/modules.xml
-
-SP/SP2/schelde_task_4/.idea/modules/thread-2-training_main.iml
-
-SP/SP2/schelde_task_4/.idea/modules/thread-2-training_test.iml
-
-SP/SP2/schelde_task_4/.idea/modules/thread-2-training.iml
-
-SP/SP2/schelde_task_4/.idea/workspace.xml
-
-SP/SP2/schelde_task_5/.gradle/3.1/taskArtifacts/cache.properties
-
-SP/SP2/schelde_task_5/.gradle/3.1/taskArtifacts/cache.properties.lock
-
-SP/SP2/schelde_task_5/.gradle/3.1/taskArtifacts/fileHashes.bin
-
-SP/SP2/schelde_task_5/.gradle/3.1/taskArtifacts/fileSnapshots.bin
-
-SP/SP2/schelde_task_5/.gradle/3.1/taskArtifacts/taskArtifacts.bin
-
-SP/SP2/schelde_task_5/.idea/.name
-
-SP/SP2/schelde_task_5/.idea/artifacts/Gradle___info_schelde___server_training_1_0_SNAPSHOT_war__exploded_.xml
-
-SP/SP2/schelde_task_5/.idea/artifacts/Gradle___info_schelde___server_training_1_0_SNAPSHOT_war.xml
-
-SP/SP2/schelde_task_5/.idea/compiler.xml
-
-SP/SP2/schelde_task_5/.idea/gradle.xml
-
-SP/SP2/schelde_task_5/.idea/libraries/Gradle__junit_junit_4_11.xml
-
-SP/SP2/schelde_task_5/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3.xml
-
-SP/SP2/schelde_task_5/.idea/misc.xml
-
-SP/SP2/schelde_task_5/.idea/modules.xml
-
-SP/SP2/schelde_task_5/.idea/modules/server-training_main.iml
-
-SP/SP2/schelde_task_5/.idea/modules/server-training_test.iml
-
-SP/SP2/schelde_task_5/.idea/modules/server-training.iml
-
-SP/SP2/schelde_task_5/.idea/vcs.xml
-
-SP/SP2/schelde_task_5/.idea/workspace.xml
+SP/SP2/schelde_task_5/.idea/
 
 SP/SP1/jonas_schelde_task_5/.idea/inspectionProfiles/profiles_settings.xml
 
-CA/CA1/chat-server-gruppe-ti/.idea/.name
-
-CA/CA1/chat-server-gruppe-ti/.idea/compiler.xml
-
-CA/CA1/chat-server-gruppe-ti/.idea/misc.xml
-
-CA/CA1/chat-server-gruppe-ti/.idea/modules.xml
-
-CA/CA1/chat-server-gruppe-ti/.idea/workspace.xml
+CA/CA1/chat-server-gruppe-ti/.idea/
 
 CA/CA1/chat-server-gruppe-ti/info-schelde-chat-server.iml
 
@@ -193,37 +63,13 @@ CA/CA1/.idea/modules.xml
 
 CA/CA1/.idea/workspace.xml
 
-CA/CA1/chat-server-gruppe-ti/.idea/uiDesigner.xml
+CA/CA1/chat-server-gruppe-ti/.idea/
 
 CA/CA1/chat-server-gruppe-ti/chat.iml
 
-CA/CA1/chat-server-one-gruppe-ti/.idea/.name
-
-CA/CA1/chat-server-one-gruppe-ti/.idea/compiler.xml
-
-CA/CA1/chat-server-one-gruppe-ti/.idea/misc.xml
-
-CA/CA1/chat-server-one-gruppe-ti/.idea/modules.xml
-
-CA/CA1/chat-server-one-gruppe-ti/.idea/uiDesigner.xml
-
-CA/CA1/chat-server-one-gruppe-ti/.idea/workspace.xml
-
 CA/CA1/chat-server-one-gruppe-ti/chat.iml
 
-CA/CA1/chat-server-two-gruppe-ti/.idea/.name
-
-CA/CA1/chat-server-two-gruppe-ti/.idea/compiler.xml
-
-CA/CA1/chat-server-two-gruppe-ti/.idea/misc.xml
-
-CA/CA1/chat-server-two-gruppe-ti/.idea/modules.xml
-
-CA/CA1/chat-server-two-gruppe-ti/.idea/uiDesigner.xml
-
-CA/CA1/chat-server-two-gruppe-ti/.idea/vcs.xml
-
-CA/CA1/chat-server-two-gruppe-ti/.idea/workspace.xml
+CA/CA1/chat-server-two-gruppe-ti/.idea/
 
 CA/CA1/chat-server-two-gruppe-ti/chat-server-two-gruppe-ti.iml
 
@@ -231,210 +77,63 @@ CA/CA1/chat-server-two-gruppe-ti/target/
 
 CA/CA1/chat-server-three-gruppe-ti/target/
 
-CA/CA1/chat-server-three-gruppe-ti/.idea/.name
-
-CA/CA1/chat-server-three-gruppe-ti/.idea/compiler.xml
-
-CA/CA1/chat-server-three-gruppe-ti/.idea/misc.xml
-
-CA/CA1/chat-server-three-gruppe-ti/.idea/modules.xml
-
-CA/CA1/chat-server-three-gruppe-ti/.idea/uiDesigner.xml
-
-CA/CA1/chat-server-three-gruppe-ti/.idea/vcs.xml
-
-CA/CA1/chat-server-three-gruppe-ti/.idea/workspace.xml
+CA/CA1/chat-server-three-gruppe-ti/.idea/
 
 CA/CA1/chat-server-three-gruppe-ti/chat-server-two-gruppe-ti.iml
-CA/CA1/chat-server-one-gruppe-ti/.idea/vcs.xml
 
-CA/CA1/chat-server-three-gruppe-ti/.idea/artifacts/chat_server_three_gruppe_ti_jar.xml
-
-CA/CA1/chat-server-three-gruppe-ti/.idea/artifacts/chat_server_three_gruppe_ti_jar.xml
-
-CA/CA1/chat-server-three-gruppe-ti/.idea/artifacts/chat_server_three_gruppe_ti_jar.xml
+CA/CA1/chat-server-one-gruppe-ti/.idea/
 
 CA/CA1/chat-server-three-gruppe-ti/chat-server-three-gruppe-ti.iml
 
-CA/CA1/chat-server-three-gruppe-ti/.idea/vcs.xml
+CA/CA1/chat-server-three-gruppe-ti/.idea/
 
-CA/CA1/chat-server-three-gruppe-ti/.idea/uiDesigner.xml
-
-CA/CA1/chat-server-three-gruppe-ti/.idea/libraries/Maven__org_opentest4j_opentest4j_1_0_0_M1.xml
-
-CA/CA1/chat-server-three-gruppe-ti/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_0_0_M3.xml
-
-CA/CA1/chat-server-three-gruppe-ti/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_0_0_M3.xml
-
-CA/CA1/chat-server-three-gruppe-ti/.idea/compiler.xml
-
-CA/CA1/chat-server-three-gruppe-ti/.idea/artifacts/chat_server_three_gruppe_ti_jar.xml
-
-CA/CA1/chat-server-three-gruppe-ti/.idea/compiler.xml
-
-CA/CA1/chat-server-gruppe-ti/.idea/vcs.xml
-
-CA/CA1/chat-server-three-gruppe-ti/.idea/artifacts/chat_three_jar.xml
+CA/CA1/chat-server-gruppe-ti/.idea/
 
 CA/CA1/chat-server-three-gruppe-ti/chat-three.iml
 
-CA/CA1/chat-server-three-gruppe-ti/.idea/artifacts/chat_three_jar.xml
+CA/CA1/chat-server-three-gruppe-ti/.idea/
 
-CA/CA1/chat-server-three-gruppe-ti/out/artifacts/chat_server_three_gruppe_ti_jar/chat-server-three-gruppe-ti.jar
+CA/CA1/chat-server-three-gruppe-ti/out/
 
 CA/CA1/chat-server-two-gruppe-ti/chat.iml
 
-CA/CA1/web-server/.idea/.name
-
-CA/CA1/web-server/.idea/artifacts/web_server_chat_landingpage_war_exploded.xml
-
-CA/CA1/web-server/.idea/compiler.xml
-
-CA/CA1/web-server/.idea/misc.xml
-
-CA/CA1/web-server/.idea/modules.xml
-
-CA/CA1/web-server/.idea/vcs.xml
-
-CA/CA1/web-server/.idea/workspace.xml
+CA/CA1/web-server/.idea/
 
 CA/CA1/web-server/web-server-chat-landingpage.iml
 
-CA/CA1/chat-client-one-gruppe-ti/.idea/compiler.xml
-
-CA/CA1/chat-client-one-gruppe-ti/.idea/.name
-
-CA/CA1/chat-client-one-gruppe-ti/.idea/compiler.xml
-
-CA/CA1/chat-client-one-gruppe-ti/.idea/libraries/Maven__com_jayway_jsonpath_json_path_2_2_0.xml
-
-CA/CA1/chat-client-one-gruppe-ti/.idea/libraries/Maven__net_minidev_accessors_smart_1_1.xml
-
-CA/CA1/chat-client-one-gruppe-ti/.idea/libraries/Maven__junit_junit_4_12.xml
-
-CA/CA1/chat-client-one-gruppe-ti/.idea/libraries/Maven__net_minidev_json_smart_2_2_1.xml
-
-CA/CA1/chat-client-one-gruppe-ti/.idea/libraries/Maven__org_assertj_assertj_core_2_5_0.xml
-
-CA/CA1/chat-client-one-gruppe-ti/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml
-
-CA/CA1/chat-client-one-gruppe-ti/.idea/libraries/Maven__org_hamcrest_hamcrest_library_1_3.xml
-
-
-CA/CA1/chat-client-one-gruppe-ti/.idea/compiler.xml
-
-CA/CA1/chat-client-one-gruppe-ti/.idea/libraries/Maven__org_json_json_20090211.xml
-
-CA/CA1/chat-client-one-gruppe-ti/.idea/libraries/Maven__org_mockito_mockito_core_1_10_19.xml
-
-CA/CA1/chat-client-one-gruppe-ti/.idea/libraries/Maven__org_objenesis_objenesis_2_1.xml
-
-CA/CA1/chat-client-one-gruppe-ti/.idea/libraries/Maven__org_ow2_asm_asm_5_0_3.xml
-
-CA/CA1/chat-client-one-gruppe-ti/.idea/libraries/Maven__org_skyscreamer_jsonassert_1_3_0.xml
-
-CA/CA1/chat-client-one-gruppe-ti/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_16.xml
-
-CA/CA1/chat-client-one-gruppe-ti/.idea/libraries/Maven__org_springframework_boot_spring_boot_1_4_1_RELEASE.xml
-
-CA/CA1/chat-client-one-gruppe-ti/.idea/libraries/Maven__org_springframework_boot_spring_boot_autoconfigure_1_4_1_RELEASE.xml
-
-CA/CA1/chat-client-one-gruppe-ti/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_test_1_4_1_RELEASE.xml
-
-CA/CA1/chat-client-one-gruppe-ti/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_1_4_1_RELEASE.xml
-
-CA/CA1/chat-client-one-gruppe-ti/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_autoconfigure_1_4_1_RELEASE.xml
-
-CA/CA1/chat-client-one-gruppe-ti/.idea/libraries/Maven__org_springframework_spring_aop_4_3_3_RELEASE.xml
-
-CA/CA1/chat-client-one-gruppe-ti/.idea/libraries/Maven__org_springframework_spring_beans_4_3_3_RELEASE.xml
-
-CA/CA1/chat-client-one-gruppe-ti/.idea/libraries/Maven__org_springframework_spring_context_4_3_3_RELEASE.xml
-
-CA/CA1/chat-client-one-gruppe-ti/.idea/libraries/Maven__org_springframework_spring_core_4_3_3_RELEASE.xml
-
-CA/CA1/chat-client-one-gruppe-ti/.idea/libraries/Maven__org_springframework_spring_expression_4_3_3_RELEASE.xml
-
-CA/CA1/chat-client-one-gruppe-ti/.idea/libraries/Maven__org_springframework_spring_test_4_3_3_RELEASE.xml
-
-CA/CA1/chat-client-one-gruppe-ti/.idea/misc.xml
-
-CA/CA1/chat-client-one-gruppe-ti/.idea/modules.xml
-
-CA/CA1/chat-client-one-gruppe-ti/.idea/uiDesigner.xml
-
-CA/CA1/chat-client-one-gruppe-ti/.idea/workspace.xml
+CA/CA1/chat-client-one-gruppe-ti/.idea/
 
 CA/CA1/chat-client-one-gruppe-ti/chat-client-one-gruppe-ti.iml
-
-CA/CA1/chat-server-two-gruppe-ti/.idea/libraries/Maven__com_jayway_jsonpath_json_path_2_2_0.xml
-
-CA/CA1/chat-server-two-gruppe-ti/.idea/libraries/Maven__net_minidev_accessors_smart_1_1.xml
-
-CA/CA1/chat-server-two-gruppe-ti/.idea/libraries/Maven__junit_junit_4_12.xml
-
-CA/CA1/chat-server-two-gruppe-ti/.idea/libraries/Maven__net_minidev_json_smart_2_2_1.xml
-
-CA/CA1/chat-server-two-gruppe-ti/.idea/libraries/Maven__org_assertj_assertj_core_2_5_0.xml
-
-CA/CA1/chat-server-two-gruppe-ti/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml
-
-CA/CA1/chat-server-two-gruppe-ti/.idea/libraries/Maven__org_hamcrest_hamcrest_library_1_3.xml
-
-CA/CA1/chat-server-two-gruppe-ti/.idea/libraries/Maven__org_json_json_20090211.xml
-
-CA/CA1/chat-server-two-gruppe-ti/.idea/libraries/Maven__org_mockito_mockito_core_1_10_19.xml
-
-CA/CA1/chat-server-two-gruppe-ti/.idea/libraries/Maven__org_objenesis_objenesis_2_1.xml
-
-CA/CA1/chat-server-two-gruppe-ti/.idea/libraries/Maven__org_ow2_asm_asm_5_0_3.xml
-
-CA/CA1/chat-server-two-gruppe-ti/.idea/libraries/Maven__org_skyscreamer_jsonassert_1_3_0.xml
-
-CA/CA1/chat-server-two-gruppe-ti/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_16.xml
-
-CA/CA1/chat-server-two-gruppe-ti/.idea/libraries/Maven__org_springframework_boot_spring_boot_1_4_1_RELEASE.xml
-
-CA/CA1/chat-server-two-gruppe-ti/.idea/libraries/Maven__org_springframework_boot_spring_boot_autoconfigure_1_4_1_RELEASE.xml
-
-CA/CA1/chat-server-two-gruppe-ti/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_test_1_4_1_RELEASE.xml
-
-CA/CA1/chat-server-two-gruppe-ti/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_1_4_1_RELEASE.xml
-
-CA/CA1/chat-server-two-gruppe-ti/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_autoconfigure_1_4_1_RELEASE.xml
-
-CA/CA1/chat-server-two-gruppe-ti/.idea/libraries/Maven__org_springframework_spring_aop_4_3_3_RELEASE.xml
-
-CA/CA1/chat-server-two-gruppe-ti/.idea/libraries/Maven__org_springframework_spring_beans_4_3_3_RELEASE.xml
-
-CA/CA1/chat-server-two-gruppe-ti/.idea/libraries/Maven__org_springframework_spring_context_4_3_3_RELEASE.xml
-
-CA/CA1/chat-server-two-gruppe-ti/.idea/libraries/Maven__org_springframework_spring_core_4_3_3_RELEASE.xml
-
-CA/CA1/chat-server-two-gruppe-ti/.idea/libraries/Maven__org_springframework_spring_test_4_3_3_RELEASE.xml
 
 CA/CA1/chat-web-server-onepage/web/library/chat-three.jar
 
 *.class
+*.iml
 
-CA/CA1/chat-client-one-gruppe-ti/.idea/workspace.xml
+CA/CA1/chat-server-two-gruppe-ti/.idea/
 
-CA/CA1/chat-server-two-gruppe-ti/.idea/libraries/Maven__org_springframework_spring_expression_4_3_3_RELEASE.xml
+CA/CA1/chat-web-server-onepage/.idea/
 
-CA/CA1/chat-client-one-gruppe-ti/.idea/artifacts/chat_client_jar.xml
+SP/.DS_Store
 
-CA/CA1/chat-client-one-gruppe-ti/.idea/compiler.xml
+SP/SP2/schelde_task_3/.idea/
 
-CA/CA1/chat-client-one-gruppe-ti/chat-client-one-gruppe-ti.iml
+SP/SP3/solution-jpa-mapping-exercise-three/.idea/
 
-CA/CA1/chat-client-one-gruppe-ti/.idea/compiler.xml
+SP/SP3/solution-jpa-mapping-exercise-three/.idea/workspace.xml
 
-CA/CA1/chat-client-one-gruppe-ti/chat-client.iml
+SP/SP3/solution-jpa-mapping-exercise-three/.idea/vcs.xml
 
-CA/CA1/chat-client-one-gruppe-ti/.idea/compiler.xml
+SP/SP3/solution-jpa-mapping-exercise-three/.idea/modules.xml
 
-CA/CA1/chat-client-one-gruppe-ti/chat-client-one-gruppe-ti.iml
+SP/SP3/solution-jpa-mapping-exercise-three/.idea/misc.xml
 
-CA/CA1/chat-client-one-gruppe-ti/src/main/main.iml
+SP/SP3/solution-jpa-mapping-exercise-three/.idea/compiler.xml
 
-CA/CA1/chat-server-two-gruppe-ti/.idea/artifacts/chat_server_two_gruppe_ti_jar.xml
+SP/SP3/solution-jpa-mapping-exercise-three/.idea/compiler.xml
+
+SP/SP3/solution-jpa-mapping-exercise-three/.idea/workspace.xml
+
+SP/SP3/solution-jpa-mapping-exercise-three/.idea/compiler.xml
+
+SP/.DS_Store

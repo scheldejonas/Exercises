@@ -25,9 +25,9 @@
       <h5 class="header col s12 light">Velkommen til det nye chat.</h5>
     </div>
     <div class="row center">
-        <a href="/client.jar" id="download-button" class="btn-large waves-effect waves-light blue">Download GUI Client</a>
+        <a href="/chat/client.jar" id="download-button" class="btn-large waves-effect waves-light blue">Download GUI Client</a>
         <p class="grey-text">This client is printing to System.out for messages and listening on System.in, when receiving messages</p>
-        <a href="/service-client.jar" id="download-button" class="btn-large waves-effect waves-light blue">Download Service Client</a>
+        <a href="/chat/service-client.jar" id="download-button" class="btn-large waves-effect waves-light blue">Download Service Client</a>
         <p class="grey-text">This service client is printing messages to System.out and listening for firstly username, then message on System.in, when talking to GUI's</p>
     </div>
     <br>
