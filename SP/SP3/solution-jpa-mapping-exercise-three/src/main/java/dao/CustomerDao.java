@@ -11,4 +11,6 @@ public interface CustomerDao {
     void save(Customer customer);
 
     List<Customer> findAll();
+
+    void update(Customer customer);
 }

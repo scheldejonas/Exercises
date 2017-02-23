@@ -3,6 +3,8 @@ package service;
 import dao.CustomerDao;
 import dao.CustomerDaoImpl;
 import domain.Customer;
+import domain.DiscountFixed;
+import domain.DiscountType;
 
 import java.util.List;
 
@@ -13,6 +15,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     private static CustomerService singleton = null;
     private CustomerDao customerDao = CustomerDaoImpl.getSingleton();
+    private DiscountTypeService discountTypeService = DiscountTypeServiceImpl.getSingleton();
 
     private CustomerServiceImpl() {
     }
@@ -31,6 +34,22 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void save(Customer customer) {
-        customerDao.save(customer);
+        if (customer.getDiscountType() == null || customer.getDiscountType().getId() == null) {
+            System.out.println("I was here");
+            DiscountType discountType = new DiscountFixed();
+            discountType.getCustomerList().add(customer);
+            discountTypeService.save(discountType);
+            System.out.println(discountType.toString());
+            customer.setDiscountType(discountType);
+        }
+         customerDao.save(customer);
+    }
+
+    @Override
+    public void update(Customer customer) {
+        if (customer.getDiscountType() == null || customer.getDiscountType().getId() == null) {
+
+        }
+        customerDao.update(customer);
     }
 }

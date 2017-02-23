@@ -3,10 +3,12 @@ package domain;
 import org.hibernate.annotations.CollectionId;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 
 /**
  * Created by scheldejonas on 23/02/2017.
  */
+@Entity
 public class DiscountFixed extends DiscountType {
 
     @Column(name = "discount_fixed")

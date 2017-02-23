@@ -1,6 +1,7 @@
 package domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,11 +16,12 @@ public class DiscountType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "discountType")
+    @OneToMany(mappedBy = "discountType", cascade = CascadeType.ALL)
     private List<Customer> customerList;
 
     public DiscountType() {
-        customerList = null;
+        customerList = new ArrayList<>();
+        id = null;
     }
 
     public Long getId() {
@@ -40,5 +42,13 @@ public class DiscountType {
 
     public double calcDiscount(double pricePerItem, int quantity) {
         return pricePerItem*quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "DiscountType{" +
+                "id=" + id +
+                ", customerList=" + customerList +
+                '}';
     }
 }

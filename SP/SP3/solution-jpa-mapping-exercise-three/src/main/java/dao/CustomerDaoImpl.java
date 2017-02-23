@@ -2,6 +2,7 @@ package dao;
 
 import config.DataConfig;
 import domain.Customer;
+import org.hibernate.Hibernate;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -60,6 +61,26 @@ public class CustomerDaoImpl implements CustomerDao {
             entityManager.close();
         }
         return customerList;
+    }
+
+    @Override
+    public void update(Customer customer) {
+        EntityManager entityManager = trainingJpaEntityManager.createEntityManager();
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        try {
+            entityTransaction.begin();
+            Customer customer1 = entityManager.find(Customer.class, customer.getId());
+            Hibernate.initialize(customer1.getDiscountType());
+            customer1.setDiscountType(customer.getDiscountType());
+            customer1.setFirstName(customer.getFirstName());
+            customer1.setPrice(customer.getPrice());
+            entityTransaction.commit();
+        } catch (Exception exception) {
+            entityTransaction.rollback();
+            exception.printStackTrace();
+        } finally {
+            entityManager.close();
+        }
     }
 
 }

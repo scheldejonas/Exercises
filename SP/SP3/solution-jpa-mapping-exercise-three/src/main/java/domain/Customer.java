@@ -14,13 +14,13 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Price")
-    private int price;
+    @Column(name = "price")
+    private double price;
 
-    @Column(name = "First_name")
+    @Column(name = "first_name")
     private String firstName;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private DiscountType discountType;
 
     public Customer() {
@@ -34,11 +34,11 @@ public class Customer {
         this.id = id;
     }
 
-    public int getPrice() {
-        return price;
+    public double getPrice() {
+        return this.discountType.calcDiscount(20,5);
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -56,5 +56,15 @@ public class Customer {
 
     public void setDiscountType(DiscountType discountType) {
         this.discountType = discountType;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", price=" + price +
+                ", firstName='" + firstName + '\'' +
+                ", discountType id=" + ((discountType == null) ? "null" : discountType.getId()) +
+                '}';
     }
 }
