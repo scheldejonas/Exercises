@@ -9,6 +9,8 @@ import javax.persistence.EntityManagerFactory;
  */
 public class Application {
     public static void main(String[] args) {
-
+        // SP3 -> Task One -> Part Four
+        EntityManager entityManager = DataConfig.getSingleton().getEntityManagerFactory().createEntityManager();
+        
     }
 }
