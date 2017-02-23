@@ -38,7 +38,7 @@ public class DiscountType {
         this.customerList = customerList;
     }
 
-    public double calcDiscount(int pricePerItem, int quantity) {
+    public double calcDiscount(double pricePerItem, int quantity) {
         return pricePerItem*quantity;
     }
 }
