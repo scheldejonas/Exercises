@@ -26,6 +26,7 @@ public class Application {
         customer.setDiscountType(new DiscountFixed());
         customerService.update(customer);
 
+        // No need to let it stand and rn
         System.exit(1);
     }
 }
