@@ -26,7 +26,7 @@ public class ProjectUserServiceImpl implements ProjectUserService {
 
     @Override
     public List<ProjectUser> findAll() {
-        return projectUserDao.findAll();
+        return projectUserDao.getAllUsers();
     }
 
     @Override

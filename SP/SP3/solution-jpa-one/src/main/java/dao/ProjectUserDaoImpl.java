@@ -31,13 +31,13 @@ public class ProjectUserDaoImpl implements ProjectUserDao {
     @Override
     public void create(ProjectUser projectUser) {
         EntityManager entityManager = trainingJpaEntityManagerFactory.createEntityManager();
-        EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
-            entityTransaction.begin();
+            entityManager.getTransaction().begin();
             entityManager.persist(projectUser);
-            entityTransaction.commit();
+            entityManager.getTransaction().commit();
         } catch (Exception exception) {
-            entityTransaction.rollback();
+            entityManager.getTransaction().rollback();
+            System.err.println(exception.getMessage());
             exception.printStackTrace();
         } finally {
             entityManager.close();
@@ -53,6 +53,7 @@ public class ProjectUserDaoImpl implements ProjectUserDao {
             projectUser = entityManager.find(ProjectUser.class,id);
             entityManager.getTransaction().commit();
         } catch (Exception exception) {
+            entityManager.getTransaction().rollback();
             System.err.println(exception.getMessage());
             exception.printStackTrace();
         } finally {
@@ -62,16 +63,16 @@ public class ProjectUserDaoImpl implements ProjectUserDao {
     }
 
     @Override
-    public List<ProjectUser> findAll() {
+    public List<ProjectUser> getAllUsers() {
         EntityManager entityManager = trainingJpaEntityManagerFactory.createEntityManager();
-        EntityTransaction entityTransaction = entityManager.getTransaction();
         List<ProjectUser> projectUserList = new ArrayList<>();
         try {
-            entityTransaction.begin();
+            entityManager.getTransaction().begin();
             projectUserList = entityManager.createQuery("select c from ProjectUser c order by c.id asc").getResultList();
-            entityTransaction.commit();
+            entityManager.getTransaction().commit();
         } catch (Exception exception) {
-            entityTransaction.rollback();
+            entityManager.getTransaction().rollback();
+            System.err.println(exception.getMessage());
             exception.printStackTrace();
         } finally {
             entityManager.close();

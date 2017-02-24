@@ -12,7 +12,7 @@ public interface ProjectUserDao {
 
     ProjectUser findUser(Long id);
 
-    List<ProjectUser> findAll();
+    List<ProjectUser> getAllUsers();
 
     void update(ProjectUser projectUser);
 }
