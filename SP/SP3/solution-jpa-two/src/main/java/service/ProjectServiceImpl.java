@@ -2,7 +2,6 @@ package service;
 
 import dao.*;
 import domain.Project;
-import domain.ProjectUser;
 import domain.Task;
 
 /**
@@ -42,9 +41,9 @@ public class ProjectServiceImpl implements ProjectService {
             throw new RuntimeException("You are missing to give in the project id, when tried to assign user to projet");
         }
         if (projectId != null && userId != null) {
-            Project project = (Project) projectDao.findProject(projectId);
+            Project project = projectDao.findProject(projectId);
             ProjectUser projectUser = (ProjectUser) projectUserDao.findUser(userId);
-            project.getProjectUserList().add(projectUser);
+            project.getGradeList().add(projectUser);
             projectDao.update(project);
         }
     }

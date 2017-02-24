@@ -62,7 +62,13 @@ public class ProjectDaoImpl implements ProjectDao {
         EntityManager entityManager = DataConfig.getSingleton().getEntityManagerFactory().createEntityManager();
         try {
             entityManager.getTransaction().begin();
-            entityManager.merge(project);
+            Project projectNew = (Project)entityManager.find(Project.class,project.getId());
+            projectNew.setName(project.getName());
+            projectNew.setDescription(project.getDescription());
+            projectNew.setCreated(project.getCreated());
+            projectNew.setLastModified(project.getLastModified());
+            projectNew.setGradeList(project.getGradeList());
+            projectNew.setTaskList(project.getTaskList());
             entityManager.getTransaction().commit();
         } catch (Exception exception) {
             entityManager.getTransaction().rollback();
