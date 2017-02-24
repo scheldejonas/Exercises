@@ -19,20 +19,22 @@ public class Grade {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "userName")
-    private String userName;
+    @Column(name = "name")
+    private String name;
 
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "created")
-    private LocalDate created;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<Project> projectList;
+    @Column(name = "value")
+    private int value;
 
     public Grade() {
-        this.projectList = new ArrayList<>();
+    }
+
+    @Override
+    public String toString() {
+        return "Grade{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", value=" + value +
+                '}';
     }
 
     public Long getId() {
@@ -43,37 +45,19 @@ public class Grade {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getName() {
+        return name;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public int getValue() {
+        return value;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public LocalDate getCreated() {
-        return created;
-    }
-
-    public void setCreated(LocalDate created) {
-        this.created = created;
-    }
-
-    @Override
-    public String toString() {
-        return "Grade{" +
-                "id=" + id +
-                ", userName='" + userName + '\'' +
-                ", email='" + email + '\'' +
-                ", created=" + created +
-                '}';
+    public void setValue(int value) {
+        this.value = value;
     }
 }
