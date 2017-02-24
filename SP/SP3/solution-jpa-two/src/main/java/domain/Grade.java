@@ -1,7 +1,5 @@
 package domain;
 
-import domain.Project;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
