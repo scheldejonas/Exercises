@@ -18,5 +18,25 @@
 
 ## Task One - Part Three
 
-[See this class](https://github.com/scheldejonas/Exercises/blob/master/SP/SP3/solution-jpa-mapping-exercise-three/src/main/java/domain/DiscountQuantity.java)
+[See this class's commit history](https://github.com/scheldejonas/Exercises/blob/master/SP/SP3/solution-jpa-mapping-exercise-three/src/main/java/domain/DiscountQuantity.java)
 
+## Task One - Part Four
+
+![alt tag](http://schelde.info/wp-content/uploads/2017/02/scheldeinfo_sp-3-task-one-part-4.png)
+
+![alt tag](http://schelde.info/wp-content/uploads/2017/02/scheldeinfo_sp-3-task-one-part-4-1.png)
+
+The D Type Column is descriping what entity type in the model it is.
+And the rest of the columns is just layed out to the right with a null.
+
+## Task One - Part Five
+
+[See this class](https://github.com/scheldejonas/Exercises/blob/master/SP/SP3/solution-jpa-mapping-exercise-three/src/main/java/domain/DiscountType.java)
+
+![alt tag](http://schelde.info/wp-content/uploads/2017/02/scheldeinfo_screen-shot-2017-02-24-at-08.51.43.png)
+
+![alt tag](http://schelde.info/wp-content/uploads/2017/02/scheldeinfo_screen-shot-2017-02-24-at-08.51.54.png)
+
+![alt tag](http://schelde.info/wp-content/uploads/2017/02/scheldeinfo_screen-shot-2017-02-24-at-08.52.02.png)
+
+The Entity's is then taken into their own tables, and is seperated with an id for them self. 
