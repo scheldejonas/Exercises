@@ -11,4 +11,6 @@ public interface ProjectService {
 
     void assignUserToProject(Long userId, Long projectId);
 
+    void createTaskAndAssignToProject(String taskDescription, Long projectId);
+
 }
