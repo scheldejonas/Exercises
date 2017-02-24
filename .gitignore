@@ -185,3 +185,25 @@ SP/SP3/solution-jpa-one/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_7.xml
 SP/SP3/solution-jpa-one/.idea/uiDesigner.xml
 
 SP/SP3/solution-jpa-two/.idea/
+
+CA/CA1/archived versions/chat-server-one-gruppe-ti/.idea/
+
+CA/CA1/archived versions/chat-server-one-gruppe-ti/.idea/dataSources.local.xml
+
+CA/CA1/archived versions/chat-server-three-gruppe-ti/.idea/
+
+CA/CA1/archived versions/chat-web-server-onepage/.idea/
+
+*.iml
+
+CA/CA1/archived versions/chat-server-one-gruppe-ti/.idea/
+
+CA/CA1/archived versions/chat-web-onepage-three/.gradle/
+
+CA/CA1/chat-web-onepage-three/.gradle/
+
+CA/CA1/archived versions/chat-web-onepage-three/.idea/gradle.xml
+
+*.xml
+
+!pom.xml

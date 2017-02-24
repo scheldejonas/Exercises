@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="chat-three" />
+        <module name="chat-server-three-gruppe-ti" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="1.8">
-      <module name="chat-three" target="1.8" />
+    <bytecodeTargetLevel>
+      <module name="chat-server-three-gruppe-ti" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
