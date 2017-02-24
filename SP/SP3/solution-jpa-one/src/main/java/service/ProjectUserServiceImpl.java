@@ -38,4 +38,9 @@ public class ProjectUserServiceImpl implements ProjectUserService {
     public void update(ProjectUser projectUser) {
         projectUserDao.update(projectUser);
     }
+
+    @Override
+    public ProjectUser findUser(Long aLong) {
+        return projectUserDao.findUser(aLong);
+    }
 }

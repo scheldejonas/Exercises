@@ -13,4 +13,6 @@ public interface ProjectUserService {
     void create(ProjectUser projectUser);
 
     void update(ProjectUser projectUser);
+
+    ProjectUser findUser(Long aLong);
 }

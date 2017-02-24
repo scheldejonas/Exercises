@@ -7,11 +7,17 @@ import service.ProjectUserServiceImpl;
  */
 public class Application {
     public static void main(String[] args) {
-        // SP3 -> Task One -> Part Four
-        ProjectUserService projectUserService = ProjectUserServiceImpl.getSingleton();
-        projectUserService.create(new ProjectUser());
-
-        // No need to let it stand and rn
-        System.exit(1);
+        try {
+            // SP3 -> JPA ONE -> Part two -> Task One
+            ProjectUserService projectUserService = ProjectUserServiceImpl.getSingleton();
+            projectUserService.create(new ProjectUser());
+            // SP3 -> JPA ONE -> Part two -> Task Two
+            System.out.println(projectUserService.findUser(new Long(1)));
+            // No need to let it stand and rn
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        } finally {
+            System.exit(1);
+        }
     }
 }
