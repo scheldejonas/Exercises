@@ -43,4 +43,9 @@ public class ProjectUserServiceImpl implements ProjectUserService {
     public ProjectUser findUser(Long aLong) {
         return projectUserDao.findUser(aLong);
     }
+
+    @Override
+    public List<ProjectUser> getAllUsers() {
+        return projectUserDao.getAllUsers();
+    }
 }

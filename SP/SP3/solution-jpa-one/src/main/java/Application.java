@@ -13,10 +13,17 @@ public class Application {
             projectUserService.create(new ProjectUser());
             // SP3 -> JPA ONE -> Part two -> Task Two
             System.out.println(projectUserService.findUser(new Long(1)));
-            // No need to let it stand and rn
+            // SP3 -> JPA ONE -> Part two -> Task Three
+            projectUserService.create(new ProjectUser());
+            projectUserService.create(new ProjectUser());
+            projectUserService.create(new ProjectUser());
+            for (ProjectUser projectUser : projectUserService.getAllUsers()) {
+                System.out.println(projectUser);
+            }
         } catch (Exception exception) {
             exception.printStackTrace();
         } finally {
+            // No need to let it stand and run
             System.exit(1);
         }
     }

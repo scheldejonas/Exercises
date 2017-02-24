@@ -15,4 +15,6 @@ public interface ProjectUserService {
     void update(ProjectUser projectUser);
 
     ProjectUser findUser(Long aLong);
+
+    List<ProjectUser> getAllUsers();
 }
