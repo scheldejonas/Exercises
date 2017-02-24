@@ -2,8 +2,7 @@ package domain;
 
 import org.hibernate.annotations.CollectionId;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 /**
  * Created by scheldejonas on 23/02/2017.
