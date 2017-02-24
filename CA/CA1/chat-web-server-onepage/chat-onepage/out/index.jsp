@@ -25,10 +25,17 @@
       <h5 class="header col s12 light">Velkommen til det nye chat.</h5>
     </div>
     <div class="row center">
+<<<<<<< Updated upstream:CA/CA1/chat-web-server-onepage/web/index.jsp
         <a href="/chat/client.jar" id="download-button" class="btn-large waves-effect waves-light blue">Download GUI Client</a>
         <p class="grey-text">This client is printing to System.out for messages and listening on System.in, when receiving messages</p>
         <a href="/chat/service-client.jar" id="download-button" class="btn-large waves-effect waves-light blue">Download Service Client</a>
         <p class="grey-text">This service client is printing messages to System.out and listening for firstly username, then message on System.in, when talking to GUI's</p>
+=======
+        <a href="/library/chat-client.jar" id="download-button" class="btn-large waves-effect waves-light blue">Download Console UI Client</a>
+        <p class="grey-text">This client makes you communicate with any chat server on a given ip and port. in Console, very handy</p>
+        <a href="/library/chat-server.jar" id="download-button" class="btn-large waves-effect waves-light blue">Download Chat Server</a>
+        <p class="grey-text">This is the chat server, which can be run only from the live server at the moment, if you are interested in trying being host, please contact me on jonas@schelde.info</p>
+>>>>>>> Stashed changes:CA/CA1/chat-web-server-onepage/chat-onepage/out/index.jsp
     </div>
     <br>
     <br>

@@ -1,0 +1,34 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.3.1.RELEASE'
+    }
+}
+
+apply plugin: 'java'
+//apply plugin: 'spring-boot'
+apply plugin: 'application'
+apply plugin: 'war'
+
+jar {
+    baseName 'info.schelde'
+    version '1.0-SNAPSHOT'
+}
+war {
+    baseName 'info.schelde'
+    version '1.0-SNAPSHOT'
+}
+
+group 'info.schelde'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
