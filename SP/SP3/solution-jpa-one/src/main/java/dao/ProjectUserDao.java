@@ -8,7 +8,7 @@ import java.util.List;
  * Created by scheldejonas on 22/02/2017.
  */
 public interface ProjectUserDao {
-    void save(ProjectUser projectUser);
+    void create(ProjectUser projectUser);
 
     List<ProjectUser> findAll();
 

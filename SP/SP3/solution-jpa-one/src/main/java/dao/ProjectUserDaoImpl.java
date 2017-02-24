@@ -30,7 +30,7 @@ public class ProjectUserDaoImpl implements ProjectUserDao {
     }
 
     @Override
-    public void save(ProjectUser projectUser) {
+    public void create(ProjectUser projectUser) {
         EntityManager entityManager = trainingJpaEntityManager.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
