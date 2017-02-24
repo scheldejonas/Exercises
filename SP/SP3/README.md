@@ -88,3 +88,39 @@ The Basic components in Java JPA is the @Entity, EntityManagerFactory, EntityMan
 [See this class for findProject](https://github.com/scheldejonas/Exercises/blob/master/SP/SP3/solution-jpa-one/src/main/java/dao/ProjectDaoImpl.java)
 
 [See this class for createTaskAndAssignToProject](https://github.com/scheldejonas/Exercises/blob/master/SP/SP3/solution-jpa-one/src/main/java/service/ProjectServiceImpl.java)
+
+---
+
+## Task Three (JPA Two)
+
+[See this PDF for task description](https://github.com/scheldejonas/Exercises/blob/master/SP/SP3/exam-preparation_JPA2.pdf)
+
+## Task Three - Part One
+
+We have been handleing it by making the sql code our self in the java data acces objects.
+
+With those objects, we have been handling sql exception and other types of exception to catch when the sql code, we wrote as a string couldn't go through to the database.
+
+More about the persistence, it was our own coding responsibilty to create the tables relational correct into making the objects able to be persisted from java code to database in the right way, so that data would be placed with the 1., 2. and 3. normalform.
+
+The File IO, have been from code to database immediatly, the has been no layer of cache of the data, to make it way faster to get the data when having a lot of requests.
+
+Cookies in the browser has only so har been used to connect the username and password to a request, so none of this has so far been used to knowing and using the session ID for anything else
+
+The Pros are you can get security in SQL code writing correct to a higher level. The development speed is increasing a lot to.
+
+The Cons are you can experience problems when using the cache and you need to fine tune the cache for functioning correctly. The worst issue is that the data inconsistency seperated over the different requests from users. I'm talking about cases where users just was sure about changing some data and then the data was not persisted in the need way.
+
+ORM tries then to solve the automation of object models as a diagram model, with List's, to be persistent set into relational tables in the database.
+
+With inheritance there can be used three kinds of strategies, SINGLE_TABLE, JOINED, TABLE_PER_CLASS (or called inheritance).
+
+With single_table it created enough columns that are nullable, to make the row pr. instance, to make it work, there is a discriminator column, with the name of the entity, so it is possible to seperate and withdraw directly just a entity from the name of the entity in the same table.
+
+With Joined, it creates tables linked with id's to the main parent entity, and with holds the enities in tables, put has always the link to the parent entity through foreing keys.
+
+With Inheritance (Table_per_class) There is just a table per class.
+
+## Task three - Part Two
+
+[See this package for JPA Annotations on entities](https://github.com/scheldejonas/Exercises/tree/master/SP/SP3/solution-jpa-two/src/main/java/domain)
