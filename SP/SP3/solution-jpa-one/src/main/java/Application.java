@@ -26,6 +26,9 @@ public class Application {
             // SP3 -> JPA ONE -> Part two -> Task Four
             ProjectService projectService = ProjectServiceImpl.getSingleton();
             projectService.createProject(new Project());
+            // SP3 -> JPA ONE -> Part two -> Task Seven
+            projectService.createTaskAndAssignToProject("Make the rest of the methods for CRUD operations on Task",new Long(1));
+            
         } catch (Exception exception) {
             exception.printStackTrace();
         } finally {

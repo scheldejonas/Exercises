@@ -30,10 +30,10 @@ public class Project {
     @Column(name = "lastModified")
     private LocalDateTime lastModified;
 
-    @ManyToMany
+    @ManyToMany()
     private List<ProjectUser> projectUserList;
 
-    @OneToMany(mappedBy = "project")
+    @OneToMany(mappedBy = "project", fetch = FetchType.EAGER)
     private List<Task> taskList;
 
     public Project() {

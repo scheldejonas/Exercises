@@ -26,7 +26,7 @@ public class ProjectUser {
     @Column(name = "created")
     private LocalDate created;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Project> projectList;
 
     public ProjectUser() {

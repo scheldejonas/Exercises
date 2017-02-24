@@ -26,7 +26,7 @@ public class Task {
     @Column(name = "hoursUsed")
     private int hoursUsed;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Project project;
 
     public Task() {
