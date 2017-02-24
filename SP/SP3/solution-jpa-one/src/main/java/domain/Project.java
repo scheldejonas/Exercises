@@ -91,4 +91,20 @@ public class Project {
                 ", lastModified=" + lastModified +
                 '}';
     }
+
+    public List<ProjectUser> getProjectUserList() {
+        return projectUserList;
+    }
+
+    public void setProjectUserList(List<ProjectUser> projectUserList) {
+        this.projectUserList = projectUserList;
+    }
+
+    public List<Task> getTaskList() {
+        return taskList;
+    }
+
+    public void setTaskList(List<Task> taskList) {
+        this.taskList = taskList;
+    }
 }

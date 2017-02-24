@@ -38,4 +38,44 @@ public class ProjectDaoImpl implements ProjectDao {
             entityManager.close();
         }
     }
+
+    @Override
+    public Project findProject(Long projectId) {
+        EntityManager entityManager = DataConfig.getSingleton().getEntityManagerFactory().createEntityManager();
+        Project project = null;
+        try {
+            entityManager.getTransaction().begin();
+            project = entityManager.find(Project.class,projectId);
+            entityManager.getTransaction().commit();
+        } catch (Exception exception) {
+            entityManager.getTransaction().rollback();
+            System.out.println(exception.getMessage());
+            exception.printStackTrace();
+        } finally {
+            entityManager.close();
+        }
+        return project;
+    }
+
+    @Override
+    public void update(Project project) {
+        EntityManager entityManager = DataConfig.getSingleton().getEntityManagerFactory().createEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            Project projectNew = (Project)entityManager.find(Project.class,project.getId());
+            projectNew.setName(project.getName());
+            projectNew.setDescription(project.getDescription());
+            projectNew.setCreated(project.getCreated());
+            projectNew.setLastModified(project.getLastModified());
+            projectNew.setProjectUserList(project.getProjectUserList());
+            projectNew.setTaskList(project.getTaskList());
+            entityManager.getTransaction().commit();
+        } catch (Exception exception) {
+            entityManager.getTransaction().rollback();
+            System.out.println(exception.getMessage());
+            exception.printStackTrace();
+        } finally {
+            entityManager.close();
+        }
+    }
 }

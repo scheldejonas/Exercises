@@ -7,4 +7,8 @@ import domain.Project;
  */
 public interface ProjectDao {
     void createProject(Project project);
+
+    Project findProject(Long projectId);
+
+    void update(Project project);
 }
