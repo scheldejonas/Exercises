@@ -4,7 +4,7 @@
 
 ---
 
-## Task One
+## Task One (JPA Mapping Exercise 3)
 
 [PDF with explanations here](https://github.com/scheldejonas/Exercises/blob/master/SP/SP3/JPA_MappingExercise-3.pdf)
 
@@ -43,7 +43,7 @@ The Entity's is then taken into their own tables, and is seperated with an id fo
 
 ---
 
-## Task Two
+## Task Two (JPA one)
 
 [PDF for Task Two explained](https://github.com/scheldejonas/Exercises/blob/master/SP/SP3/exam-preparation_JPA1.pdf)
 
@@ -69,8 +69,10 @@ ORM tries then to solve the automation of object models as a diagram model, with
 
 The Basic components in Java JPA is the @Entity, EntityManagerFactory, EntityManager, EntityTransaction, Query
 
-## Task Two - Part Two
+## Task Two - Part Two - Task One
 
-##### Practical part
+[See this package](https://github.com/scheldejonas/Exercises/tree/master/SP/SP3/solution-jpa-one/src/main/java/domain)
 
-[See this class]()
+## Task Two - Part Two - Task Two
+
+[See this class for Create User]()
