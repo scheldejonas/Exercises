@@ -85,3 +85,6 @@ The Basic components in Java JPA is the @Entity, EntityManagerFactory, EntityMan
 
 [See this class for assignUserToProject](https://github.com/scheldejonas/Exercises/blob/master/SP/SP3/solution-jpa-one/src/main/java/service/ProjectServiceImpl.java)
 
+[See this class for findProject](https://github.com/scheldejonas/Exercises/blob/master/SP/SP3/solution-jpa-one/src/main/java/dao/ProjectDaoImpl.java)
+
+[See this class for createTaskAndAssignToProject](https://github.com/scheldejonas/Exercises/blob/master/SP/SP3/solution-jpa-one/src/main/java/service/ProjectServiceImpl.java)
