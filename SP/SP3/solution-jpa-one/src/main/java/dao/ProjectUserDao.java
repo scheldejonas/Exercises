@@ -10,6 +10,8 @@ import java.util.List;
 public interface ProjectUserDao {
     void create(ProjectUser projectUser);
 
+    ProjectUser findUser(Long id);
+
     List<ProjectUser> findAll();
 
     void update(ProjectUser projectUser);
