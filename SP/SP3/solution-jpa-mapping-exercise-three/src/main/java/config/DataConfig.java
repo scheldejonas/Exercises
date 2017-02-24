@@ -31,8 +31,8 @@ public class DataConfig {
             this.host = "localhost";
             this.port = 3306;
             this.databaseName = "spthreetaskone";
-            this.username = "spthreetaskone";
-            this.password = "Spthreetaskone";
+            this.username = "spthreetaskoneuser";
+            this.password = "Spthreetaskoneuser";
             this.entityManagerFactory = createEntityManagerFactory();
         }
         if (profile.equals("two")) {

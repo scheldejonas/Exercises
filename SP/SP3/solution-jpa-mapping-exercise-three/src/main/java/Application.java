@@ -3,6 +3,7 @@ import dao.CustomerDao;
 import dao.CustomerDaoImpl;
 import domain.Customer;
 import domain.DiscountFixed;
+import domain.DiscountQuantity;
 import service.CustomerService;
 import service.CustomerServiceImpl;
 
@@ -23,7 +24,7 @@ public class Application {
         customer.setFirstName("Jonas");
         customerService.save(customer);
         System.out.println(customer.toString());
-        customer.setDiscountType(new DiscountFixed());
+        customer.setDiscountType(new DiscountQuantity());
         customerService.update(customer);
 
         // No need to let it stand and rn
