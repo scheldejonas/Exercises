@@ -2,6 +2,8 @@ package domain;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by scheldejonas on 22/02/2017.
@@ -24,7 +26,11 @@ public class ProjectUser {
     @Column(name = "created")
     private LocalDate created;
 
+    @ManyToMany(mappedBy = "projectUserList")
+    private List<Project> projectList;
+
     public ProjectUser() {
+        this.projectList = new ArrayList<>();
     }
 
     public Long getId() {
