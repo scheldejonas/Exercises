@@ -10,7 +10,7 @@ import java.util.List;
 public interface ProjectUserService {
     List<ProjectUser> findAll();
 
-    void save(ProjectUser projectUser);
+    void create(ProjectUser projectUser);
 
     void update(ProjectUser projectUser);
 }

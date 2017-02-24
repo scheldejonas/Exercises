@@ -30,7 +30,7 @@ public class ProjectUserServiceImpl implements ProjectUserService {
     }
 
     @Override
-    public void save(ProjectUser projectUser) {
+    public void create(ProjectUser projectUser) {
          projectUserDao.create(projectUser);
     }
 

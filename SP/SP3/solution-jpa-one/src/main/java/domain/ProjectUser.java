@@ -26,7 +26,7 @@ public class ProjectUser {
     @Column(name = "created")
     private LocalDate created;
 
-    @ManyToMany(mappedBy = "projectUserList")
+    @ManyToMany
     private List<Project> projectList;
 
     public ProjectUser() {

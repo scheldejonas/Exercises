@@ -2,7 +2,6 @@ package dao;
 
 import config.DataConfig;
 import domain.ProjectUser;
-import org.hibernate.Hibernate;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -16,10 +15,10 @@ import java.util.List;
 public class ProjectUserDaoImpl implements ProjectUserDao {
 
     private static ProjectUserDao singleton = null;
-    private EntityManagerFactory trainingJpaEntityManager = null;
+    private EntityManagerFactory trainingJpaEntityManagerFactory = null;
 
     private ProjectUserDaoImpl() {
-        this.trainingJpaEntityManager = DataConfig.getSingleton().getEntityManagerFactory();
+        this.trainingJpaEntityManagerFactory = DataConfig.getSingleton().getEntityManagerFactory();
     }
 
     public static ProjectUserDao getSingleton() {
@@ -31,7 +30,7 @@ public class ProjectUserDaoImpl implements ProjectUserDao {
 
     @Override
     public void create(ProjectUser projectUser) {
-        EntityManager entityManager = trainingJpaEntityManager.createEntityManager();
+        EntityManager entityManager = trainingJpaEntityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
             entityTransaction.begin();
@@ -46,8 +45,25 @@ public class ProjectUserDaoImpl implements ProjectUserDao {
     }
 
     @Override
+    public ProjectUser findUser(Long id) {
+        EntityManager entityManager = trainingJpaEntityManagerFactory.createEntityManager();
+        ProjectUser projectUser = null;
+        try {
+            entityManager.getTransaction().begin();
+            projectUser = entityManager.find(ProjectUser.class,id);
+            entityManager.getTransaction().commit();
+        } catch (Exception exception) {
+            System.err.println(exception.getMessage());
+            exception.printStackTrace();
+        } finally {
+            entityManager.close();
+        }
+        return projectUser;
+    }
+
+    @Override
     public List<ProjectUser> findAll() {
-        EntityManager entityManager = trainingJpaEntityManager.createEntityManager();
+        EntityManager entityManager = trainingJpaEntityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         List<ProjectUser> projectUserList = new ArrayList<>();
         try {
@@ -65,7 +81,7 @@ public class ProjectUserDaoImpl implements ProjectUserDao {
 
     @Override
     public void update(ProjectUser projectUser) {
-        EntityManager entityManager = trainingJpaEntityManager.createEntityManager();
+        EntityManager entityManager = trainingJpaEntityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         try {
             entityTransaction.begin();

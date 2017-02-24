@@ -30,7 +30,7 @@ public class Project {
     @Column(name = "lastModified")
     private LocalDateTime lastModified;
 
-    @ManyToMany(mappedBy = "projectList")
+    @ManyToMany
     private List<ProjectUser> projectUserList;
 
     @OneToMany(mappedBy = "project")
