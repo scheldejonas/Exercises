@@ -207,3 +207,5 @@ CA/CA1/archived versions/chat-web-onepage-three/.idea/gradle.xml
 *.xml
 
 !pom.xml
+
+SP/SP3/solution-jpa-two/target/

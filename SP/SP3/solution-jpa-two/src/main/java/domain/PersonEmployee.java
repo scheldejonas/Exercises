@@ -1,10 +1,13 @@
 package domain;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * Created by scheldejonas on 24/02/2017.
  */
+@Entity
 public class PersonEmployee extends Person {
 
     @Column(name = "so_sec_nr")

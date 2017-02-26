@@ -11,7 +11,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "Person")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Person {
 
     @Id
@@ -33,6 +33,15 @@ public class Person {
     @Column(name = "married")
     private boolean married;
 
+    @ManyToOne
+    private Grade grade;
+
+    @OneToMany(mappedBy = "supervisor")
+    private List<Person> supervised;
+
+    @ManyToOne
+    private Person supervisor;
+
     public Person() {
     }
 
@@ -46,6 +55,22 @@ public class Person {
                 ", age=" + age +
                 ", married=" + married +
                 '}';
+    }
+
+    public List<Person> getSupervised() {
+        return supervised;
+    }
+
+    public void setSupervised(List<Person> supervised) {
+        this.supervised = supervised;
+    }
+
+    public Person getSupervisor() {
+        return supervisor;
+    }
+
+    public void setSupervisor(Person supervisor) {
+        this.supervisor = supervisor;
     }
 
     public Long getId() {
@@ -94,5 +119,13 @@ public class Person {
 
     public void setMarried(boolean married) {
         this.married = married;
+    }
+
+    public Grade getGrade() {
+        return grade;
+    }
+
+    public void setGrade(Grade grade) {
+        this.grade = grade;
     }
 }

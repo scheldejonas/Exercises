@@ -1,34 +1,33 @@
 package dao;
 
 import config.DataConfig;
-import domain.Project;
+import domain.Person;
 
 import javax.persistence.EntityManager;
 
 /**
  * Created by scheldejonas on 24/02/17.
  */
-public class ProjectDaoImpl implements ProjectDao {
+public class PersonDaoImpl implements PersonDao {
 
-    private static ProjectDaoImpl singleton = null;
+    private static PersonDaoImpl singleton = null;
 
-    private ProjectDaoImpl() {
-
+    private PersonDaoImpl() {
     }
 
-    public static ProjectDaoImpl getSingleton() {
+    public static PersonDaoImpl getSingleton() {
         if (singleton == null) {
-            singleton = new ProjectDaoImpl();
+            singleton = new PersonDaoImpl();
         }
         return singleton;
     }
 
     @Override
-    public void createProject(Project project) {
+    public void createPerson(Person person) {
         EntityManager entityManager = DataConfig.getSingleton().getEntityManagerFactory().createEntityManager();
         try {
             entityManager.getTransaction().begin();
-            entityManager.persist(project);
+            entityManager.persist(person);
             entityManager.getTransaction().commit();
         } catch (Exception exception) {
             entityManager.getTransaction().rollback();
@@ -40,12 +39,12 @@ public class ProjectDaoImpl implements ProjectDao {
     }
 
     @Override
-    public Project findProject(Long projectId) {
+    public Person findPerson(Long personId) {
         EntityManager entityManager = DataConfig.getSingleton().getEntityManagerFactory().createEntityManager();
-        Project project = null;
+        Person person = null;
         try {
             entityManager.getTransaction().begin();
-            project = entityManager.find(Project.class,projectId);
+            person = entityManager.find(Person.class,personId);
             entityManager.getTransaction().commit();
         } catch (Exception exception) {
             entityManager.getTransaction().rollback();
@@ -54,21 +53,15 @@ public class ProjectDaoImpl implements ProjectDao {
         } finally {
             entityManager.close();
         }
-        return project;
+        return person;
     }
 
     @Override
-    public void update(Project project) {
+    public void update(Person person) {
         EntityManager entityManager = DataConfig.getSingleton().getEntityManagerFactory().createEntityManager();
         try {
             entityManager.getTransaction().begin();
-            Project projectNew = (Project)entityManager.find(Project.class,project.getId());
-            projectNew.setName(project.getName());
-            projectNew.setDescription(project.getDescription());
-            projectNew.setCreated(project.getCreated());
-            projectNew.setLastModified(project.getLastModified());
-            projectNew.setGradeList(project.getGradeList());
-            projectNew.setTaskList(project.getTaskList());
+            entityManager.merge(person);
             entityManager.getTransaction().commit();
         } catch (Exception exception) {
             entityManager.getTransaction().rollback();

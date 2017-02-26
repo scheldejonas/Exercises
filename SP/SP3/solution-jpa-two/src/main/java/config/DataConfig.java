@@ -4,6 +4,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 /**
  * Created by scheldejonas on 22/02/2017.
@@ -17,7 +18,7 @@ public class DataConfig {
     private int port = 0;
     private String username = "";
     private String password = "";
-    private String profile = "one";
+    private String profile = "three";
 
     public static DataConfig getSingleton() {
         if (singleton == null) {
@@ -41,6 +42,14 @@ public class DataConfig {
             this.databaseName = "trainingjpa";
             this.username = "trainingjpauser";
             this.password = "Trainingjpauser";
+            this.entityManagerFactory = createEntityManagerFactory();
+        }
+        if (profile.equals("three")) {
+            this.host = "localhost";
+            this.port = 3306;
+            this.databaseName = "spthreetasktwo";
+            this.username = "spthreetasktwouser";
+            this.password = "Spthreetasktwouser";
             this.entityManagerFactory = createEntityManagerFactory();
         }
     }

@@ -23,6 +23,9 @@ public class Grade {
     @Column(name = "value")
     private int value;
 
+    @OneToMany(mappedBy = "grade")
+    private List<Person> personList;
+
     public Grade() {
     }
 
@@ -57,5 +60,13 @@ public class Grade {
 
     public void setValue(int value) {
         this.value = value;
+    }
+
+    public List<Person> getPersonList() {
+        return personList;
+    }
+
+    public void setPersonList(List<Person> personList) {
+        this.personList = personList;
     }
 }

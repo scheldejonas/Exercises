@@ -1,11 +1,13 @@
 package domain;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import java.time.LocalDate;
 
 /**
  * Created by scheldejonas on 24/02/2017.
  */
+@Entity
 public class PersonStudent extends Person {
 
     @Column(name = "mat_nr")
