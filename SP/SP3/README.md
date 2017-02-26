@@ -124,3 +124,35 @@ With Inheritance (Table_per_class) There is just a table per class.
 ## Task three - Part Two
 
 [See this package for JPA Annotations on entities](https://github.com/scheldejonas/Exercises/tree/master/SP/SP3/solution-jpa-two/src/main/java/domain)
+
+Tables:
+
+![alt tag](http://schelde.info/wp-content/uploads/2017/02/scheldeinfo_sp3-jpa-2-part-2-273x300.png)
+
+Class's:
+
+![alt tag](http://schelde.info/wp-content/uploads/2017/02/scheldeinfo_sp3-jpa-2-part-2-5.png)
+
+Grade class:
+
+![alt tag](http://schelde.info/wp-content/uploads/2017/02/scheldeinfo_sp3-jpa-2-part-2-1-300x255.png)
+
+Person class: (parent class)
+
+![alt tag](http://schelde.info/wp-content/uploads/2017/02/scheldeinfo_sp3-jpa-2-part-2-2-300x259.png)
+
+Person Student class: (child class)
+
+![alt tag](http://schelde.info/wp-content/uploads/2017/02/scheldeinfo_sp3-jpa-2-part-2-4-300x175.png)
+
+Person Employee class: (child class)
+
+![alt tag](http://schelde.info/wp-content/uploads/2017/02/scheldeinfo_sp3-jpa-2-part-2-3-300x201.png)
+
+##### Part two - Task 2 - Choice of inheritance strategy
+
+I have in this case choosen SINGLE_TABLE inheritance strategy, because there is only 2 and 3 according fields on either employee and student subclass, which makes it needed for a lot of different sub calls with join table sql commands, if not in single table. That makes the getting process more slower.
+
+Also because there is an aggregating class on the Person class. It is about the possibility for a person to be a supervisor of another person. And with just that, the person has an id of who is his supervisor. This also just makes it faster to get the same lines of people fields out by jpa, into the supervised people List.
+
+
