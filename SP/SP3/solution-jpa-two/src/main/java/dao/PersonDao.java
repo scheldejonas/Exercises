@@ -13,4 +13,5 @@ public interface PersonDao {
 
     void update(Person person);
 
+    void delete(Person person);
 }

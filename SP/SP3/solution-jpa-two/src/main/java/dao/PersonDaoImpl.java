@@ -71,4 +71,20 @@ public class PersonDaoImpl implements PersonDao {
             entityManager.close();
         }
     }
+
+    @Override
+    public void delete(Person person) {
+        EntityManager entityManager = DataConfig.getSingleton().getEntityManagerFactory().createEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.remove(person);
+            entityManager.getTransaction().commit();
+        } catch (Exception exception) {
+            entityManager.getTransaction().rollback();
+            System.out.println(exception.getMessage());
+            exception.printStackTrace();
+        } finally {
+            entityManager.close();
+        }
+    }
 }
