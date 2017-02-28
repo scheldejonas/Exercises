@@ -156,3 +156,12 @@ I have in this case choosen SINGLE_TABLE inheritance strategy, because there is 
 Also because there is an aggregating class on the Person class. It is about the possibility for a person to be a supervisor of another person. And with just that, the person has an id of who is his supervisor. This also just makes it faster to get the same lines of people fields out by jpa, into the supervised people List.
 
 
+##### Part two - Task 3 - Small facade
+
+[See this class for dao methods](https://github.com/scheldejonas/Exercises/blob/master/SP/SP3/solution-jpa-two/src/main/java/dao/PersonDaoImpl.java)
+
+##### Part two - Task 3 - Small REST API
+
+[See hits class for facade, which i service in my case of design choice](https://github.com/scheldejonas/Exercises/blob/master/SP/SP3/solution-jpa-two/src/main/java/service/PersonServiceImpl.java)
+
+The small rest API is made ready in the PersonServiceImpl, where it is possible to save and change supervisor of a Student.
