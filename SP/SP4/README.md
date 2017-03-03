@@ -57,6 +57,8 @@ url.
 
 [See the JS project here](https://github.com/scheldejonas/Exercises/tree/master/SP/SP4/solution-four-exam-preparation-ajax-js)
 
+###### Explain with Chrome Dev Tool CORS
+
 ![alt tag](http://schelde.info/wp-content/uploads/2017/03/scheldeinfo_sp4-billeder-768x427.png)
 
 These 3 headers:
@@ -75,6 +77,13 @@ information from this server.
 To implement it on backend, there is different methods according to
 your server setup.
 
+###### Web Proxy
 
+[See the project here](https://github.com/scheldejonas/Exercises/tree/master/SP/SP4/solution-four-exam-preparation-web-proxy)
+
+The shell is created, the proxy of the JSON content is missing implimentation.
 
 ## #5 Exam-prepartion TestAndMocking
+
+[Here is the description of the task](https://docs.google.com/document/d/1mfJqecj_5WesTO8CQCZFfLSpdE-GmW0V0PnzuzIb3h8/edit)
+
