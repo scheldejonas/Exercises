@@ -1,14 +1,17 @@
 package joke;
 
-import static com.jayway.restassured.RestAssured.given;
-
 public class Fetcher {
+  private static final Fetcher singleton = new Fetcher();
   private EmailService emailService;
   private FetcherService fetcherService;
 
-  public Fetcher() {
-    this.emailService = EmailService.getSingleton();
-    this.fetcherService = FetcherService.getSingleton();
+  private Fetcher() {
+      this.emailService = EmailService.getSingleton();
+      this.fetcherService = FetcherService.getSingleton();
+  }
+
+  public static Fetcher getSingleton() {
+      return singleton;
   }
 
   /**
@@ -24,11 +27,5 @@ public class Fetcher {
        emailService.sendEmailToAdmin("There is a problem with the server: http://api.icndb.com/jokes/random");
        throw exception; //Rethrow to signal error to the caller
     }
-  }
-  
-  //DO NOT TEST THIS METHOD: It's just meant as a quick manual test, to see the code in action
-  public static void main(String[] args) throws CommunicationException {
-    Fetcher f = new Fetcher();
-    System.out.println(f.fetchJoke());
   }
 }

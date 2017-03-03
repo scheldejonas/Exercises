@@ -23,7 +23,7 @@ public class FetcherService {
      */
     public Joke fetchJokeFromICNB() throws CommunicationException {
         try {
-            String joke = given().get("http://api.icndb.com/jokes/random/1").path("value.joke");
+            String joke = given().get("http://api.icndb.com/jokes/random/").path("value.joke");
             return new Joke(joke, "http://api.icndb.com/");
         } catch (Exception e) {
             throw new CommunicationException();
