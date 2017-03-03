@@ -55,6 +55,26 @@ url.
 
 ##### Practical Part
 
-[See this project here]()
+[See the JS project here](https://github.com/scheldejonas/Exercises/tree/master/SP/SP4/solution-four-exam-preparation-ajax-js)
+
+![alt tag](http://schelde.info/wp-content/uploads/2017/03/scheldeinfo_sp4-billeder-768x427.png)
+
+These 3 headers:
+
+"Acces-Control-Allow-Origin: *"
+"Acces-Control-Allow-Headers: Accept, X-Requested-With"
+"Acces-Control-Allow-Methods: GET"
+
+Here the headers is the proof in the response the server is accepting
+CORS - "Cross-Origin Resource Sharing"
+
+The server (restcountries.eu) is accepting through it's backend to
+respond AJAX calls, and therefore makes it possible to call for JSON
+information from this server.
+
+To implement it on backend, there is different methods according to
+your server setup.
+
+
 
 ## #5 Exam-prepartion TestAndMocking
