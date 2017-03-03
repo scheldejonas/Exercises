@@ -53,7 +53,7 @@ The third way it can be achieved, is by CORS, which stands for
 a header property "Acces-Control-Allow-Origin" containing my servers
 url.
 
-##### Practical Part
+#### Practical Part
 
 [See the JS project here](https://github.com/scheldejonas/Exercises/tree/master/SP/SP4/solution-four-exam-preparation-ajax-js)
 
@@ -85,5 +85,14 @@ The shell is created, the proxy of the JSON content is missing implimentation.
 
 ## #5 Exam-prepartion TestAndMocking
 
-[Here is the description of the task](https://docs.google.com/document/d/1mfJqecj_5WesTO8CQCZFfLSpdE-GmW0V0PnzuzIb3h8/edit)
+[Here is the description of the task](https://github.com/scheldejonas/Exercises/blob/master/SP/SP4/_task%20description%20as%20from%20teachers/testVoidReturnSem3.pdf)
+
+#### General part
+
+###### Explain fundamental software testing
+
+First we have to actually establish understanding, that test can be done
+both after but also before writing the actual code.
+
+
 
