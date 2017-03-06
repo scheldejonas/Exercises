@@ -10,11 +10,11 @@ xhrCountryRequest.onreadystatechange = function () {
         let countryInfoSpan = document.querySelector('.countryInfoBox');
         //console.log(countryInfoSpan);
         var countryInfoModel = JSON.parse(xhrCountryRequest.responseText);
-        //console.log(countryInfoModel);
+        console.log(countryInfoModel);
         for (var i = 0; i < spanCountryHeadlineArray.length; i += 1) {
             spanCountryHeadlineArray[i].innerText = countryInfoModel[0].name;
         }
-        wikiPageLinkParagraph.innerHTML = '<a href="https://en.wikipedia.org/wiki/' + countryInfoModel[0].name.substring(0,2) + '">Wiki page</a>';
+        wikiPageLinkParagraph.innerHTML = '<a href="https://en.wikipedia.org/wiki/' + countryInfoModel[0].name + '">Wiki page</a>';
         var countryInfoHTML = '';
         for (var property in countryInfoModel[0]) {
             countryInfoHTML += '<p>' + property + ': ' + countryInfoModel[0][property] + '</p>';

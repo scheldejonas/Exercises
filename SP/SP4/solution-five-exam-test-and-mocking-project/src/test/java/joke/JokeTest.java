@@ -17,18 +17,23 @@ public class JokeTest {
     @Mock
     FetcherService fetcherService;
 
+    @Mock
+    EmailService emailService;
+
     @InjectMocks
     Fetcher fetcher = Fetcher.getSingleton();
 
     @Test
-    public void fetchJokeShouldReturnOne() throws CommunicationException {
-        when(fetcher.fetchJoke()).thenReturn(new Joke("This is the joke", "https://foundhere.com"));
+    public void fetchJoke_ShouldReturnOne() throws CommunicationException {
+        when(fetcherService.fetchJokeFromICNB()).thenReturn(new Joke("This is the joke", "https://foundhere.com"));
         assertThat(fetcher.fetchJoke(),instanceOf(Joke.class));
         verify(fetcherService).fetchJokeFromICNB();
     }
 
     @Test(expected = CommunicationException.class)
-    public void fetchJokeShouldThrowException() {
-
+    public void fetchJoke_ShouldSendEmail() throws CommunicationException {
+        when(fetcherService.fetchJokeFromICNB()).thenThrow(new CommunicationException());
+        fetcher.fetchJoke();
+        verify(emailService).sendEmailToAdmin("Test Email");
     }
 }

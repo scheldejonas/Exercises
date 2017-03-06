@@ -22,10 +22,10 @@ public class Fetcher {
    */
   public Joke fetchJoke() throws CommunicationException {
     try {
-      return fetcherService.fetchJokeFromICNB();
+        return fetcherService.fetchJokeFromICNB();
     } catch (CommunicationException exception) {
-       emailService.sendEmailToAdmin("There is a problem with the server: http://api.icndb.com/jokes/random");
-       throw exception; //Rethrow to signal error to the caller
+        emailService.sendEmailToAdmin("There is a problem with the server: http://api.icndb.com/jokes/random");
+        throw exception; //Rethrow to signal error to the caller
     }
   }
 }
