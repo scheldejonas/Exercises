@@ -12,8 +12,6 @@ Here is my solution to the task StudyPoint Exercise 5 on AP degree in computer s
 
 Note: as a minimum you should have a test that verifies a GET, POST, PUT and DELETE service and test some of the error scenarios.
 
-
-
 #### exam-preparation_REST_JSON
 
 #### exam-preparation_JPA_REST_API
