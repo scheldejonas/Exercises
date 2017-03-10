@@ -248,3 +248,17 @@ SP/SP5/solutions/Solution_exam_prep_rest_and_json/target/maven-archiver/pom.prop
 SP/SP5/solutions/Solution_exam_prep_rest_and_json/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
 
 SP/SP5/solutions/Solution_exam_prep_rest_and_json/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+
+SP/SP5/solutions/Solution_exam_jpa_rest_api/.idea/.name
+
+SP/SP5/solutions/Solution_exam_jpa_rest_api/target/examjparestapi-1.0-SNAPSHOT/META-INF/MANIFEST.MF
+
+*.jar
+
+SP/SP5/solutions/Solution_exam_prep_rest_and_json/target/examrestandjson-1.0-SNAPSHOT.war
+
+SP/SP5/solutions/Solution_exam_jpa_rest_api/target/examjparestapi-1.0-SNAPSHOT.war
+
+SP/SP5/solutions/Solution_exam_jpa_rest_api/target/maven-archiver/pom.properties
+
+SP/SP5/solutions/Solution_exam_prep_rest_and_json/target/examrestandjson-1.0-SNAPSHOT.war

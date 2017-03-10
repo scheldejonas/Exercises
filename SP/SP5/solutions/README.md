@@ -18,7 +18,9 @@ Note: as a minimum you should have a test that verifies a GET, POST, PUT and DEL
 
 [Task is here](https://github.com/scheldejonas/Exercises/tree/master/SP/SP5/solutions/Solution_exam_prep_rest_and_json/task_description)
 
-[Solution is here]()
+[Solution is here](https://github.com/scheldejonas/Exercises/tree/master/SP/SP5/solutions/Solution_exam_prep_rest_and_json)
 
 #### exam-preparation_JPA_REST_API
+
+[Task is here]()
 
