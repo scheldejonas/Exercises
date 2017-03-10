@@ -25,7 +25,15 @@ The first argument indicates the amount of test persons to create, the second wh
 So the example above should return a JSON array with 100 test data on the form: 
 
 ```java
-[{"fname": "Bo", "lname":"Hansen", "street": "Lyngbyvej 26", "city": "Lyngby"},..] 
+[
+  {
+	    "fname": "Bo", 
+    	"lname":"Hansen", 
+        "street": "Lyngbyvej 26", 
+        "city": "Lyngby"
+  },
+  ..
+] 
 ```
 
 **Hint:** See next page for a hint of how to create the JSON 
