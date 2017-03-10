@@ -6,7 +6,7 @@ Here is my solution to the task StudyPoint Exercise 5 on AP degree in computer s
 
 [Task is here](https://github.com/scheldejonas/Exercises/tree/master/SP/SP5/solutions/Solution_REST_JAX-RS_ex2/_task%20description)
 
-
+[Solution is here]()
 
 #### REST_JAX-RS_ex3_errorhandlin
 
