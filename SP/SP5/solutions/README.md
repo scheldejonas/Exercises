@@ -4,7 +4,7 @@ Here is my solution to the task StudyPoint Exercise 5 on AP degree in computer s
 
 ####  REST_JAX-RS_ex2
 
-[Task is here](https://github.com/scheldejonas/Exercises/tree/master/SP/SP5/solutions/Solution_REST_JAX-RS_ex2)
+[Task is here](https://github.com/scheldejonas/Exercises/tree/master/SP/SP5/solutions/Solution_REST_JAX-RS_ex2/_task%20description)
 
 
 
