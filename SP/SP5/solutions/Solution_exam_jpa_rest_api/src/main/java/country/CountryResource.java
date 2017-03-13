@@ -36,7 +36,7 @@ public class CountryResource {
     @GET
     @Path("")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllCountriesByArguments(@QueryParam("columns") String columns) {
+    public Response getAllCountriesByArguments(@QueryParam("arguments") String columns) {
         System.out.println("Testing: I was inside get all countries by arguments");
         String countriesJsonString = gson.toJson(CountryDao.getSingleton().findAll());
         System.out.println("Testing countries: \n" + countriesJsonString);

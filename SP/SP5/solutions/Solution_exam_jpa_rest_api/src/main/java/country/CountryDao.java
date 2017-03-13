@@ -1,6 +1,7 @@
 package country;
 
 import config.DataConfig;
+import org.hibernate.Hibernate;
 
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class CountryDao {
         List<Country> countryList = new ArrayList<>();
         try {
             entityManager.getTransaction().begin();
-            countryList = entityManager.createQuery("select c from Country c order by c.name asc").getResultList();
+            countryList = entityManager.createQuery("select c from Country c join City on City.country.id = c.id", Country.class).getResultList();
             entityManager.getTransaction().commit();
         } catch (Exception exception) {
             entityManager.getTransaction().rollback();

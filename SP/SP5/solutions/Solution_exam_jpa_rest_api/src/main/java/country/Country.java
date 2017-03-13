@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "country", schema = "world")
+@Table(name = "country")
 public class Country {
     @Id
     @Column(name = "Code")
@@ -43,7 +43,7 @@ public class Country {
     private String code2;
     @OneToMany(mappedBy = "country", fetch = FetchType.EAGER)
     private List<Countrylanguage> countrylanguageList = new ArrayList<>();
-    @OneToMany(mappedBy = "country", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "country")
     private List<City> cityList = new ArrayList<>();
 
     public Country() {
@@ -167,5 +167,21 @@ public class Country {
 
     public void setCode2(String code2) {
     this.code2 = code2;
+    }
+
+    public List<Countrylanguage> getCountrylanguageList() {
+        return countrylanguageList;
+    }
+
+    public void setCountrylanguageList(List<Countrylanguage> countrylanguageList) {
+        this.countrylanguageList = countrylanguageList;
+    }
+
+    public List<City> getCityList() {
+        return cityList;
+    }
+
+    public void setCityList(List<City> cityList) {
+        this.cityList = cityList;
     }
 }

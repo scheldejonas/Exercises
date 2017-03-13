@@ -5,7 +5,7 @@ import country.Country;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "countrylanguage", schema = "world")
+@Table(name = "countrylanguage")
 public class Countrylanguage {
     @Id
     @Column(name = "CountryCode")
@@ -52,5 +52,13 @@ public class Countrylanguage {
 
     public void setPercentage(Double percentage) {
     this.percentage = percentage;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 }

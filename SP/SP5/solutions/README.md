@@ -8,7 +8,7 @@ Here is my solution to the task StudyPoint Exercise 5 on AP degree in computer s
 
 [Solution is here](https://github.com/scheldejonas/Exercises/tree/master/SP/SP5/solutions/Solution_REST_JAX-RS_ex2)
 
-#### REST_JAX-RS_ex3_errorhandlin
+#### REST_JAX-RS_ex3_errorhandling
 
 #### Testing with Rest Assure
 
@@ -22,5 +22,5 @@ Note: as a minimum you should have a test that verifies a GET, POST, PUT and DEL
 
 #### exam-preparation_JPA_REST_API
 
-[Task is here]()
+[Task is here](M)
 

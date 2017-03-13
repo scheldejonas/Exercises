@@ -5,7 +5,7 @@ import country.Country;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "city", schema = "world")
+@Table(name = "city")
 public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,5 +63,13 @@ public class City {
 
     public void setPopulation(Long population) {
     this.population = population;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 }
