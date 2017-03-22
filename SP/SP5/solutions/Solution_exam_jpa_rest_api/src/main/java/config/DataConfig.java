@@ -67,7 +67,6 @@ public class DataConfig {
         myProperties.put("hibernate.connection.url", String.format("jdbc:mysql://%s:%s/%s", host, port, databaseName));
         myProperties.put("hibernate.connection.username", String.format("%s", this.username));
         myProperties.put("hibernate.connection.password", String.format("%s", this.password));
-        myProperties.put("hibernate.dialect", "org.hibernate.dialect.MySQL57InnoDBDialect");
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("hibernate", myProperties);
         return entityManagerFactory;
     }

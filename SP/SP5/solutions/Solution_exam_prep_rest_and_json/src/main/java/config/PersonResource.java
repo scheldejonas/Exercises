@@ -41,7 +41,6 @@ public class PersonResource {
                 .status(200)
                 .entity(personGenerator.getData(Integer.parseInt(addressAmount),arguments))
                 .build();
-
     }
 
 }
