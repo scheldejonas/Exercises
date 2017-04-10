@@ -66,3 +66,25 @@ This task description is [here](https://github.com/scheldejonas/Exercises/blob/m
 
   - It is implemented in task above.
 
+## Exam task 2 | Thread Programming and Non-blocking Java Servers
+
+The task description is [here](https://github.com/scheldejonas/Exercises/blob/master/SP/SP1/Exam-preparation-network.pdf)
+
+### General part
+
+- When and why we will use Threads in our programs?
+  - We are using threads in a program when we wanted to seperate requests made from the Users on to more Processors.
+- Explain about the Race Condition Problem and ways to solve it in Java
+  - Race Condition is problems on variables or refenrece spaces in ram being accesed from 2 or more different threads, in a value destroying order.
+  - The ways to solve Race condition is by placing our threads on the highest level of java code control to run a whole section of code, before next request is able to use those specified instructions in the given methods and variables bound to that section. Use Synchronized methods, Reentrant Locks and Atomic Variables to solve it in code sections.
+- Explain how we can write reusable non-blocking Java Controls using Threads
+  - By making the controls be coded in a run method and implement the runnable interface.
+  - From that in our Application main class, have say a CachedThreadPool Object, to start and execute the incoming jobs to Control classes.
+    - For example a TCP server in it's controller waiting for new incoming connections. When ever it receives, it passes the info on to a runnable class in the model layer, for execution synchronously. And all of this is handled in a CachedTheadPool, to make it managed for preventing starvation, race conditions and deadlocks better.
+- Explain about deadlocks, how to detect them and ways to solve the Deadlock Problem
+  - For example:
+    - Detecting deadlocks, is when code is written with lock.lock() locks.
+    - Also deadlocks is when running a sleeping method or oberserving method that has lock on it.
+
+### Practical part
+
