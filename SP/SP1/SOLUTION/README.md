@@ -88,3 +88,193 @@ The task description is [here](https://github.com/scheldejonas/Exercises/blob/ma
 
 ### Practical part
 
+- Design a TCP server and a simple protocol where each turnstile initially reports that it is a Turnstile (to distinguish from Monitor-Clients, see next step), its id (turnstile1-turnstile-n) and then reports an increment for each spectator that passes the turnstile
+
+  - This is the Server it self.
+
+  - ``` java
+    import controller.ConnectionProcessThread;
+
+    import java.io.IOException;
+    import java.net.InetSocketAddress;
+    import java.net.ServerSocket;
+    import java.net.Socket;
+    import java.util.LinkedList;
+    import java.util.List;
+    import java.util.concurrent.ExecutorService;
+    import java.util.concurrent.Executors;
+    import java.util.concurrent.ThreadFactory;
+
+    /**
+     * Created by scheldejonas on 03/02/17.
+     */
+    public class Server {
+
+        public static void main(String[] args) {
+            Server server = new Server("localhost", 8080);
+            server.startServer();
+        }
+
+        private final String host;
+        private final int port;
+        private ThreadFactory threadFactory = Executors.defaultThreadFactory();
+        private ExecutorService executorService = Executors.newCachedThreadPool(threadFactory);
+        private List<ConnectionProcessThread> procesThreadList = new LinkedList<>();
+        private ServerSocket serverSocket = null;
+
+        public Server(String host, int port) {
+            this.host = host;
+            this.port = port;
+        }
+
+        private void startServer() {
+            try {
+                serverSocket = new ServerSocket();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                System.out.println("...Server is getting binded on " + this.host + ":" + this.port);
+                serverSocket.bind(new InetSocketAddress(this.host, this.port));
+            } catch (IOException e) {
+                System.err.println("...Server didn't succeded getting binded on " + this.host + ":" + this.port);
+                e.printStackTrace();
+            }
+            System.out.println("...Server listening on " + this.host + ":" + this.port);
+            System.out.println("...Waiting");
+            try {
+                Socket socket;
+                while ( (socket = serverSocket.accept()) != null) {
+                    System.out.println("...Handling connection");
+                    ConnectionProcessThread connectionProcessThread = new ConnectionProcessThread();
+                    connectionProcessThread.readyProcesWithSocket(socket);
+                    procesThreadList.add(connectionProcessThread);
+                    executorService.execute(connectionProcessThread);
+                    //socket.close();
+                    System.out.println("...Connection handled");
+                    System.out.println("...Waiting");
+                }
+            } catch (IOException e) {
+                System.err.println("...Error while handling server connections on server");
+                e.printStackTrace();
+            }
+        }
+    }
+    ```
+
+  - This is the turnstile connection, waiting constantly for the new people walking through the turnstiles and for incrementing the databaes.
+
+  - ```java
+    package controller;
+
+    import model.AbstractStadiumProtocol;
+    import model.Database;
+
+    import java.io.BufferedReader;
+    import java.io.IOException;
+    import java.io.InputStream;
+    import java.io.InputStreamReader;
+    import java.net.Socket;
+    import java.util.concurrent.locks.ReentrantLock;
+
+    /**
+     * Created by scheldejonas on 06/02/17.
+     */
+    public class ConnectionProcessThread extends Thread {
+
+        private ReentrantLock reentrantLock = new ReentrantLock();
+        private Object unit = null;
+        private BufferedReader bufferedReader = null;
+        private StadiumProtocol stadiumProtocol = new StadiumProtocol();
+        private Database database = Database.getSingleton();
+
+        public ConnectionProcessThread() {
+        }
+
+        @Override
+        public void run() {
+            while (true) {
+                try {
+                    if (bufferedReader.ready()) {
+                        String recievedLine = bufferedReader.readLine();
+                        System.out.println("...Received this text from the client: " + recievedLine);
+                        Enum command = stadiumProtocol.getMessageReturnCommand(recievedLine);
+                        System.out.println("...Received this command from unit: " + command.name());
+                        if (command.name().equals("ADD_PERSON")) {
+                            long totalPeople = database.addOnePerson();
+                            System.out.println("...Added one person to database and it has now: " + totalPeople + " total people.");
+                        }
+                    }
+                } catch (IOException e) {
+                    System.out.println("...Error occured when trying to read line from client in ConnectionProcessThread");
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        private void defineAndSetTheConnecterUnit(Socket socket) {
+            try {
+                reentrantLock.lock();
+                String connectionString = null;
+                try {
+                    InputStream inputStream = socket.getInputStream();
+                    InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                    bufferedReader = new BufferedReader(inputStreamReader);
+                    connectionString = bufferedReader.readLine();
+                    System.out.println("...Server read line from initial posting: " + connectionString);
+                    unit = stadiumProtocol.getUnitObject(connectionString);
+                    System.out.println("...Server recieved connection from a " + unit.toString());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } finally {
+                reentrantLock.unlock();
+            }
+        }
+
+        public void readyProcesWithSocket(Socket connectionSocket) {
+            defineAndSetTheConnecterUnit(connectionSocket);
+        }
+
+        class StadiumProtocol extends AbstractStadiumProtocol {
+            public StadiumProtocol() {
+                System.out.println("...New StadiumProtocol created.");
+            }
+        }
+    }
+
+    ```
+
+- Identify potential Race Condition Problems that passes the turnstile
+
+  - When adding the person to the database, it is possible for the incrementer to get from one person, while another list of instructions is being ran from another turnstile, so therefore the database must increment asynchronus. I solved Race Condition on the database, like this:
+
+  - ```java
+    package model;
+
+    import java.util.concurrent.atomic.AtomicLong;
+
+    /**
+     * Created by scheldejonas on 10/04/2017.
+     */
+    public class Database {
+        private static final Database singleton = new Database();
+        private AtomicLong peopleEnteredCount = new AtomicLong(0);
+
+        public Database() {
+        }
+
+        public long addOnePerson() {
+            return peopleEnteredCount.addAndGet(1);
+        }
+
+        public static Database getSingleton() {
+            return singleton;
+        }
+    }
+
+    ```
+
+- For this exercise you don't have to implement the turnstile-clients. Use Telnet to simulate the turnstiles.
+
+  - ​
