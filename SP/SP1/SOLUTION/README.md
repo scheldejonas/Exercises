@@ -16,7 +16,7 @@ This task description is [here](https://github.com/scheldejonas/Exercises/blob/m
 - Explain how Threads can help us in making responsive User Interfaces
   - Threads makes it possible for let any type of repetative sub task og list of instructions, in our program, be done synchronously. It means the, when having some buttons that start processes, which takes more then a second to run, you are able to let the program handle this process in a seperate core proces, so another core processer can handle the continous pushing or typing in the user interface for example.
 - Explain how we can write reusable non-blocking Java Controls using Threads and the observer Pattern
-  - We are 
+  - We are basicly using the observer Pattern to 
 
 ### Practical part
 
@@ -43,26 +43,26 @@ This task description is [here](https://github.com/scheldejonas/Exercises/blob/m
         }
     }
 
-        private void startUpdateWithNewUserSeparatly() {
-            StartFecthingNewRandomUser_ToObservers observableFetcher = new StartFecthingNewRandomUser_ToObservers();
-            observableFetcher.addObserver(
-                new Observer() {
-                    @Override
-                    public void update(Observable o, Object arg) {
-                        System.out.println("...GUI recieved Random User from fetcher.");
-                        RandomUser randomUser = (RandomUser) arg;
-                        setInputFieldsWithUser(randomUser);
-                        System.out.println("...GUI is done updating with recieved Random User.");
-                        addNewUserStatusLine.setText("Status: DONE, New random user fetched.");
-                    }
-                }
-            );
-            new Thread(observableFetcher).start();
-            addNewUserStatusLine.setText("Status: WAIT, Getting Random User.");
+    private void startUpdateWithNewUserSeparatly() {
+      StartFecthingNewRandomUser_ToObservers observableFetcher = new StartFecthingNewRandomUser_ToObservers();
+      observableFetcher.addObserver(
+        new Observer() {
+          @Override
+          public void update(Observable o, Object arg) {
+            System.out.println("...GUI recieved Random User from fetcher.");
+            RandomUser randomUser = (RandomUser) arg;
+            setInputFieldsWithUser(randomUser);
+            System.out.println("...GUI is done updating with recieved Random User.");
+            addNewUserStatusLine.setText("Status: DONE, New random user fetched.");
+          }
         }
+      );
+      new Thread(observableFetcher).start();
+      addNewUserStatusLine.setText("Status: WAIT, Getting Random User.");
+    }
     ```
 
 - Move the time Consuming task into a separate Thread
 
-  - ​
+  - It is implemented in task above.
 
