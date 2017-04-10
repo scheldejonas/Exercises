@@ -21,7 +21,48 @@ This task description is [here](https://github.com/scheldejonas/Exercises/blob/m
 ### Practical part
 
 - Implement the Observer Patten, so when the big button is pressed you signal that the GUI would like to be notified when data is ready.
-  - The solution is found [here]()
+
+  - The solution is found [here](https://github.com/scheldejonas/Exercises/blob/master/SP/SP1/SOLUTION/jonas_exam_task_threads/src/threadsObserver/synchron_gui_actions/StartFecthingNewRandomUser_ToObservers.java)
+
   - The Observer is implemented like this
+
+    ```java
+    public class StartFecthingNewRandomUser_ToObservers extends Observable implements Runnable {
+        private RandomUserControl randomUserControl = new RandomUserControl();
+
+        public StartFecthingNewRandomUser_ToObservers() {
+        }
+
+        @Override
+        public void run() {
+            System.out.println("...synchron Random User Fetcher started.");
+            RandomUser randomUser = randomUserControl.fetchRandomUser();
+            setChanged();
+            notifyObservers(randomUser);
+            System.out.println("...synchron Random User Fetcher is finished, and has notified listeners.");
+        }
+    }
+
+        private void startUpdateWithNewUserSeparatly() {
+            StartFecthingNewRandomUser_ToObservers observableFetcher = new StartFecthingNewRandomUser_ToObservers();
+            observableFetcher.addObserver(
+                new Observer() {
+                    @Override
+                    public void update(Observable o, Object arg) {
+                        System.out.println("...GUI recieved Random User from fetcher.");
+                        RandomUser randomUser = (RandomUser) arg;
+                        setInputFieldsWithUser(randomUser);
+                        System.out.println("...GUI is done updating with recieved Random User.");
+                        addNewUserStatusLine.setText("Status: DONE, New random user fetched.");
+                    }
+                }
+            );
+            new Thread(observableFetcher).start();
+            addNewUserStatusLine.setText("Status: WAIT, Getting Random User.");
+        }
+    ```
+
 - Move the time Consuming task into a separate Thread
+
+  - ​
 
