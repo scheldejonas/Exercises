@@ -16,7 +16,7 @@ This task description is [here](https://github.com/scheldejonas/Exercises/blob/m
 - Explain how Threads can help us in making responsive User Interfaces
   - Threads makes it possible for let any type of repetative sub task og list of instructions, in our program, be done synchronously. It means the, when having some buttons that start processes, which takes more then a second to run, you are able to let the program handle this process in a seperate core proces, so another core processer can handle the continous pushing or typing in the user interface for example.
 - Explain how we can write reusable non-blocking Java Controls using Threads and the observer Pattern
-  - We are basicly using the observer Pattern to 
+  - We are basicly using the Thread to not let any runners wait for some data coming in, say for example from a REST API over other domains. And we then use then observer Pattern to have universal way to get the, say data fetching places updated, when the synchron runners are done with their list of instructions. So we don't have to give a link to the form, but can just have some runners, which are also observables.
 
 ### Practical part
 
