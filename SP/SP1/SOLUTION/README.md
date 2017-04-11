@@ -277,4 +277,4 @@ The task description is [here](https://github.com/scheldejonas/Exercises/blob/ma
 
 - For this exercise you don't have to implement the turnstile-clients. Use Telnet to simulate the turnstiles.
 
-  - ​
+  - ![alt tag]()
