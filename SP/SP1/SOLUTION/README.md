@@ -283,4 +283,50 @@ The task description is [here](https://github.com/scheldejonas/Exercises/blob/ma
 
   - ![alt tag](images/Screen%20Shot%202017-04-11%20at%2010.32.38.png)
 
-    ​
+- Extend the system, so A Monitor-Client can request the current total amount of spectators
+
+  - ```java
+    public Commands getMessageReturnCommand(String recievedLine) {
+      if (recievedLine.equals("AP")) {
+        return Commands.ADD_PERSON;
+      }
+      if (recievedLine.equals("EPC")) {
+        return Commands.ECHO_PEOPLE_COUNT;
+      }
+      return Commands.DO_NOTHING;
+    }
+    ```
+
+  - ```java
+    if (command.name().equals("ECHO_PEOPLE_COUNT") && unit.getClass().getSimpleName().equals("Monitor")) {
+      isCorrectCommandName = true;
+      long totalPeople = database.getPeople();
+      sendMessage("The total amount of people is: " + totalPeople);
+    }
+    if (!isCorrectCommandName && unit.getClass().getSimpleName().equals("Monitor")) {
+      sendMessage("This is not the correct command for any action on the server. Please try again.");
+    }
+    ```
+
+  - ```java
+    public void sendMessage(String message) throws IOException {
+    	System.out.println("...Writing a message: " + message + " to client.");
+    	writer.println(message);
+    	writer.flush();
+    	System.out.println("...Done writing message to client.");
+    }
+    ```
+
+- Change the example to make it possible to see the count from each turnstile.
+
+  - ![alt tag](images/Screen Shot 2017-04-11 at 19.41.59.png)
+
+  - ```java
+    if (command.equals(model.StadiumProtocol.Commands.ECHO_ALL_UNITS_WITH_COUNT) && unit.getClass().getSimpleName().equals("Monitor")) {
+      isCorrectCommandName = true;
+      for (Map.Entry<Long, AtomicLong> unit : database.getUnits().entrySet()
+          ) {
+        sendMessage("Unit ID: " + unit.getKey() + ", People Count: " + unit.getValue() + ".");
+      }
+    }
+    ```
