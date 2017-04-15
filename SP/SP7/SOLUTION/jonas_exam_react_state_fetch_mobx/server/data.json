@@ -1,0 +1,186 @@
+[
+  {
+    "_id": "58c82003fb5c168ea7e5a05d",
+    "age": 21,
+    "name": "Caitlin Robles",
+    "gender": "female",
+    "email": "caitlinrobles@brainquil.com",
+    "friends": [
+      {
+        "id": 0,
+        "name": "Salazar Franks"
+      },
+      {
+        "id": 1,
+        "name": "Aileen Garrison"
+      }
+    ]
+  },
+  {
+    "_id": "58c82003155c2122cf5d9a62",
+    "age": 28,
+    "name": "Chavez Stuart",
+    "gender": "male",
+    "email": "chavezstuart@brainquil.com",
+    "friends": [
+      {
+        "id": 0,
+        "name": "Constance Todd"
+      },
+      {
+        "id": 1,
+        "name": "Rita Livingston"
+      }
+    ]
+  },
+  {
+    "_id": "58c82003387694d229cde6b0",
+    "age": 29,
+    "name": "Olga Barton",
+    "gender": "female",
+    "email": "olgabarton@brainquil.com",
+    "friends": [
+      {
+        "id": 0,
+        "name": "Baker Jefferson"
+      },
+      {
+        "id": 1,
+        "name": "Emma Bailey"
+      },
+      {
+        "id": 2,
+        "name": "Winifred Mcintyre"
+      }
+    ]
+  },
+  {
+    "_id": "58c820034162cdfc37f702d6",
+    "age": 37,
+    "name": "Camacho Logan",
+    "gender": "male",
+    "email": "camachologan@brainquil.com",
+    "friends": [
+      {
+        "id": 0,
+        "name": "Waters Solomon"
+      },
+      {
+        "id": 1,
+        "name": "Chelsea Wolfe"
+      },
+      {
+        "id": 2,
+        "name": "Dolly Guy"
+      },
+      {
+        "id": 3,
+        "name": "Olson Rose"
+      },
+      {
+        "id": 4,
+        "name": "Dana Ramos"
+      }
+    ]
+  },
+  {
+    "_id": "58c82003cd60452adb031ab1",
+    "age": 40,
+    "name": "Hooper Mccullough",
+    "gender": "male",
+    "email": "hoopermccullough@brainquil.com",
+    "friends": [
+      {
+        "id": 0,
+        "name": "Carr Mejia"
+      },
+      {
+        "id": 1,
+        "name": "Audrey Henson"
+      },
+      {
+        "id": 2,
+        "name": "Landry Lang"
+      },
+      {
+        "id": 3,
+        "name": "Lorie Whitley"
+      }
+    ]
+  },
+  {
+    "_id": "58c82003de277ffb1834a570",
+    "age": 27,
+    "name": "Woodard Castillo",
+    "gender": "male",
+    "email": "woodardcastillo@brainquil.com",
+    "friends": [
+      {
+        "id": 0,
+        "name": "Howard Bridges"
+      },
+      {
+        "id": 1,
+        "name": "Veronica Daniels"
+      },
+      {
+        "id": 2,
+        "name": "Tisha Armstrong"
+      },
+      {
+        "id": 3,
+        "name": "Brandie Stout"
+      }
+    ]
+  },
+  {
+    "_id": "58c8200375c839b3ba26a5d1",
+    "age": 34,
+    "name": "Lisa Leach",
+    "gender": "female",
+    "email": "lisaleach@brainquil.com",
+    "friends": [
+      {
+        "id": 0,
+        "name": "Mavis Fulton"
+      },
+      {
+        "id": 1,
+        "name": "Armstrong Mann"
+      },
+      {
+        "id": 2,
+        "name": "Neal Hall"
+      },
+      {
+        "id": 3,
+        "name": "Fischer Newton"
+      },
+      {
+        "id": 4,
+        "name": "Polly Jennings"
+      }
+    ]
+  },
+  {
+    "_id": "58c820038cffa1a2e683cdd0",
+    "age": 34,
+    "name": "Kristina Ratliff",
+    "gender": "female",
+    "email": "kristinaratliff@brainquil.com",
+    "friends": [
+      {
+        "id": 0,
+        "name": "Pena Gould"
+      },
+      {
+        "id": 1,
+        "name": "Morin Simon"
+      },
+      {
+        "id": 2,
+        "name": "Boone Lopez"
+      }
+    ]
+  }
+]
