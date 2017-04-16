@@ -9,8 +9,6 @@ class PersonTable extends Component {
     let updateTable = '';
   };
 
-
-
   componentWillMount() {
     console.log('...Starting to get new persons, and waiting for the data to populate with state.');
     personData.fetchPeople();

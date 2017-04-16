@@ -12,10 +12,11 @@ Here is the task description [here](https://docs.google.com/document/d/1VLPZ9vQ0
 
 - Explain how java programs can be divided up into smaller parts.
 
-  - To divide a java backend into smaller parts, you start by design the seperation of concerns or choosing another design pattern to seperate from. For example it is possible to separate by the MVC pattern, and just having the basic parts of the domain object data handling seperated through controllers and down to model classes.
-    Else you can use a multiarchitecural design, in layers like Web layer, Controller layer, Server layer, Dao layer as the distance to the database, from the View layer.
-    The third way to design the packages and java code, is by Feature. This is mostly usefull for RESTful backend servers, to just have on package for one Entity type, with all it's classes to control, service and acces database with.
-  - In all these ways to divide into smaller parts, the code is easier read by other developers, when you write method names, variable names to just be the simple understanding of what you get from the different parts of code.
+  - To divide a java backend into smaller parts, you start by design the seperation of concerns and choosing a design pattern to seperate from. 
+    For example it is possible to separate by the MVC pattern, and just having the basic parts of the domain object data handling seperated through controllers and down to model classes.
+    Else you can use a multiarchitectural design, in layers like Web layer, Controller layer, Server layer, 
+    The third way to design the packages and java code, is by Feature. This is mostly usefull for RESTful backend servers, to just have a package for one Entity type, with all it's classes to control, service and access database with.
+  - In all these ways to divide into smaller parts, the code is easier read by other developers, when you write method names, variable names, class name, package names, to just be the simple understanding of what you get from the different parts of code.
 
 - Explain how React app's are composed by Components.
 
@@ -637,6 +638,7 @@ Task description is [here](https://docs.google.com/document/d/1BYq0FfEH-luNuxduJ
         console.log('...Creating PersonTable Component.');
         let updateTable = '';
       };
+    ```
 
 
 
@@ -644,7 +646,7 @@ Task description is [here](https://docs.google.com/document/d/1BYq0FfEH-luNuxduJ
         console.log('...Starting to get new persons, and waiting for the data to populate with state.');
         personData.fetchPeople();
       }
-
+    
       updateTablePerSecond = (
         () => {
           personData.fetchChangingPeople();
@@ -657,13 +659,13 @@ Task description is [here](https://docs.google.com/document/d/1BYq0FfEH-luNuxduJ
             );
         }
       );
-
+    
       stopUpdating = (
         () => {
           clearInterval(this.updateTable);
         }
       );
-
+    
       render() {
         const personsMappedInRows = personData.persons.map(
           (person, index) => {
@@ -688,7 +690,7 @@ Task description is [here](https://docs.google.com/document/d/1BYq0FfEH-luNuxduJ
             );
           }
         );
-
+    
         return (
           <div className="">
             <div className="row">
@@ -718,7 +720,7 @@ Task description is [here](https://docs.google.com/document/d/1BYq0FfEH-luNuxduJ
       }
     }
     export default observer(PersonTable);
-    ```
+    ​```
 
 
 
@@ -728,4 +730,495 @@ The task description is [here](https://docs.google.com/document/d/1h1Me0XZaZPvrO
 
 ### General part
 
-- Explain the purpose(s) of Java Packages, and how even large programs can be made "understandable" by means of just package- and file-names. How can something similar be achieved with JavaScript/React.Explain the "architecture" (important folders) of both sides of the seed, Server: https://github.com/Lars-m/semesterSeedJAX-RS-Backend.git  (use your own version with a “real” db and password hashing)Client: https://github.com/Lars-m/semesterSeedReactClient.gitExplain your additions to the seed (in a previous exercise), focusing on how it handles username and passwordsExplain how we can handle state "outside" our react Components using Plain JavaScript and the Mobx library
+- Explain the purpose(s) of Java Packages, and how even large programs can be made "understandable" by means of just package- and file-names. How can something similar be achieved with JavaScript/React.
+  - To divide a java backend into smaller parts, you start by design the seperation of concerns and choosing a design pattern to seperate from. 
+    For example it is possible to separate by the MVC pattern, and just having the basic parts of the domain object data handling seperated through controllers and down to model classes.
+    Else you can use a multiarchitectural design, in layers like Web layer, Controller layer, Server layer, 
+    The third way to design the packages and java code, is by Feature. This is mostly usefull for RESTful backend servers, to just have a package for one Entity type, with all it's classes to control, service and access database with.
+  - In all these ways to divide into smaller parts, the code is easier read by other developers, when you write method names, variable names, class name, package names, to just be the simple understanding of what you get from the different parts of code.
+  - This can be used in JavaScript/React the same way.
+    In example it is to first choose what design pattern you wanna follow. You can do it by routes, so that, folders are made in samme tree as the Router has it's Route components layed out.
+    You could do it in a basic React way, with a component folder, a stores folder (for MobX), a public folder (for index.html and maybe static assets).
+    You could do it by pages, for those having nested folder with components.
+  - In these ways to divide Components into smaller parts, and refactor your code, to be in mostly React Components, layered in folders of Route structure for example, is making the code much more readable and re-changable to other developers.
+- Explain the "architecture" (important folders) of both sides of the seed, 
+  - Server: https://github.com/Lars-m/semesterSeedJAX-RS-Backend.git  
+    (use your own version with a “real” db and password hashing)
+    - ![alt tag](images/Screen Shot 2017-04-16 at 15.44.47.png)
+    - First we are having the ingoing http requests in the "rest" folder, from here the layer of receiving and controlling what other layers to get data from or services to run, in the end the Response is being delivered back to the HTTTP requester, from that folder.
+    - Second we are having the folder "facades" to control and manage the database acces through eclipselink JPA provider. It is here the database "facade" is placed. Together with that we have the "entity" folder, for JPA annotations on the data model in the application. it is also used in other folders in the app.
+    - Thirdly we have the "security" for managing both the login process and making sure the token after login is corretly checked.
+    - Lastly we have the "httpErrors" and "cors" as helpers folders, cors is to add the same-origin headers, for accepting AJAX calls from another domain, then the server running this backend server app. httpErrors is from JAX-RS core, to catch all throwed exceptions, and instead respond with a json object of the error message, instead of the ajax call to just post http error.
+  - Client: https://github.com/Lars-m/semesterSeedReactClient.git
+    - ![alt tag](images/Screen Shot 2017-04-16 at 15.57.52.png)
+    - Firstly we have "src" with the root index.js file, for starting the react app. and also controlling the Routes for links in app.
+    - Secondly we have "src/pages" to contain all the React Components, that display's html, written in jsx. The Components are layered according to each other, from the Rourter setup in index.js
+    - Thirdly we have "authorization" folder, to control the login process and save the "securityToken" used to contiously call for JSON content, when clicking through the app.
+    - Lastly we have the "src/stores" folder, working kind of like the facade package in Server Backend. Here the MobX library, on Plain JavaScript Classes for each data type, being fetched.
+- Explain your additions to the seed (in a previous exercise), focusing on how it handles username and passwords
+  - First that password was made able to be saved as a Hash, through the class ```PasswordStorage``` added in the security package.
+  - Next in the Entity of the User, setting of a password, was changed to go through the ```PasswordStorage.createHash``` method
+  - Next in the UserFacade class, during authenticateUser method, the comparing of password sent from rest call and the hash stored in db, is being verified through ```PasswordStorage.verifyPassword()``` method.
+  - Next there was only to actually change the passwords saved in DB to be the actual hash values of the password, and for that the ```makeTestUsers.java``` was built for that.
+  - And from here the usrename is the primary key of the user entity, with password saved as hash in the db.
+- Explain how we can handle state "outside" our react Components using Plain JavaScript and the Mobx library
+  - To make the states, with dynamicly changing data accesiable to all React Components is done by MobX library, which uses the observer pattern.
+  - There we are having variables or arrays of data in JSON format being the observables.
+  - When ever we then are calling getData methods in the plain JavaScript classes. MobX are fetching data, that sets the observable array again, for after that to notify all observers, which we then place.
+  - In the same way, using it for setting data, to the database, and making the setting of new data, call the get data again.
+  - For making all this to work, that implementation og mobx-react also needs to be installed, for the observers, to re-render the Components listening on observables that change.
+
+
+
+### Practical part
+
+- Change the code to provide a UI as sketched in this figure. Remove all code no longer used (don't touch the backend yet). For the Home Menu Entry, just render a simple message as sketched on the figure
+
+  - ![alt tag](images/Screen Shot 2017-04-15 at 12.00.54.png)
+
+  - ```javascript
+    import React, { Component } from 'react'
+    import { Link } from "react-router";
+    import auth from '../authorization/auth'
+    import { observer } from "mobx-react";
+
+    import "..//stores/useStrict";
+
+    const App = observer(class App extends Component {
+
+      render() {
+        const NavLink = (props) => {
+          return (
+            <Link {...props} activeClassName="active" />
+          );
+        };
+        const logInStatus = auth.loggedIn ? "Logged in as: " + auth.userName : "";
+        return (
+          <div>
+            <nav>
+              <div className="nav-wrapper blue lighten-2">
+                <ul id="nav-mobile" className="hide-on-med-and-down">
+                  <li><Link to="#" className="text-size-custom-1">Exam Project</Link></li>
+                  <li><NavLink to="/home">Home</NavLink></li>
+                  <li><NavLink to="/user">User demo</NavLink></li>
+                  <li><NavLink to="/admin">Admin demo</NavLink></li>
+                </ul>
+                <ul className="hide-on-med-and-down right">
+                  <li className="navbar-text" style={{ color: "steelBlue" }}>{logInStatus}</li>
+                  <li>
+                    {auth.loggedIn
+                      ? (
+                        <NavLink to="/logout"><span className="glyphicon glyphicon-log-in"></span>Logout</NavLink>
+                      )
+                      : (
+                        <NavLink to="/login">
+                          <span className="glyphicon glyphicon-log-out"></span>Login</NavLink>
+                      )
+                    }
+                  </li>
+                </ul>
+              </div>
+            </nav>
+            {this.props.children || <p>You are {!auth.loggedIn && 'not'} logged in.</p>}
+          </div>
+        )
+      }
+    });
+
+    export default App;
+    ```
+
+  - ![alt tag](images/Screen Shot 2017-04-15 at 12.45.37.png)
+
+- Delete existing users from the DB, and add two new users
+
+  - User-1:    userName: Peter, password: test, role: User
+
+  - User-2:    userName: Anne, password: test, role: Admin
+
+  - ```Java
+    em.getTransaction().begin();
+    Role userRole = new Role("User");
+    Role adminRole = new Role("Admin");
+    User user = new User("Peter", "test");
+    user.addRole(userRole);
+    User admin = new User("Anne", "test");
+    admin.addRole(adminRole);
+    em.persist(userRole);
+    em.persist(adminRole);
+    em.persist(user);
+    em.persist(admin);
+    em.getTransaction().commit();
+    System.out.println("Created TEST Users");
+    ```
+
+  - ![alt tag](images/Screen Shot 2017-04-15 at 13.15.46.png)
+
+  - ![alt tag](images/Screen Shot 2017-04-15 at 18.27.33.png)
+
+  - ​
+
+- Add the changes, so that
+  All Users (even when not signed in) can see (only) the Home menu-item.
+  Users logged in with the User-role can see (also) the User-demo menu-item 
+  Users logged in with the Admin-role can see the Admin-demo menu-item **
+
+  - ```Javascript
+    {auth.isUser
+      && <li><NavLink to="/user">User demo</NavLink></li>
+    }
+    {auth.isAdmin
+      && <li><NavLink to="/admin">Admin demo</NavLink></li>
+    }
+    ```
+
+- Change the User-demo page
+
+  - Change the backend to provide an endpoint ```api/footballclubs``` which should return this hardcoded JSON-array, the endpoint myst be accessible only for users with the "user" role
+
+  ```json
+  [
+    {
+      "name":"Liverpool"
+      ,"url":"http://www.liverpoolfc.com"
+    }
+    ,{
+      "name":"Manchester United"
+      ,"url" : "http://www.manutd.com/"
+    }
+  ]
+  ```
+
+  - ```java
+    package rest;
+
+    import com.google.gson.*;
+
+    import javax.annotation.security.RolesAllowed;
+    import javax.ws.rs.GET;
+    import javax.ws.rs.Path;
+    import javax.ws.rs.Produces;
+    import javax.ws.rs.core.MediaType;
+    import javax.ws.rs.core.Response;
+
+    /**
+     * Created by scheldejonas on 15/04/2017.
+     */
+    @Path("footballclubs")
+    @RolesAllowed("User")
+    public class FootballClubs {
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        @GET
+        @Produces(MediaType.APPLICATION_JSON)
+        public Response getTwoHardcodedClubs() {
+
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty("name","Liverpool");
+            jsonObject.addProperty("url","http://www.liverpoolfc.com");
+            JsonObject jsonObject1 = new JsonObject();
+            jsonObject1.addProperty("name", "Manchester United");
+            jsonObject1.addProperty("url", "http://www.manutd.com");
+            JsonArray jsonArray = new JsonArray();
+            jsonArray.add(jsonObject);
+            jsonArray.add(jsonObject1);
+
+            return Response
+                    .status(Response.Status.OK)
+                    .entity(gson.toJson(jsonArray))
+                    .build();
+        }
+    }
+    ```
+
+  - Change the view to render an unordered list, with (working) links for to each club received via the new endpoint
+
+  - ```javascript
+    componentWillMount() {
+          /*
+         This will fetch data each time you navigate to this route
+         Move to constructor, if only required once, or add "logic" to determine when data should be "refetched"
+         */
+          userData.getData();
+          footballData.getData();
+        }
+
+        render() {
+          const footballClubsMappedAsListItems = footballData.footballClubs.map(
+            (footballClub, index) => {
+              return (
+                <li key={footballClub.name} className="collection-item">
+                  <div>
+                    <span>{footballClub.name}</span>
+                    <a href={footballClub.url} target="_blank" className="secondary-content">
+                      <i className="material-icons">send</i>
+                    </a>
+                  </div>
+                </li>
+              );
+            }
+          );
+          return (
+            <div className="row">
+              <div className="col s12">
+                <h4 style={{ color: "red" }}>{footballData.errorMessage}</h4>
+              </div>
+              <div className="col s12">
+                <ul className="collection with-header">
+                  <li className="collection-header"><h4>Football Clubs</h4></li>
+                  {footballClubsMappedAsListItems}
+                </ul>
+              </div>
+            </div>
+          )
+        }
+    ```
+
+  - ``` java
+    @Test
+    public void testRestForFootballClubs() {
+      JsonArray jsonArray = HardCodedJsonArrays.getFootballClubs();
+      login("Peter", "test");
+      given()
+        .contentType("application/json")
+        .header("Authorization", "Bearer " + securityToken)
+        .when()
+        .get("api/footballclubs").then()
+        .statusCode(200)
+        .body(equalTo(gson.toJson(jsonArray)));
+    }
+    ```
+
+- Change the Admin-demo page
+
+  - Change the backend to provide an endpoint: ```api/allusers``` and return the following hard-coded JSON-array beneath
+
+  - This endpoint must be accessible <u>only</u>  for users with the "admin" role
+
+  - Change the view to render a table with all the users received via the call to the new end-point.
+
+  - Add a backend integration test to verify the behaviour of the REST API implemented above
+
+  - ```json
+    [
+      {
+        "name": "Jan"
+        ,"mail":"j@a.dk"
+      }
+      ,{
+        "name":"Ann"
+        ,"mail":"a@a.dk"
+      }
+      ,{
+        "name":"ib"
+        ,"mail":"i@a.dk"
+      }
+    ]
+    ```
+
+    - ```java
+      package rest;
+      ```
+
+    import com.google.gson.Gson;
+    import com.google.gson.GsonBuilder;
+    import com.google.gson.JsonArray;
+    import com.google.gson.JsonObject;
+
+    import javax.annotation.security.RolesAllowed;
+    import javax.ws.rs.GET;
+    import javax.ws.rs.Path;
+    import javax.ws.rs.Produces;
+    import javax.ws.rs.core.MediaType;
+    import javax.ws.rs.core.Response;
+
+    /**
+    *  Created by scheldejonas on 15/04/2017.
+       */
+       @Path("allusers")
+       @RolesAllowed("Admin")
+       public class AllUsers {
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        @GET
+        @Produces(MediaType.APPLICATION_JSON)
+        public Response getAllUsersFromHardCoded() {
+            JsonArray jsonArray = new JsonArray();
+            for (int i = 0; i < 3; i++) {
+                JsonObject jsonObject = new JsonObject();
+                for (int ii = 0; ii < 2; ii++) {
+                    String property = "";
+                    String value = "";
+                    if (i == 0 && ii == 0) {
+                        property = "name";
+                        value = "Jan";
+                    }
+                    if (i == 0 && ii == 1) {
+                        property = "mail";
+                        value = "j@a.dk";
+                    }
+                    if (i == 1 && ii == 0) {
+                        property = "name";
+                        value = "Ann";
+                    }
+                    if (i == 1 && ii == 1) {
+                        property = "mail";
+                        value = "a@a.dk";
+                    }
+                    if (i == 2 && ii == 0) {
+                        property = "name";
+                        value = "ib";
+                    }
+                    if (i == 2 && ii == 1) {
+                        property = "mail";
+                        value = "i@a.dk";
+                    }
+                    jsonObject.addProperty(property,value);
+                }
+                jsonArray.add(jsonObject);
+            }
+            return Response
+                    .status(Response.Status.OK)
+                    .entity(gson.toJson(jsonArray))
+                    .build();
+        }
+       }
+    ```
+
+    ```
+
+  - ```javascript
+    import React, { Component } from 'react'
+    import {observer} from "mobx-react";
+    import userData from "../stores/userStore";
+
+    const AdminPage = observer(
+      class AdminPage extends Component {
+
+        componentWillMount() {
+          /*
+          This will fetch data each time you navigate to this route
+          Move to constructor, if only required once, or add "logic" to determine when data should be "refetched"
+          */
+          userData.getData();
+        }
+
+        render() {
+          const allUsersMappedAsTableRows = userData.allusers.map(
+            (user, index) => {
+              return (
+                <tr key={user.mail}>
+                  <td>{user.name}</td>
+                  <td>{user.mail}</td>
+                </tr>
+              );
+            }
+          );
+          return (
+            <div className="container">
+            <div className="row">
+              <div className="col s12">
+                <h4 style={{ color: "red" }}>{userData.errorMessage}</h4>
+              </div>
+              <div className="col s12">
+                <table className="striped centered">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {allUsersMappedAsTableRows}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            </div>
+          )
+        }
+
+      }
+    )
+    export default AdminPage;
+    ```
+
+  - ```javascript
+
+    import { observable, action } from "mobx";
+    import fetchHelper from "./fetchHelpers"
+    const URL = require("../../package.json").serverURL;
+    ```
+
+
+    class UserStore {
+      @observable allusers = [];
+      @observable errorMessage = "";
+    
+      @action
+      setErrorMessage = (err) => {
+        this.errorMessage = err;
+      }
+    
+      @action
+      getData = () => {
+        this.errorMessage = "";
+        this.messageFromServer = "";
+        let errorCode = 200;
+        const options = fetchHelper.makeOptions("GET", true);
+        fetch(URL + "api/allusers", options)
+          .then((res) => {
+            if (res.status > 210 || !res.ok) {
+              errorCode = res.status;
+            }
+            return res.json();
+          })
+          .then(action((res) => {
+            if (errorCode !== 200) {
+              throw new Error(`${res.error.message} (${res.error.code})`);
+            }
+            else {
+              console.log('...Done fetching from server and recieved message like this:');
+              console.log(res);
+              this.allusers = res;
+            }
+          })).catch(err => {
+            //This is the only way (I have found) to verify server is not running
+            this.setErrorMessage(fetchHelper.addJustErrorMessage(err));
+          })
+      }
+    }
+    
+    let userStore = new UserStore();
+    
+    //Only for debugging
+    //window.userStore = userStore;
+    export default userStore;
+    
+    ​```
+
+-   ```java
+    @Test
+    public void testRestForAllUsers() {
+      JsonArray jsonArray = HardCodedJsonArrays.getAllUsers();
+      login("Anne", "test");
+      given()
+        .contentType("application/json")
+        .header("Authorization", "Bearer " + securityToken)
+        .when()
+        .get("api/allusers").then()
+        .statusCode(200)
+        .body(equalTo(gson.toJson(jsonArray)));
+    }
+    ```
+
+- Upload (and demonstrate) you solution to Digital Ocean (+ Surge if you prefer a separate back-end/front-end)
+
+  - ![alt tag](images/Screen Shot 2017-04-16 at 14.57.09.png)
+  - ![alt tag](images/Screen Shot 2017-04-16 at 14.56.52.png)
+  - PUBLIC: http://exam-project.surge.sh/#/
+  - ![alt tag](images/Screen Shot 2017-04-16 at 15.27.42.png)
+  - ![alt tag](images/Screen Shot 2017-04-16 at 15.27.37.png)
+
