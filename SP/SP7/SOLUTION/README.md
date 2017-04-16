@@ -1216,6 +1216,7 @@ The task description is [here](https://docs.google.com/document/d/1h1Me0XZaZPvrO
 
 - Upload (and demonstrate) you solution to Digital Ocean (+ Surge if you prefer a separate back-end/front-end)
 
+  - http://178.62.217.182:8080/seedMaven/
   - ![alt tag](images/Screen Shot 2017-04-16 at 14.57.09.png)
   - ![alt tag](images/Screen Shot 2017-04-16 at 14.56.52.png)
   - PUBLIC: http://exam-project.surge.sh/#/
