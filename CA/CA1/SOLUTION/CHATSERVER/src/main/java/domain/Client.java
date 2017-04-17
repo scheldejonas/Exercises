@@ -3,7 +3,7 @@ package domain;
 /**
  * Created by scheldejonas on 17/04/2017.
  */
-public class Client {
+public abstract class Client {
     private User user = new User();
 
     public Client() {
