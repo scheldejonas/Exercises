@@ -101,7 +101,7 @@
                   return ServerCommand.SEND_MESSAGE_TO_ONE_USER;
               }
           }
-          return null;
+          return ServerCommand.ERROR;
       }
 
       @Override
@@ -110,6 +110,7 @@
       }
 
   }
+
   ```
 
 - From this, the server now, clear have the correct command to follow, upon it's clients.
@@ -138,12 +139,12 @@
   - Database (the relational table base with data saved)
 - Here is our Data modal, as initiated database inside the java chatserver:
 
-![alt tag](images/chat_server_domain_diagram.png)
+![alt tag](images/Chat_Server_Domain_Diagram.png)
 
 
 
 - The folder structure of the server application, is then looking like this.
-- ![alt tag](images/folder_structure_of_chat_server.png)
+- ![alt tag](images/folder_structure_chat_server_one.png)
 - ```root/ChatServer```  is containing the main method, that starts the ChatServerSocket as an thread.
 - ```controller/``` folder is to have the ingoing new connection handeling to the server. ChatServerSocket, can be initiated and binded to a port. When this is done, a while loop with a reentrantlock is placed in the run method, from the implementation for Runnable.
 - ```service/``` folder is then where ```ChatServerSocket``` sends all the new connection down, and get's them mounted to a ClientConnection object, with the savings and start of a runnable while loop for receiving text lines, from the open socket connection. This is for singleton initiated classes
@@ -155,7 +156,22 @@
 - Proff of Chat Server is following the protocol fully, tested through telnet clients
 - ![alt tag](images/chat_server_proof_of_concept.png)
 - ![alt tag](images/chat_server_proof_of_concept_after_connection_terminate.png)
-- [Here]() is the repo with the java classes.
+- [Here](https://github.com/scheldejonas/Exercises/tree/master/CA/CA1/SOLUTION/CHATSERVER/src/main/java) is the repo with the java classes.
+
+## Chat client
+
+#### Design choices
+
+- The client shall work both as a text client and a GUI client
+
+#### Practical Text chat client
+
+- [Here]() is the github repo, and test of working text chat below
+- ![alt tag](images/test_of_text_client.png)
+
+#### Practical GUI chat client
+
+- ​
 
 ## Web server
 

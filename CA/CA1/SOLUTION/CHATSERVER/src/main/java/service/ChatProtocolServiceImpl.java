@@ -36,5 +36,4 @@ public class ChatProtocolServiceImpl extends ChatProtocolService {
     public ClientCommand analyseClientLine(String newLine) {
         return null;
     }
-
 }

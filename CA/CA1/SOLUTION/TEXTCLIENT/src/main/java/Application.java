@@ -9,7 +9,7 @@ import javax.swing.*;
 public class Application {
     public static void main(String[] args) {
         String localhost = "localhost";
-        int normalPort = 8081;
+        int normalPort = 8084;
         //startSwingGui();
         startScannerUI();
     }
