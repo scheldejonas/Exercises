@@ -59,7 +59,7 @@ public class ClientsService {
             System.out.println("...Client wants to send a specific user a message.");
             for (ClientConnection clientConnectionLooper : clients.getActiveClients()
                     ) {
-                
+                clientConnectionLooper.sendText("MSG#" + clientConnection.getUser().getName() + "#" + newTextAsArray[2] + " ");
             }
         }
         if (serverCommand.getId() == LOGIN_USER_TO_FORUM.getId()) {
