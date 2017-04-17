@@ -1,6 +1,6 @@
 package domain;
 
-import service.ClientsService;
+import service.ClientService;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,7 +18,7 @@ public class ClientConnection extends Client implements Runnable {
     private BufferedReader receiveLinesFromClient;
     private ReentrantLock lock = null;
 
-    private ClientsService clientsService = ClientsService.getSingleton();
+    private ClientService clientService = ClientService.getSingleton();
 
     public ClientConnection() {
     }
@@ -38,7 +38,7 @@ public class ClientConnection extends Client implements Runnable {
                 if (newRecievedText != null) {
                     lock.lock();
                     System.out.println("...Server recieved a text line from reference: " + this.socket.hashCode() + ", looking like this: " + receiveLinesFromClient);
-                    clientsService.newTextFromClient(newRecievedText, this);
+                    clientService.newTextFromClient(newRecievedText, this);
                     System.out.println("...The ClientConnection are connected with this socket: ");
                     System.out.println(this.socket.toString());
                     lock.unlock();
@@ -52,7 +52,7 @@ public class ClientConnection extends Client implements Runnable {
                         System.out.println("...While trying to close the socket after an active client has recieved text, it was not possible to close the socket.");
                         e.printStackTrace();
                     }
-                    ClientsService.getSingleton().shutdownClientConnection(this);
+                    ClientService.getSingleton().shutdownClientConnection(this);
                     lock.unlock();
                 }
             } catch (Exception exception) {
@@ -110,15 +110,23 @@ public class ClientConnection extends Client implements Runnable {
         return socket != null ? socket.hashCode() : 0;
     }
 
-    public void sendText(String s) {
+    public void sendText(String message) {
         try {
             lock.lock();
-            System.out.println("...Sending text to reference: " + this.hashCode() + ", with username: " + this.getUser().getName() + " as: " + s);
-            printLinesToClient.println(s);
+            System.out.println("...Sending text to reference: " + this.hashCode() + ", with username: " + this.getUser().getName() + " as: " + message);
+            printLinesToClient.println(message);
             lock.unlock();
         } catch (Exception exception) {
             lock.unlock();
             System.out.println("...There was an error trying to sent text to reference: " + this.getUser().getName());
         }
+    }
+
+    @Override
+    public String toString() {
+        return "ClientConnection{" +
+                "socket=" + socket.toString() +
+                "user=" + this.getUser().toString() +
+                '}';
     }
 }

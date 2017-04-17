@@ -1,6 +1,6 @@
 package controller;
 
-import service.ClientsService;
+import service.ClientService;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -15,7 +15,7 @@ public class ChatServerSocket implements Runnable {
     private ServerSocket serverSocket = null;
     private String host = "localhost";
     private int portNumber = 8084;
-    private ClientsService clientsService = ClientsService.getSingleton();
+    private ClientService clientService = ClientService.getSingleton();
 
     /**
      * Instantiates a new Chat Server on standard port.
@@ -54,7 +54,7 @@ public class ChatServerSocket implements Runnable {
                 Socket socket = serverSocket.accept();
                 System.out.println("...Chat server started running on port " + portNumber + " succesfully.");
                 lock.lock();
-                clientsService.addNewClient( (Socket) socket );
+                clientService.addNewClient( (Socket) socket );
                 lock.unlock();
             } catch (IOException exception) {
                 lock.unlock();

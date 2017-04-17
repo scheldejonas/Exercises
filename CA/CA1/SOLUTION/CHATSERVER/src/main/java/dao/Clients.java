@@ -16,7 +16,9 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class Clients {
     private static final Clients singleton = new Clients();
+    private List<ClientConnection> newClients = new ArrayList<>();
     private List<ClientConnection> activeClients = new ArrayList<>();
+    private List<ClientConnection> disconnectedClients = new ArrayList<>();
     private ThreadPoolExecutor connectionPool = null;
     private ReentrantLock reentrantLock = new ReentrantLock(true);
 
@@ -39,5 +41,13 @@ public class Clients {
 
     public ThreadPoolExecutor getConnectionPool() {
         return this.connectionPool;
+    }
+
+    public List<ClientConnection> getDisconnectedClients() {
+        return disconnectedClients;
+    }
+
+    public List<ClientConnection> getNewClients() {
+        return newClients;
     }
 }

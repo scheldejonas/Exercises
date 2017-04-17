@@ -29,7 +29,7 @@ public class ChatProtocolServiceImpl extends ChatProtocolService {
                 return ServerCommand.SEND_MESSAGE_TO_ONE_USER;
             }
         }
-        return null;
+        return ServerCommand.ERROR;
     }
 
     @Override
