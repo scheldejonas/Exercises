@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import java.util.List;
 
+
 public class UserFacade implements IUserFacade {
 
     EntityManagerFactory emf;
