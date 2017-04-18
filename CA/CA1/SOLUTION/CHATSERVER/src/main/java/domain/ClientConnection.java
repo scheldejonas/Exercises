@@ -31,7 +31,7 @@ public class ClientConnection extends Client implements Runnable {
                 newRecievedText = receiveLinesFromClient.readLine();
             } catch (IOException e) {
                 lock.unlock();
-                System.out.println("...There was an error, while trying to read a new line from the client with reference: " + this.socket.hashCode());
+                System.err.println("...There was an error, while trying to read a new line from the client with reference: " + this.socket.hashCode());
                 e.printStackTrace();
             }
             try {
@@ -49,7 +49,7 @@ public class ClientConnection extends Client implements Runnable {
                         this.socket.close();
                     } catch (IOException e) {
                         lock.unlock();
-                        System.out.println("...While trying to close the socket after an active client has recieved text, it was not possible to close the socket.");
+                        System.err.println("...While trying to close the socket after an active client has recieved text, it was not possible to close the socket.");
                         e.printStackTrace();
                     }
                     ClientService.getSingleton().shutdownClientConnection(this);
@@ -57,7 +57,7 @@ public class ClientConnection extends Client implements Runnable {
                 }
             } catch (Exception exception) {
                 lock.unlock();
-                System.out.println("...A small error happened when handling text throught the client connection.");
+                System.err.println("...A small error happened when handling text throught the client connection.");
             }
         }
     }

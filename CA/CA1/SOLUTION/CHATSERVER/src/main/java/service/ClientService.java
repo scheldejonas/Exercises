@@ -139,7 +139,9 @@ public class ClientService {
                     clients.getActiveClients().add(clientConnection);
                     for (ClientConnection clientConnectionLooper : clients.getActiveClients()
                             ) {
-                        clientConnectionLooper.sendText("UPDATE#" + newTextAsArray[1]);
+                        if (!clientConnectionLooper.equals(clientConnection)) {
+                            clientConnectionLooper.sendText("UPDATE#" + newTextAsArray[1]);
+                        }
                         allUsers += "#" + clientConnectionLooper.getUser().getName();
                     }
                     clientConnection.sendText("OK" + allUsers);
