@@ -219,7 +219,7 @@
 
 #### Practical GUI chat client
 
-- [Here]() is the github repo, for the GUI Client
+- [Here](https://github.com/scheldejonas/Exercises/tree/master/CA/CA1/SOLUTION/GUICLIENT) is the github repo, for the GUI Client
 
 ## Web server
 
