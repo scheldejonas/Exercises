@@ -36,4 +36,4 @@ public class JokeTest {
         fetcher.fetchJoke();
         verify(emailService).sendEmailToAdmin("Test Email");
     }
-}M
+}
