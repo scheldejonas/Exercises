@@ -30,187 +30,240 @@ Here is the initial task description [here](https://github.com/scheldejonas/Exer
 
 - Design a TCP server and a simple protocol where each turnstile initially reports that it is a Turnstile (to distinguish from Monitor-Clients, see next step), its id (turnstile1-turnstile-n) and then reports an increment for each spectator that passes the turnstile
 
-  - This is the Server it self.
+  - This is the Server it self, without Threading
 
   - ```java
-    import controller.ConnectionProcessThread;
+    package server;
 
+    import protocol.Protocol;
+
+    import java.io.BufferedReader;
     import java.io.IOException;
-    import java.net.InetSocketAddress;
+    import java.io.InputStreamReader;
+    import java.io.PrintWriter;
     import java.net.ServerSocket;
     import java.net.Socket;
-    import java.util.LinkedList;
+    import java.util.ArrayList;
     import java.util.List;
-    import java.util.concurrent.ExecutorService;
-    import java.util.concurrent.Executors;
-    import java.util.concurrent.ThreadFactory;
 
     /**
-     * Created by scheldejonas on 03/02/17.
+     * Created by schelde on 07/06/17.
      */
     public class Server {
-
-        public static void main(String[] args) {
-            Server server = new Server("localhost", 8080);
-            server.startServer();
-        }
-
-        private final String host;
-        private final int port;
-        private ThreadFactory threadFactory = Executors.defaultThreadFactory();
-        private ExecutorService executorService = Executors.newCachedThreadPool(threadFactory);
-        private List<ConnectionProcessThread> procesThreadList = new LinkedList<>();
+        private String host = "localhost";
+        private int port = 8080;
         private ServerSocket serverSocket = null;
+        private List<Socket> socketList = new ArrayList<Socket>();
+        private PrintWriter printWriter = null;
+        private List<Integer> countTurnstileList = new ArrayList<Integer>();
+
+        public Server() {
+        }
 
         public Server(String host, int port) {
             this.host = host;
             this.port = port;
         }
 
-        private void startServer() {
-            try {
-                serverSocket = new ServerSocket();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                System.out.println("...Server is getting binded on " + this.host + ":" + this.port);
-                serverSocket.bind(new InetSocketAddress(this.host, this.port));
-            } catch (IOException e) {
-                System.err.println("...Server didn't succeded getting binded on " + this.host + ":" + this.port);
-                e.printStackTrace();
-            }
-            System.out.println("...Server listening on " + this.host + ":" + this.port);
-            System.out.println("...Waiting");
-            try {
-                Socket socket;
-                while ( (socket = serverSocket.accept()) != null) {
-                    System.out.println("...Handling connection");
-                    ConnectionProcessThread connectionProcessThread = new ConnectionProcessThread();
-                    connectionProcessThread.readyProcesWithSocket(socket);
-                    procesThreadList.add(connectionProcessThread);
-                    executorService.execute(connectionProcessThread);
-                    //socket.close();
-                    System.out.println("...Connection handled");
-                    System.out.println("...Waiting");
+        public void startServer() throws IOException {
+            this.serverSocket = new ServerSocket(this.port);
+
+            Socket socket = null;
+            while (true) {
+                socket = this.serverSocket.accept();
+                System.out.println("...we have received a connection on socket: " + socket.toString());
+                socketList.add(socket);
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream(),"UTF8"));
+                this.printWriter = new PrintWriter(socket.getOutputStream(),true);
+                while (true) {
+                    while (bufferedReader.ready()) {
+                        String textLine = bufferedReader.readLine();
+                        System.out.println("...we received this text from a client: " + textLine);
+                        handleCommand(textLine);
+                    }
                 }
-            } catch (IOException e) {
-                System.err.println("...Error while handling server connections on server");
-                e.printStackTrace();
+            }
+        }
+
+        // UNITID_COMMAND_VALUES
+        public void handleCommand(String command) {
+            System.out.println("...we tried to understand command: " + command);
+            String[] commandArray = command.split(Protocol.getSeparator());
+            Protocol protocol = Protocol.findCommandProtocol(commandArray[1]);
+            switch (protocol) {
+                case INCREMENT_PERSON:
+                    int id = Integer.parseInt(commandArray[0].replace("TURNSTILE","")) - 1;
+                    int tempCount = countTurnstileList.get(id);
+                    countTurnstileList.set(id, tempCount + 1);
+                    System.out.println("...turnstile" + id + " was turned to total count: " + tempCount);
+                    break;
+                case SET_ID:
+                    printWriter.println("");
+                    break;
+                case GET_ID:
+                    id = this.socketList.size();
+                    countTurnstileList.add(0);
+                    String formattetCommand = Protocol.formatSetId(id, "Server");
+                    printWriter.println(formattetCommand);
+                    break;
             }
         }
     }
     ```
 
-  - This is the turnstile connection, waiting constantly for the new people walking through the turnstiles and for incrementing the databaes.
+  - This is the Protocol, shared through client and server.
 
   - ```java
-    package controller;
+    package protocol;
 
-    import model.AbstractStadiumProtocol;
-    import model.Database;
+    /**
+     * Created by schelde on 07/06/17.
+     */
+    public enum Protocol {
+        INCREMENT_PERSON("INC"),
+        SET_ID("SETID"),
+        GET_ID("GETID");
+
+        private String command;
+
+        Protocol(String command) {
+            this.command = command;
+        }
+
+        public String getCommand() {
+            return command;
+        }
+
+        public static String getSeparator() {
+            return "_";
+        }
+
+        // UNITTYPEID_COMMAND_VALUES_HISTORY
+        public static String formatSetId(int id, String unitType) {
+            unitType = unitType.toUpperCase();
+            return unitType + getSeparator() + SET_ID.command + getSeparator() + id;
+        }
+
+        public static String formatIncrement(String unitType, int id) {
+            unitType = unitType.toUpperCase() + id;
+            return unitType + getSeparator() + INCREMENT_PERSON.command;
+        }
+
+        public static String formatGetId(String unitType) {
+            unitType = unitType.toUpperCase();
+            return unitType + getSeparator() + GET_ID.command;
+        }
+
+        public static Protocol findCommandProtocol(String textLine) {
+            for (Protocol protocol : Protocol.values()) {
+                if (protocol.command.equals(textLine)) {
+                    return protocol;
+                }
+            }
+            return null;
+        }
+    }
+
+    ```
+
+  - This is the client, before Threading
+
+  - ```java
+    package client;
+
+    import protocol.Protocol;
 
     import java.io.BufferedReader;
     import java.io.IOException;
-    import java.io.InputStream;
     import java.io.InputStreamReader;
+    import java.io.PrintWriter;
     import java.net.Socket;
-    import java.util.concurrent.locks.ReentrantLock;
+
+    import static protocol.Protocol.*;
 
     /**
-     * Created by scheldejonas on 06/02/17.
+     * Created by schelde on 07/06/17.
      */
-    public class ConnectionProcessThread extends Thread {
-
-        private ReentrantLock reentrantLock = new ReentrantLock();
-        private Object unit = null;
+    public class Client {
+        private String host = "localhost";
+        private int port = 8080;
+        private int id = -1;
+        private Socket socket = null;
+        private PrintWriter printWriter = null;
         private BufferedReader bufferedReader = null;
-        private StadiumProtocol stadiumProtocol = new StadiumProtocol();
-        private Database database = Database.getSingleton();
+        private boolean isTurned = false;
 
-        public ConnectionProcessThread() {
+        private int counter = 0;
+
+        public Client() {
         }
 
-        @Override
-        public void run() {
-            while (true) {
-                try {
-                    if (bufferedReader.ready()) {
-                        String recievedLine = bufferedReader.readLine();
-                        System.out.println("...Received this text from the client: " + recievedLine);
-                        Enum command = stadiumProtocol.getMessageReturnCommand(recievedLine);
-                        System.out.println("...Received this command from unit: " + command.name());
-                        if (command.name().equals("ADD_PERSON")) {
-                            long totalPeople = database.addOnePerson();
-                            System.out.println("...Added one person to database and it has now: " + totalPeople + " total people.");
-                        }
-                    }
-                } catch (IOException e) {
-                    System.out.println("...Error occured when trying to read line from client in ConnectionProcessThread");
-                    e.printStackTrace();
+        public Client(String host, int port) {
+            this.host = host;
+            this.port = port;
+        }
+
+        public void connectToServer() throws IOException {
+            this.socket = new Socket(this.host, this.port);
+            this.printWriter = new PrintWriter(this.socket.getOutputStream(),true);
+            this.bufferedReader = new BufferedReader(new InputStreamReader(this.socket.getInputStream(),"UTF8"));
+            this.printWriter.println(Protocol.formatGetId("Turnstile"));
+            while (this.socket.isConnected()) {
+                if (this.bufferedReader.ready()) {
+                    String newCommand = this.bufferedReader.readLine();
+                    handleCommand(newCommand);
+                } else if (isTurned && id != -1) {
+                    this.isTurned = false;
+                    this.counter++;
+                    System.out.println("...indending increment" + this.counter);
+                    String incrementCommandToServer = Protocol.formatIncrement("Turnstile", id);
+                    this.printWriter.println(incrementCommandToServer);
                 }
             }
         }
 
-        private void defineAndSetTheConnecterUnit(Socket socket) {
-            try {
-                reentrantLock.lock();
-                String connectionString = null;
-                try {
-                    InputStream inputStream = socket.getInputStream();
-                    InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-                    bufferedReader = new BufferedReader(inputStreamReader);
-                    connectionString = bufferedReader.readLine();
-                    System.out.println("...Server read line from initial posting: " + connectionString);
-                    unit = stadiumProtocol.getUnitObject(connectionString);
-                    System.out.println("...Server recieved connection from a " + unit.toString());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            } finally {
-                reentrantLock.unlock();
-            }
+        public void print(String message) {
+            this.printWriter.println("Hello");
         }
 
-        public void readyProcesWithSocket(Socket connectionSocket) {
-            defineAndSetTheConnecterUnit(connectionSocket);
+        public void setTurned(boolean turned) {
+            isTurned = turned;
         }
 
-        class StadiumProtocol extends AbstractStadiumProtocol {
-            public StadiumProtocol() {
-                System.out.println("...New StadiumProtocol created.");
+        // UNITID_COMMAND_VALUES
+        public void handleCommand(String command) {
+            String[] commandArray = command.split(Protocol.getSeparator());
+            Protocol protocol = Protocol.findCommandProtocol(commandArray[1]);
+            switch (protocol) {
+                case INCREMENT_PERSON:
+                    break;
+                case SET_ID:
+                    this.id = Integer.parseInt(commandArray[2]);
+                    break;
             }
         }
     }
+
     ```
+
+  - This is the structure
+
+    - ![alt tag](images/Screen Shot 2017-06-07 at 19.16.58.png)
+
+  - After threading...
+
+  - ```java
+
+    ```
+
+  - ​
 
 - Identify potential Race Condition Problems that passes the turnstile
 
-  - When adding the person to the database, it is possible for the incrementer to get from one person, while another list of instructions is being ran from another turnstile, so therefore the database must increment asynchronus. I solved Race Condition on the database, like this:
+  - ​
 
   - ```java
-    package model;
-
-    import java.util.concurrent.atomic.AtomicLong;
-
-    /**
-     * Created by scheldejonas on 10/04/2017.
-     */
-    public class Database {
-        private static final Database singleton = new Database();
-        private AtomicLong peopleEnteredCount = new AtomicLong(0);
-
-        public Database() {
-        }
-
-        public long addOnePerson() {
-            return peopleEnteredCount.addAndGet(1);
-        }
-
-        public static Database getSingleton() {
-            return singleton;
-        }
-    }
+    ??
     ```
 
 - For this exercise you don't have to implement the turnstile-clients. Use Telnet to simulate the turnstiles.

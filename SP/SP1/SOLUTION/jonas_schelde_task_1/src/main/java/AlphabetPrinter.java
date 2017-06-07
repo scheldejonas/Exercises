@@ -74,7 +74,7 @@ public class AlphabetPrinter implements Runnable {
         int counter = 0;
         for (int i = 0; i < 200000; i++) {
             System.out.printf("Threads started: %s \n", counter++);
-            executorService.execute(alphabetPrinter);
+            executorService.execute(new AlphabetPrinter());
         }
 
         executorService.shutdown();
