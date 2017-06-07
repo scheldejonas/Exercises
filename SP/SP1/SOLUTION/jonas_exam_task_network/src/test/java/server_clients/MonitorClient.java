@@ -14,7 +14,7 @@ public class MonitorClient {
         monitorClient.open();
         monitorClient.sendMessage("UNIT_MONITOR");
         for (int i = 0; i < 10; i++) {
-            monitorClient.sendMessage("EPC");
+            monitorClient.sendMessage("EAUWC");
         }
     }
 
@@ -51,7 +51,7 @@ public class MonitorClient {
         public void run() {
             try {
                 String fromServer;
-                while ( (fromServer = reader.readLine()) == null ) {
+                while ( (fromServer = reader.readLine()) != null ) {
                     System.out.println("...Recieved from Server: " + fromServer);
                 }
             } catch (IOException e) {

@@ -20,7 +20,7 @@ public class StadiumProtocol {
     public Unit getUnitObject(String connectionString) {
         if (connectionString.equals( "UNIT_" + Monitor.TYPE_ID )) {
             Monitor monitor = new Monitor(new Long(database.getUnits().size()), "Monitor");
-            database.getUnits().put(monitor.getId(), new AtomicLong(0));
+            //database.getUnits().put(monitor.getId(), new AtomicLong(0));
             System.out.println("...New Monitor Unit created and saved for connection actions.");
             return monitor;
         }

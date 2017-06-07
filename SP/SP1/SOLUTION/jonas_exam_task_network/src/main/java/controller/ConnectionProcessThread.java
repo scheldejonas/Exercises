@@ -13,8 +13,6 @@ import java.util.concurrent.locks.ReentrantLock;
  * Created by scheldejonas on 06/02/17.
  */
 public class ConnectionProcessThread extends Thread {
-
-    private ReentrantLock reentrantLock = new ReentrantLock();
     private model.StadiumProtocol.Unit unit = null;
     private BufferedReader bufferedReader = null;
     private StadiumProtocol stadiumProtocol = StadiumProtocol.getSingleton();
@@ -71,24 +69,19 @@ public class ConnectionProcessThread extends Thread {
 
     private void defineAndSetTheConnecterUnit(Socket socket) {
         try {
-            reentrantLock.lock();
             String connectionString = null;
-            try {
-                InputStream inputStream = socket.getInputStream();
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-                bufferedReader = new BufferedReader(inputStreamReader);
-                connectionString = bufferedReader.readLine();
-                System.out.println("...Server read line from initial posting: " + connectionString);
-                unit = stadiumProtocol.getUnitObject(connectionString);
-                System.out.println("...Server recieved connection from a " + unit.toString());
-                OutputStream output = socket.getOutputStream();
-                writer = new PrintWriter(output);
-                System.out.println("...Server is setup with printer, for sending messages to client.");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } finally {
-            reentrantLock.unlock();
+            InputStream inputStream = socket.getInputStream();
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+            bufferedReader = new BufferedReader(inputStreamReader);
+            connectionString = bufferedReader.readLine();
+            System.out.println("...Server read line from initial posting: " + connectionString);
+            unit = stadiumProtocol.getUnitObject(connectionString);
+            System.out.println("...Server recieved connection from a " + unit.toString());
+            OutputStream output = socket.getOutputStream();
+            writer = new PrintWriter(output, true);
+            System.out.println("...Server is setup with printer, for sending messages to client.");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

@@ -25,8 +25,8 @@ public class AlphabetPrinter implements Runnable {
     private final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private final ReentrantLock reentrantLock;
 
-    public AlphabetPrinter() {
-        reentrantLock = new ReentrantLock();
+    public AlphabetPrinter(ReentrantLock reentrantLock) {
+        this.reentrantLock = reentrantLock;
     }
 
     /**
@@ -65,16 +65,16 @@ public class AlphabetPrinter implements Runnable {
 
         ThreadFactory threadFactory = Executors.defaultThreadFactory();
 
-        ExecutorService executorService = Executors.newFixedThreadPool(128);
+        ExecutorService executorService = Executors.newFixedThreadPool(8, threadFactory);
+
+        ReentrantLock reentrantLock = new ReentrantLock(true);
 
         long startTime = System.currentTimeMillis();
-
-        AlphabetPrinter alphabetPrinter = new AlphabetPrinter();
 
         int counter = 0;
         for (int i = 0; i < 200000; i++) {
             System.out.printf("Threads started: %s \n", counter++);
-            executorService.execute(new AlphabetPrinter());
+            executorService.execute(new AlphabetPrinter(reentrantLock));
         }
 
         executorService.shutdown();
