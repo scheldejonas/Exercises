@@ -107,9 +107,6 @@ CA/CA1/chat-client-one-gruppe-ti/chat-client-one-gruppe-ti.iml
 
 CA/CA1/chat-web-server-onepage/web/library/chat-three.jar
 
-*.class
-*.iml
-
 CA/CA1/chat-server-two-gruppe-ti/.idea/
 
 CA/CA1/chat-web-server-onepage/.idea/
@@ -253,8 +250,6 @@ SP/SP5/solutions/Solution_exam_jpa_rest_api/.idea/.name
 
 SP/SP5/solutions/Solution_exam_jpa_rest_api/target/examjparestapi-1.0-SNAPSHOT/META-INF/MANIFEST.MF
 
-*.jar
-
 SP/SP5/solutions/Solution_exam_prep_rest_and_json/target/examrestandjson-1.0-SNAPSHOT.war
 
 SP/SP5/solutions/Solution_exam_jpa_rest_api/target/examjparestapi-1.0-SNAPSHOT.war
@@ -270,3 +265,13 @@ SP/SP1/SOLUTION/jonas_schelde_task_5/.idea/.name
 EP/solutions/Network/project/.idea/
 
 EP/solutions/Network/project_v2/.idea/
+
+CA/CA1/SOLUTION/CHATSERVER/target/
+
+CA/CA1/SOLUTION/GUICLIENT/target/
+
+CA/CA1/SOLUTION/TEXTCLIENT/target/
+
+*.class
+
+EP/solutions/Threads/project/out/

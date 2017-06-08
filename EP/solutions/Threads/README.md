@@ -25,12 +25,21 @@ Task description [here](https://github.com/scheldejonas/Exercises/blob/master/EP
 Rewrite the code using Threads and the Observer Pattern as explained below
 
 1. Change the declaration of RandomUserControl to Extend java.util.Observable
+   1. RandomUserControl (writing extends Observable)
 2. Change the return type of the method fetchRandomUser() into void and replace the return statement with (explain what happens): 
    1. setChanged(); 
+      1. RandomUserControl (The methods makes it possible to check hasChanged on update methods)
    2. notifyObservers(user); 
-3. Change the RandomUserForm to implement the java.util.Observable interface3. When the RandomUserControl call notifyObservers(..), the update(..) method is called on all Observers and the arg-argument will include a RandomUser. 
+      1. RandomUserControl (Actually starts and runs the update method with the given object as second parameter called args)
+3. Change the RandomUserForm to implement the java.util.Observable interface. When the RandomUserControl call notifyObservers(..), the update(..) method is called on all Observers and the arg-argument will include a RandomUser. 
+   1. RandomUserForm (implements Observer, and update methods casts args to RandomUser Object, and sets input fields with data)
 4. Move all the *.setText(..) methods from btn1Clicked (..) into the update(..) method (Create the variable random, as a RandomUser and initialize it by casting arg into a RandomUser. 
+   1. RandomUserForm (makes a new Thread of RandomUserControl, which implements Runnable, and starts it.)
+   2. RandomUserControl (when run method starts, it fetches a new user and notifys all observervs with the new user as arg.)
 5. Register the Form as an Observer on the randomUserControl and call fetchRandomUser() in the btn1Clicked (..) method. 
+   1. RandomUserForm (has the new Thread, and takes the runnable = RandomUserControl)
+   2. RandomUserControl (the run method, runs the fetchRandomUser method and has al the notify code after received User)
 6. Verify that everything works but, with the same problem as when we started (what have we gained by using the Observer Pattern so far?) 
+   1. ​
 7. Move the contents of fetchRandomUser(..) into a separate Thread, that has visibility to the RandomUserControl, so its notifyObservers(..) method when it has received the data. This method notifies that all registered listeners. 
 8. Finally, make sure that the code running on the GUI thread in the Forms update(..) method is thread-safe (see guidelines for threads and Swing 
