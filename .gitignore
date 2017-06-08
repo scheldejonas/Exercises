@@ -275,3 +275,5 @@ CA/CA1/SOLUTION/TEXTCLIENT/target/
 *.class
 
 EP/solutions/Threads/project/out/
+
+EP/solutions/Threads-2/project/.idea/
