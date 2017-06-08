@@ -57,7 +57,10 @@ With those objects, we have been handling sql exception and other types of excep
 
 More about the persistence, it was our own coding responsibilty to create the tables relational correct into making the objects able to be persisted from java code to database in the right way, so that data would be placed with the 1., 2. and 3. normalform.
 
-The File IO, have been from code to database immediatly, the has been no layer of cache of the data, to make it way faster to get the data when having a lot of requests.
+The File IO
+
+- Before ORM, there was no cache involved to make the http requests to our servers faster. Therefore each get method for an instance field, was waiting for the actual database response.
+- After ORM, there is a live version of the object instance, to just be retrieved by the requests.
 
 Cookies in the browser has only so har been used to connect the username and password to a request, so none of this has so far been used to knowing and using the session ID for anything else
 
