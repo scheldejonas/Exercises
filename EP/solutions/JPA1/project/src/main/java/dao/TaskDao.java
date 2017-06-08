@@ -7,4 +7,6 @@ import domain.Task;
  */
 public interface TaskDao {
     void createTask(Task task);
+
+    void updateTask(Task task);
 }

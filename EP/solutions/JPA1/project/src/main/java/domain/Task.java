@@ -27,9 +27,16 @@ public class Task {
     private int hoursUsed;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private Project project;
+    private Project project = null;
 
     public Task() {
+    }
+
+    public Task(String name, String description, int hoursAssigned, int hoursUsed) {
+        this.name = name;
+        this.description = description;
+        this.hoursAssigned = hoursAssigned;
+        this.hoursUsed = hoursUsed;
     }
 
     public Long getId() {
@@ -70,6 +77,14 @@ public class Task {
 
     public void setHoursUsed(int hoursUsed) {
         this.hoursUsed = hoursUsed;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 
     @Override

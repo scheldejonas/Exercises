@@ -2,6 +2,7 @@ package domain;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,13 +25,18 @@ public class ProjectUser {
     private String email;
 
     @Column(name = "created")
-    private LocalDate created;
+    private LocalDateTime created;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Project> projectList;
+    private List<Project> projectList = new ArrayList<>();
 
     public ProjectUser() {
-        this.projectList = new ArrayList<>();
+    }
+
+    public ProjectUser(String userName, String email, LocalDateTime created) {
+        this.userName = userName;
+        this.email = email;
+        this.created = created;
     }
 
     public Long getId() {
@@ -57,12 +63,20 @@ public class ProjectUser {
         this.email = email;
     }
 
-    public LocalDate getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDate created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
+    }
+
+    public List<Project> getProjectList() {
+        return projectList;
+    }
+
+    public void setProjectList(List<Project> projectList) {
+        this.projectList = projectList;
     }
 
     @Override

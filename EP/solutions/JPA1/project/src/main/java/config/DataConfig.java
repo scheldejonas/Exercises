@@ -34,8 +34,8 @@ public class DataConfig {
             this.host = "localhost";
             this.port = 3306;
             this.databaseName = "jpaone";
-            this.username = "jpaonepass";
-            this.password = "jpaonepass";
+            this.username = "jpaoneuser";
+            this.password = "DAmh?vAEUUYz}ZggmggRcB(tTwKm4b";
             this.entityManagerFactory = createEntityManagerFactory();
         }
         if (profile.equals("two")) {
@@ -52,7 +52,7 @@ public class DataConfig {
     private EntityManagerFactory createEntityManagerFactory() {
         Map myProperties = new HashMap();
         myProperties.put("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
-        myProperties.put("hibernate.connection.url", String.format("jdbc:mysql://%s:%s/%s", host, port, databaseName));
+        myProperties.put("hibernate.connection.url", String.format("jdbc:mysql://%s:%s/%s?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false", host, port, databaseName));
         myProperties.put("hibernate.connection.username", String.format("%s", this.username));
         myProperties.put("hibernate.connection.password", String.format("%s", this.password));
         myProperties.put("hibernate.dialect", "org.hibernate.dialect.MySQL57InnoDBDialect");

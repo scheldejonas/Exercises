@@ -36,4 +36,17 @@ public class TaskDaoImpl implements TaskDao {
             exception.printStackTrace();
         }
     }
+
+    @Override
+    public void updateTask(Task task) {
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.merge(task);
+            entityManager.getTransaction().commit();
+        } catch (Exception exception) {
+            entityManager.getTransaction().rollback();
+            System.out.println(exception.getMessage());
+            exception.printStackTrace();
+        }
+    }
 }

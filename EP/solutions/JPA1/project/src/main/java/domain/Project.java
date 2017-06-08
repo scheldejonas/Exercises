@@ -30,15 +30,20 @@ public class Project {
     @Column(name = "lastModified")
     private LocalDateTime lastModified;
 
-    @ManyToMany()
-    private List<ProjectUser> projectUserList;
+    @ManyToMany(mappedBy = "projectList")
+    private List<ProjectUser> projectUserList = new ArrayList<>();
 
     @OneToMany(mappedBy = "project", fetch = FetchType.EAGER)
-    private List<Task> taskList;
+    private List<Task> taskList = new ArrayList<>();
 
     public Project() {
-        this.projectUserList = new ArrayList<>();
-        this.taskList = new ArrayList<>();
+    }
+
+    public Project(String name, String description, LocalDateTime created, LocalDateTime lastModified) {
+        this.name = name;
+        this.description = description;
+        this.created = created;
+        this.lastModified = lastModified;
     }
 
     public Long getId() {
@@ -89,6 +94,8 @@ public class Project {
                 ", description='" + description + '\'' +
                 ", created=" + created +
                 ", lastModified=" + lastModified +
+                ", projectUserList=" + projectUserList +
+                ", taskList=" + taskList +
                 '}';
     }
 

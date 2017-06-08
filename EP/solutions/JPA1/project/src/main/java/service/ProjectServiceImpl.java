@@ -42,10 +42,12 @@ public class ProjectServiceImpl implements ProjectService {
             throw new RuntimeException("You are missing to give in the project id, when tried to assign user to projet");
         }
         if (projectId != null && userId != null) {
-            Project project = (Project) projectDao.findProject(projectId);
-            ProjectUser projectUser = (ProjectUser) projectUserDao.findUser(userId);
+            Project project = projectDao.findProject(projectId);
+            ProjectUser projectUser = projectUserDao.findUser(userId);
             project.getProjectUserList().add(projectUser);
+            projectUser.getProjectList().add(project);
             projectDao.update(project);
+            projectUserDao.update(projectUser);
         }
     }
 
@@ -58,12 +60,12 @@ public class ProjectServiceImpl implements ProjectService {
             if (projectId == null) {
                 throw new RuntimeException("You are missing the project id, when tried to create task and assign to project");
             }
-            Task task = new Task();
-            task.setDescription(taskDescription);
+            Task task = new Task("No name yet", taskDescription,10, 0);
             taskDao.createTask(task);
-            Project project = (Project) projectDao.findProject(projectId);
+            Project project = projectDao.findProject(projectId);
+            task.setProject(project);
+            taskDao.updateTask(task);
             project.getTaskList().add(task);
-            projectDao.update(project);
         } catch (RuntimeException exception) {
             System.out.println(exception.getMessage());
         }
