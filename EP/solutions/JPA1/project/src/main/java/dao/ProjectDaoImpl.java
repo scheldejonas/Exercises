@@ -2,6 +2,7 @@ package dao;
 
 import config.DataConfig;
 import domain.Project;
+import domain.Task;
 
 import javax.persistence.EntityManager;
 import javax.xml.crypto.Data;

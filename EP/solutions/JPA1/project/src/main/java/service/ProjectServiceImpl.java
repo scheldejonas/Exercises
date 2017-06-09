@@ -60,12 +60,21 @@ public class ProjectServiceImpl implements ProjectService {
             if (projectId == null) {
                 throw new RuntimeException("You are missing the project id, when tried to create task and assign to project");
             }
+
             Task task = new Task("No name yet", taskDescription,10, 0);
             taskDao.createTask(task);
+
             Project project = projectDao.findProject(projectId);
+
             task.setProject(project);
             taskDao.updateTask(task);
+
             project.getTaskList().add(task);
+            projectDao.update(project);
+
+//            Project projectTwo = projectDao.findProject(projectId);
+//            System.out.println("...project" + project.toString());
+
         } catch (RuntimeException exception) {
             System.out.println(exception.getMessage());
         }
