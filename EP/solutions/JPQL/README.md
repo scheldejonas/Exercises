@@ -34,7 +34,7 @@ The tast description [here]()
     - Nothing
 - Elaborate on some of the problems a ORM tries to solve 
   - All the pros, self explained...
--  Discuss the methods we can use to query a JPA design and compare with what you explained above 
+- Discuss the methods we can use to query a JPA design and compare with what you explained above 
   - ?
 
 ## Practical part
